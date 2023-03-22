@@ -45,7 +45,7 @@ class HomeController extends Controller
     public function getBaiViet()
     {
         $baiviet = BaiViet::paginate(10);
-        return view('frontend.baiviet', compact('baiviet'));
+        return view('client.baiviet', compact('baiviet'));
     }
 
     public function getBaiVietChiTiet($tieude_slug)
@@ -54,36 +54,31 @@ class HomeController extends Controller
             $baiviet = BaiViet::where('tieude_slug', $tieude_slug)->first();
             $author = User::where('id', $baiviet->author_id)->first();
             DB::table('baiviet')->where('id', $baiviet->id)->update(['luotxem' => $baiviet->luotxem + 1]);
-            // $sanphamlienquan = SanPham::where('loaisanpham_id', $loaisanpham->id)->orderBy('created_at', 'desc')->take(5)->get();
         }
-
-        // dd(session('baivietvuaxem'));
-        $session = session()->has('baivietvuaxem') ? session('baivietvuaxem') : [];
-        // dd($session);
-        session()->put('baivietvuaxem', $session);
         session()->push('baivietvuaxem', $baiviet);
-        // session()->flush();
-        // dd(session('baivietvuaxem'));
+        // dd(session());
 
-        return view('frontend.baivietchitiet', compact('baiviet', 'author'));
+        return view('client.baivietchitiet', compact('baiviet', 'author'));
     }
 
     public function getSanPham($tenloai_slug = '')
     {
         $tenloai = '';
-        $hangsanxuat = array();
         if (!empty($tenloai_slug)) {
             $loaisanpham = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
-            $sanpham = SanPham::where('loaisanpham_id', $loaisanpham->id)->paginate(16);
+            $sanpham = SanPham::where('loaisanpham_id', $loaisanpham->id)->paginate(12);
             $tenloai = $loaisanpham->tenloai;
             $hangsanxuat = SanPham::select('hangsanxuat_id')->where('loaisanpham_id', $loaisanpham->id)->distinct()->get();
         } else {
-            $sanpham = SanPham::paginate(16);
+            $sanpham = SanPham::paginate(12);
+            $hangsanxuat = HangSanXuat::all();
         }
         $msp = DungluongSanPham::all();
         $lsp = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
 
-        return view('frontend.sanpham', compact('sanpham', 'tenloai', 'msp', 'hangsanxuat', 'lsp'));
+        // dd($lsp);
+
+        return view('client.sanpham', compact('sanpham', 'tenloai', 'msp', 'hangsanxuat', 'lsp'));
     }
 
     public function getDanhMucChiTiet($tenloai_slug, $tenhang_slug)
@@ -98,13 +93,21 @@ class HomeController extends Controller
         }
         $msp = MauSanPham::all();
         $lsp = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
-        return view('frontend.sanpham', compact('sanpham', 'tenloai', 'msp', 'hangsanxuat', 'lsp'));
+        return view('client.sanpham', compact('sanpham', 'tenloai', 'msp', 'hangsanxuat', 'lsp'));
     }
     public function postSanPham(Request $request)
     {
-        $lsp = LoaiSanPham::where('tenloai_slug', $request->tenloai_slug)->first();
+        // $lsp = LoaiSanPham::where('tenloai_slug', $request->tenloai_slug)->first();
         $msp = DungLuongSanPham::all();
 
+        if (isset($request->search) && isset($request->cate_select)) {
+            $sanpham = SanPham::where('tensanpham', 'LIKE', "%{$request->search}%")
+                ->where('loaisanpham_id', 'LIKE', "%{$request->cate_select}%")
+                ->paginate(15);
+            $lsp = LoaiSanPham::where('id', $request->cate_select)->first();
+            $tenloai = 'Tìm kiếm';
+            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp', 'msp'));
+        }
         if (isset($request->tenloai_slug)) {
             $lsp = LoaiSanPham::where('tenloai_slug', $request->tenloai_slug)->first();
             $tenloai = $lsp->tenloai;
@@ -153,7 +156,7 @@ class HomeController extends Controller
                 session()->put('sapxep', 'default');
             }
 
-            return view('frontend.sanpham', compact('sanpham', 'tenloai', 'lsp', 'msp'));
+            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp', 'msp'));
         } else {
             if ($request->sapxep == 'popularity') // Mua nhiều nhất
             {
@@ -191,7 +194,19 @@ class HomeController extends Controller
                 session()->put('sapxep', 'default');
             }
         }
-        return view('frontend.sanpham', compact('sanpham', 'lsp', 'msp'));
+        return view('client.sanpham', compact('sanpham', 'lsp', 'msp'));
+    }
+
+    public function postTimSanPham(Request $request)
+    {
+        if (isset($request->search) && isset($request->cate_select)) {
+            $sanpham = SanPham::where('tensanpham', 'LIKE', "%{$request->search}%")
+                ->where('loaisanpham_id', 'LIKE', "%{$request->cate_select}%")
+                ->get();
+        } else if (isset($request->search)) {
+            $sanpham = SanPham::where('tensanpham', 'LIKE', "%{$request->search}%")->get();
+        }
+        dd($sanpham);
     }
 
     public function getSanPham_ChiTiet($tenloai_slug, $tensanpham_slug)
@@ -206,17 +221,18 @@ class HomeController extends Controller
 
     public function getLienHe()
     {
-        return view('frontend.lienhe');
+        return view('client.lienhe');
     }
 
     public function getGioHang()
     {
         $sanpham = SanPham::all();
         if (Cart::count())
-            return view('frontend.giohang', compact('sanpham'));
+            return view('client.giohang', compact('sanpham'));
         else
-            return view('frontend.giohang_rong');
+            return view('client.giohang_rong');
     }
+
 
     public function postGioHang_Them(Request $request)
     {
@@ -243,13 +259,13 @@ class HomeController extends Controller
     public function getGioHang_Xoa($row_id)
     {
         Cart::remove($row_id);
-        return redirect()->route('frontend.giohang');
+        return redirect()->route('client.giohang');
     }
 
     public function getGioHang_XoaTatCa()
     {
         Cart::destroy();
-        return redirect()->route('frontend.giohang');
+        return redirect()->route('client.giohang');
     }
 
     public function getGioHang_Giam($row_id)
@@ -257,7 +273,7 @@ class HomeController extends Controller
         $row = Cart::get($row_id);
         if ($row->qty > 1)
             Cart::update($row_id, $row->qty - 1);
-        return redirect()->route('frontend.giohang');
+        return redirect()->route('client.giohang');
     }
 
     public function getGioHang_Tang($row_id)
@@ -267,9 +283,9 @@ class HomeController extends Controller
         $dlsp = DungLuongSanPham::where(['sanpham_id' => $row->id, 'dungluong' => $row->storage])->first();
         if ($row->qty < $msp->soluongton || $row->qty < $dlsp->soluongton) {
             Cart::update($row_id, $row->qty + 1);
-            return redirect()->route('frontend.giohang');
+            return redirect()->route('client.giohang');
         } else {
-            return redirect()->route('frontend.giohang')->with('status', 'Sản phẩm trong kho không đủ số lượng.');
+            return redirect()->route('client.giohang')->with('status', 'Sản phẩm trong kho không đủ số lượng.');
         }
     }
 
@@ -289,6 +305,7 @@ class HomeController extends Controller
 
     public function postDatHang(Request $request)
     {
+        // dd($request);
         $tinhtrang = 1;
         $status_dh = DB::select("SHOW TABLE STATUS LIKE 'donhang'"); //Câu lệnh xem trạng thái của bảng
         $id_dh = $status_dh[0]->Auto_increment;
@@ -336,7 +353,7 @@ class HomeController extends Controller
             //
             $ct->save();
             Mail::to(Auth::user()->email)->send(new DatHangEmail($dh));
-            return redirect()->route('frontend.dathangthanhcong');
+            return redirect()->route('client.dathangthanhcong');
             // //
         } elseif ($request->payment_opt == 'paypal') {
             //
@@ -443,7 +460,7 @@ class HomeController extends Controller
             }
         }
 
-        return redirect()->route('frontend.dathangthanhcong');
+        return redirect()->route('client.dathangthanhcong');
     }
 
     public function getDatHangThanhCong()
@@ -467,12 +484,26 @@ class HomeController extends Controller
 		vnp_TransactionNo=13966660
 		vnp_TransactionStatus=00&vnp_TxnRef=80
 		vnp_SecureHash=416c6bbda833c4a6e2738eff6896e68da7e9b52a829f0b67d8fa0061bec4847e8f901980d4adbdb544fcbb2af010b12f63ae0b790bb47eaceba7dbe9e0b24a76*/
-        return view('frontend.dathangthanhcong');
+        return view('client.dathangthanhcong');
     }
 
     public function getDatHangKhongThanhCong()
     {
         Cart::destroy();
-        return view('frontend.dathangthanhcong');
+        return view('client.dathangthanhcong');
+    }
+
+    public function postSoSanh(Request $request)
+    {
+        $sanpham = SanPham::where('id', $request->idsp)->first();
+        $addItems = "<script>
+                        console.log('started');
+                        var sosanh = ['{$sanpham->id}','asdads','{$sanpham->tensanpham}','{$sanpham->dongia}'];
+                        var items = JSON.stringify(sosanh)
+                        localStorage.setItem('sanpham{$sanpham->id}', items);
+                        const storedBlogs = JSON.parse(localStorage.getItem('sanpham{$sanpham->id}'));
+                    </script>";
+        // dd($sanpham);
+        // session()->push('sosanh', [$sanpham]);
     }
 }

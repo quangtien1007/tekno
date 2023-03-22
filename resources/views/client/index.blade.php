@@ -16,8 +16,8 @@
                                 <img src="{{ env('APP_URL') . '/storage/index/poster_macbook.jpg' }}" alt="">
 							</div>
 							<div class="shop-body">
-                                <h3>Laptop<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <h3>Laptop<br>Giảm giá</h3>
+								<a href="{{route('client.sanpham.danhmuc',['tenloai_slug'=>'laptop'])}}" class="cta-btn">khám phá ngay <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -30,8 +30,8 @@
                                 <img src="{{ env('APP_URL') . '/storage/index/poster_headphones.jpg' }}" alt="">
                             </div>
 							<div class="shop-body">
-                                <h3>Accessories<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+                                <h3>Phụ kiện<br>Giảm giá</h3>
+								<a href="{{route('client.sanpham.danhmuc',['tenloai_slug'=>'tai-nghe'])}}" class="cta-btn">khám phá ngay <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -44,8 +44,8 @@
                                 <img src="{{ env('APP_URL') . '/storage/index/poster_iphone.jpg' }}" alt="">
 							</div>
 							<div class="shop-body">
-								<h3>Smartphone<br>Collection</h3>
-								<a href="#" class="cta-btn">Shop now <i class="fa fa-arrow-circle-right"></i></a>
+								<h3>Điện thoại<br>Giảm giá</h3>
+								<a href="{{route('client.sanpham.danhmuc',['tenloai_slug'=>'dien-thoai'])}}" class="cta-btn">khám phá ngay <i class="fa fa-arrow-circle-right"></i></a>
 							</div>
 						</div>
 					</div>
@@ -67,13 +67,12 @@
 					<!-- section title -->
 					<div class="col-md-12">
 						<div class="section-title">
-							<h3 class="title">New Products</h3>
+							<h3 class="title">Sản phẩm mới</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab1">Laptops</a></li>
-									<li><a data-toggle="tab" href="#tab1">Smartphones</a></li>
-									<li><a data-toggle="tab" href="#tab1">Cameras</a></li>
-									<li><a data-toggle="tab" href="#tab1">Accessories</a></li>
+									<li class="active"><a data-toggle="tab" href="#tab1">Laptop</a></li>
+									<li><a data-toggle="tab" href="#tab1">Điện thoại</a></li>
+									<li><a data-toggle="tab" href="#tab1">Tai nghe</a></li>
 								</ul>
 							</div>
 						</div>
@@ -96,12 +95,12 @@
 											<div class="product-img">
 												<img src="{{ env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh }}" alt="">
 												<div class="product-label">
-													<span class="sale">-30%</span>
+													<span class="sale">-10%</span>
 													<span class="new">NEW</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">Category</p>
+												<p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
 												<h3 class="product-name">
                                                     <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                                 </h3>
@@ -115,23 +114,44 @@
 													<i class="fa fa-star"></i>
 													<i class="fa fa-star"></i>
 												</div>
-												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                                    <div class="product-btns">
+                                                        <button type="submit" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">thêm vào yêu thích</span></button>
+                                                        <button onclick="addToCompare({{$item->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
+													    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
 												</div>
 											</div>
 											<div class="add-to-cart">
                                                 <form action="{{route('client.giohang.them')}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="tensanpham_slug" value="{{$item->tensanpham_slug}}">
-                                                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                 </form>
 											</div>
+                                            <!-- input hidden de so sanh san pham -->
+                                            <input type="hidden" value="{{$item->tensanpham}}" id="name">
+                                            <input type="hidden" value="{{$item->dongia}}" id="price">
+                                            <input type="hidden" value="{{$item->hinhanh}}" id="image">
+                                             <!-- /input hidden de so sanh san pham -->
 										</div>
 										<!-- /product -->
                                         @endforeach
+
 										<!-- /product -->
+
+                                        <script type="text/javascript">
+                                            const addToCompare = (product_id) => {
+                                                var id = product_id;
+                                                var name = document.getElementById('name').value;
+                                                var price = document.getElementById('price').value;
+                                                var image = document.getElementById('image').value;
+
+                                                $('#compare').modal('show')  //this is the first time to toggle the modal
+                                                // $('#compare').modal('toggle')  //this is the second time "to turn it off"
+                                                // success:function(){
+                                                // $('#compare').modal('toggle')  //this is the third time to "turn it on again"
+                                                // }
+                                            }
+                                        </script>
 
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
@@ -142,6 +162,29 @@
 					</div>
 					<!-- Products tab & slick -->
 				</div>
+                <div class="container">
+                    {{-- <h2>Large Modal</h2> --}}
+                    <!-- Trigger the modal with a button -->
+                    {{-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#compare">Open Large Modal</button> --}}
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="compare" role="dialog">
+                      <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Modal Header</h4>
+                          </div>
+                          <div class="modal-body">
+                            <p>This is a large modal.</p>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 				<!-- /row -->
 			</div>
 			<!-- /container -->
@@ -160,31 +203,31 @@
 								<li>
 									<div>
 										<h3>02</h3>
-										<span>Days</span>
+										<span>Ngày</span>
 									</div>
 								</li>
 								<li>
 									<div>
 										<h3>10</h3>
-										<span>Hours</span>
+										<span>Giờ</span>
 									</div>
 								</li>
 								<li>
 									<div>
 										<h3>34</h3>
-										<span>Mins</span>
+										<span>Phút</span>
 									</div>
 								</li>
 								<li>
 									<div>
 										<h3>60</h3>
-										<span>Secs</span>
+										<span>Giây</span>
 									</div>
 								</li>
 							</ul>
-							<h2 class="text-uppercase">hot deal this week</h2>
-							<p>New Collection Up to 50% OFF</p>
-							<a class="primary-btn cta-btn" href="#">Shop now</a>
+							<h2 class="text-uppercase">deal hot trong tuần</h2>
+							<p>Giảm giá sản phẩm đến 50%</p>
+							<a class="primary-btn cta-btn" href="#">Mua ngay</a>
 						</div>
 					</div>
 				</div>
@@ -207,10 +250,9 @@
 							<h3 class="title">Laptop bán chạy</h3>
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
-									<li class="active"><a data-toggle="tab" href="#tab2">Laptops</a></li>
-									<li><a data-toggle="tab" href="#tab2">Smartphones</a></li>
-									<li><a data-toggle="tab" href="#tab2">Cameras</a></li>
-									<li><a data-toggle="tab" href="#tab2">Accessories</a></li>
+									<li class="active"><a data-toggle="tab" href="#tab2">Laptop</a></li>
+									<li><a data-toggle="tab" href="#tab1">Điện thoại</a></li>
+									<li><a data-toggle="tab" href="#tab1">Tai nghe</a></li>
 								</ul>
 							</div>
 						</div>
@@ -233,12 +275,12 @@
 											<div class="product-img">
 												<img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
 												<div class="product-label">
-													<span class="sale"> -30%</span>
+													<span class="sale"> -10%</span>
 													<span class="new">NEW</span>
 												</div>
 											</div>
 											<div class="product-body">
-												<p class="product-category">Category</p>
+												<p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
 												<h3 class="product-name">
                                                     <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                                 </h3>
@@ -305,12 +347,12 @@
 										<img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
+										<p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
 										<h3 class="product-name">
                                             <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                         </h3>
-                                        <h4 class="product-price">{{number_format($item->dongia)}}
-                                            <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
+                                        <h4 class="product-price">{{number_format($item->dongia)}}<sup>đ</sup>
+                                            <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del><sup>đ</sup>
                                         </h4>
 									</div>
 								</div>
@@ -325,8 +367,10 @@
 										<img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
 									</div>
 									<div class="product-body">
-										<p class="product-category">Category</p>
-										<h3 class="product-name"><a href="#">{{$item->tensanpham}}</a></h3>
+										<p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
+                                        <h3 class="product-name">
+                                            <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
+                                        </h3>
                                         <h4 class="product-price">{{number_format($item->dongia)}}
                                             <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
                                         </h4>
@@ -354,8 +398,10 @@
                                          <img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
                                      </div>
                                      <div class="product-body">
-                                         <p class="product-category">Category</p>
-                                         <h3 class="product-name"><a href="#">{{$item->tensanpham}}</a></h3>
+                                         <p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
+                                         <h3 class="product-name">
+                                            <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
+                                        </h3>
                                          <h4 class="product-price">{{number_format($item->dongia)}}
                                              <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
                                          </h4>
@@ -372,8 +418,10 @@
                                          <img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
                                      </div>
                                      <div class="product-body">
-                                         <p class="product-category">Category</p>
-                                         <h3 class="product-name"><a href="#">{{$item->tensanpham}}</a></h3>
+                                         <p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
+                                         <h3 class="product-name">
+                                            <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
+                                        </h3>
                                          <h4 class="product-price">{{number_format($item->dongia)}}
                                              <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
                                          </h4>
@@ -399,7 +447,7 @@
 				<div class="row">
 					<div class="col-md-12">
 						<div class="newsletter">
-							<p>Sign Up for the <strong>NEWSLETTER</strong></p>
+							<p>Đăng ký để nhận thông báo <strong>KHUYẾN MÃI</strong></p>
 							<form>
 								<input class="input" type="email" placeholder="Enter Your Email">
 								<button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>

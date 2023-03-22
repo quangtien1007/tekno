@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.client')
 
 @section('title', 'Quản lý tài khoản')
 
@@ -13,14 +13,14 @@
 				</div>
 				<div class="col-md-6">
 					<ol class="breadcrumb justify-content-md-end">
-						<li class="breadcrumb-item"><a href="{{ route('frontend') }}">Trang chủ</a></li>
+						<li class="breadcrumb-item"><a href="{{ route('client') }}">Trang chủ</a></li>
 						<li class="breadcrumb-item active">Quản lý tài khoản</li>
 					</ol>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="main_content">
 		<div class="section">
 			<div class="container">
@@ -57,7 +57,7 @@
 										<h5>Trang chủ khách hàng</h5>
 									</div>
 									<div class="card-body">
-										<p class="text-center"><img src="{{ asset('public/assets/images/consumer.png') }}" /></p>
+										<p class="text-center"><img src="{{ asset('images/consumer.png') }}" /></p>
 										<p>Xin chào khách hàng {{ Auth::user()->name }}.</p>
 										<p class="text-justify">Từ trang chủ khách hàng, bạn có thể dễ dàng kiểm tra và xem các <a href="javascript:void(0);" onclick="$('#orders-tab').trigger('click')">đơn hàng</a> của mình, quản lý <a href="javascript:void(0);" onclick="$('#address-tab').trigger('click')">sổ địa chỉ</a> giao hàng và thanh toán và chỉnh sửa thông tin <a href="javascript:void(0);" onclick="$('#account-detail-tab').trigger('click')">hồ sơ cá nhân.</a></p>
 									</div>
@@ -102,13 +102,13 @@
 														<div class="modal fade" id="myModal">
 															<div class="modal-dialog modal-lg">
 															<div class="modal-content">
-														
+
 																<!-- Modal Header -->
 																<div class="modal-header">
 																<h4 class="modal-title">Chi tiết đơn hàng</h4>
 																<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 																</div>
-														
+
 																<!-- Modal body -->
 																<div class="modal-body">
 																<table class="table table-bordered table-hover">
@@ -132,12 +132,12 @@
 																	</tr>
 																</table>
 																</div>
-														
+
 																<!-- Modal footer -->
 																<div class="modal-footer">
 																<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
 																</div>
-														
+
 															</div>
 															</div>
 														</div>
@@ -163,7 +163,7 @@
 													122 Trần Hưng Đạo<br />
 													Khóm Đông Thạnh A<br />
 													Phường Mỹ Thạnh<br />
-													Thành phố Long Xuyên<br /> 
+													Thành phố Long Xuyên<br />
 													Tỉnh An Giang<br />
 												</address>
 												<a href="#" class="btn btn-fill-out">Chỉnh sửa</a>
@@ -181,7 +181,7 @@
 													Đại học An Giang<br />
 													18 Ung Văn Khiêm<br />
 													Phường Đông Xuyên<br />
-													Thành phố Long Xuyên<br /> 
+													Thành phố Long Xuyên<br />
 													Tỉnh An Giang<br />
 												</address>
 												<a href="#" class="btn btn-fill-out">Chỉnh sửa</a>
@@ -226,8 +226,8 @@
 													<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 												@enderror
 											</div>
-											
-											<button type="submit" class="btn btn-fill-out">Cập nhật thông tin</button>
+
+											<button type="submit" class="primary-btn order-submit">Cập nhật thông tin</button>
 										</form>
 									</div>
 								</div>

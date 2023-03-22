@@ -15,11 +15,9 @@
 				<div class="row">
 					<div class="col-md-12">
 						<ul class="breadcrumb-tree">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">All Categories</a></li>
-							<li><a href="#">Accessories</a></li>
-							<li><a href="#">Headphones</a></li>
-							<li class="active">Product name goes here</li>
+							<li><a href="{{route('client')}}">Trang chủ</a></li>
+							<li><a href="{{ route('client.sanpham.danhmuc', ['tenloai_slug' => $loaisanpham->tenloai_slug]) }}">{{ $loaisanpham->tenloai }}</a></li>
+							<li><a href="#">{{ $sanpham->tensanpham }}</a></li>
 						</ul>
 					</div>
 				</div>
@@ -84,8 +82,8 @@
 								<a class="review-link" href="#">10 Review(s) | Add your review</a>
 							</div>
 							<div>
-								<h4 class="product-price">{{number_format($sanpham->dongia)}}đ
-                                    <del class="product-old-price">{{number_format($sanpham->dongia + ($sanpham->dongia*0.1))}}đ</del>
+								<h4 class="product-price">{{number_format($sanpham->dongia)}}<sup>đ</sup>
+                                    <del class="product-old-price">{{number_format($sanpham->dongia + ($sanpham->dongia*0.1))}}<sup>đ</sup></del>
                                 </h4>
 								<span class="product-available">In Stock</span>
 							</div>
@@ -94,7 +92,7 @@
 							<div class="product-options">
 								<label>
 									Storage
-									<select class="input-select">
+									<select name="dlsp" class="input-select">
                                         @foreach ($dl->where('sanpham_id',$sanpham->id) as $item)
 										<option value="{{$item->dungluong}}">{{$item->dungluong}}</option>
                                         @endforeach
@@ -102,7 +100,7 @@
 								</label>
 								<label>
 									Color
-									<select class="input-select">
+									<select name="msp" class="input-select">
                                         @foreach ($msp->where('sanpham_id',$sanpham->id) as $item)
 										<option value="{{$item->mau}}">{{$item->mau}}</option>
                                         @endforeach

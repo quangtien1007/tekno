@@ -14,7 +14,7 @@ const handleCheckedRed = () =>{
     }
 }
 const handleCheckedBlack = () =>{
-    if(document.getElementById('chk_den').checked)	
+    if(document.getElementById('chk_den').checked)
     {
         document.getElementById('sl_den').style.display = 'block';
         document.getElementById('gt_den').style.display = 'block';
@@ -164,3 +164,47 @@ const handleChecked1 = () =>{
         document.getElementById('igt1').disabled = true;
     }
 }
+
+// const addToCompare = (product_id) => {
+//     var id = product_id;
+//     var name = document.getElementById('name').value;
+//     var price = document.getElementById('price').value;
+//     var image = document.getElementById('image').value;
+
+//     var newItem = {
+//         'id':id,
+//         'name':name,
+//         'price':price,
+//         'image':image
+//     }
+
+//     if(localStorage.getItem('compare') == null){
+//         localStorage.setItem('compare',[]);
+//     }
+
+//     var oldData = JSON.parse(localStorage.getItem('compare'));
+
+//     var matches = $.grep(oldData,function(obj){
+//         return obj.id == id;
+//     })
+
+//     if(matches.length){
+
+//     } else{
+//         if(oldData.length<=3){
+//             oldData.data.push(newItem);
+//             $('#row_compare').find('tbody').append(`
+//                 <tr id="row_compare"`+id+`">
+//                 <td> +newItem. name+*</td>
+//                 <td> newItem.price </td>
+//                 <td><img width="200px" src="` +image+ `"></td>
+//                 <td></td>
+//                 <td></td>
+//                 <td></td>
+//                 <td><a href=" sán pham</a></td>
+//                 <td onclick="delete_compare(` +id+`)"><a style="cursor:pointer;" >Xóa sosanh</a></td></tr>
+//                 `
+//             )
+//         }
+//     }
+// }

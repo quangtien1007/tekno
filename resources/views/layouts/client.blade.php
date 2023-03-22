@@ -6,13 +6,20 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>@yield('title', 'Trang chủ') - {{ config('app.name', 'Tekno') }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="{{asset('assets/js/index.js')}}"></script>
+        {{-- <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script> --}}
 
 		<!-- Bootstrap -->
-
+        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" /> --}}
+        <!-- Latest compiled and minified CSS -->
+{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> --}}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
 
 		<!-- Slick -->
@@ -23,7 +30,8 @@
 		<link rel="stylesheet" href="{{asset('assets/css/nouislider.min.css')}}"/>
 
 		<!-- Font Awesome Icon -->
-		<link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}">
+		{{-- <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"> --}}
+        <script src="https://kit.fontawesome.com/80a51985d7.js" crossorigin="anonymous"></script>
 
 		<!-- Custom stlylesheet -->
 		<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"/>
@@ -43,13 +51,13 @@
 			<div id="top-header">
 				<div class="container">
 					<ul class="header-links pull-left">
-						<li><a href="#"><i class="fa fa-phone"></i> +021-95-51-84</a></li>
-						<li><a href="#"><i class="fa fa-envelope-o"></i> email@email.com</a></li>
-						<li><a href="#"><i class="fa fa-map-marker"></i> 1734 Stonecoal Road</a></li>
+						<li><a href="#"><i class="fa fa-phone"></i> +84-038-601-5481</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> tekno@gmail.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> 18, Ung Văn Khiêm</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-dollar"></i> USD</a></li>
-						<li><a href="#"><i class="fa fa-user-o"></i> My Account</a></li>
+						<li><a href="#"><i class="fa fa-dollar"></i> VND</a></li>
+						<li><a href="{{ route('user') }}"><i class="fa fa-user-o"></i> Tài khoản</a></li>
 					</ul>
 				</div>
 			</div>
@@ -64,8 +72,8 @@
 						<!-- LOGO -->
 						<div class="col-md-3">
 							<div class="header-logo">
-								<a href="#" class="logo">
-									<img src="./img/logo.png" alt="">
+								<a href="{{route('client')}}" class="logo">
+									<img src="{{ asset('images/logo_light.png') }}" alt="">
 								</a>
 							</div>
 						</div>
@@ -74,14 +82,15 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select wi   class="input-select">
+								<form action="{{route('client.sanpham')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+									<select name="cate_select" class="input-select">
 										@foreach ($navdata as $item)
                                         <option value="{{$item->id}}">{{$item->tenloai}}</option>
                                         @endforeach
 									</select>
-									<input class="input" placeholder="Search here">
-									<button class="search-btn">Search</button>
+									<input name="search"class="input" placeholder="Tìm kiếm tại đây...">
+									<button class="search-btn">Tìm kiếm</button>
 								</form>
 							</div>
 						</div>
@@ -94,7 +103,7 @@
 								<div>
 									<a href="#">
 										<i class="fa fa-heart-o"></i>
-										<span>Your Wishlist</span>
+										<span>Yêu thích</span>
 										<div class="qty">2</div>
 									</a>
 								</div>
@@ -104,7 +113,7 @@
 								<div class="dropdown">
 									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
-										<span>Your Cart</span>
+										<span>Giỏ hàng</span>
 										<div class="qty">{{ Cart::count() ?? 0 }}</div>
 									</a>
 									<div class="cart-dropdown">
@@ -127,8 +136,8 @@
 											<h5>Tổng tiền: {{ Cart::priceTotal() }}đ</h5>
 										</div>
 										<div class="cart-btns">
-											<a href="">View Cart</a>
-											<a href="{{ route('client.dathang') }}">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="{{ route('client.giohang') }}">Xem giỏ hàng</a>
+											<a href="{{ route('client.dathang') }}">Thanh toán  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
@@ -162,13 +171,19 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
+						<li class="active"><a href="#">Trang chủ</a></li>
 						<li><a href="#">Hot Deals</a></li>
-						<li><a href="#">Categories</a></li>
-						<li><a href="#">Laptops</a></li>
-						<li><a href="#">Smartphones</a></li>
-						<li><a href="#">Cameras</a></li>
-						<li><a href="#">Accessories</a></li>
+						@foreach ($navdata as $item)
+                        <li>
+                            <a class=""
+                            href="{{ route('client.sanpham.danhmuc',
+                            ['tenloai_slug' => $item->tenloai_slug]) }}">
+                            {{ $item->tenloai }}
+                            </a>
+                        </li>
+                        @endforeach
+                        <li><a href="{{ route('client.baiviet') }}">Tin tức</a></li>
+                        <li><a href="{{ route('client.lienhe') }}">Liên hệ</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -193,13 +208,12 @@
 								<h3 class="footer-title">About Us</h3>
 								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
 								<ul class="footer-links">
-									<li><a href="#"><i class="fa fa-map-marker"></i>1734 Stonecoal Road</a></li>
-									<li><a href="#"><i class="fa fa-phone"></i>+021-95-51-84</a></li>
-									<li><a href="#"><i class="fa fa-envelope-o"></i>email@email.com</a></li>
+									<li><a href="#"><i class="fa fa-map-marker"></i>18, Ung Văn Khiêm</a></li>
+									<li><a href="#"><i class="fa fa-phone"></i>+84-38-601-5481</a></li>
+									<li><a href="#"><i class="fa fa-envelope-o"></i>tekno@gmail.com</a></li>
 								</ul>
 							</div>
 						</div>
-
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
 								<h3 class="footer-title">Categories</h3>
@@ -263,7 +277,7 @@
 							</ul>
 							<span class="copyright">
 								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-								Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+								Copyright &copy;<script>document.write(new Date().getFullYear());</script>  {{ config('app.name', 'Laravel') }} All rights reserved
 							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>

@@ -2189,3 +2189,43 @@ textarea.input {
     margin-top: 10px;
   }
 }
+/* custom css */
+button[type="submit"].login{
+    width: 100%;
+}
+a.login{
+    width: 100%;
+}
+.news{
+    margin: 15px 5px;
+    display: flex;
+
+}
+.news .news-thumbnail{
+    width: 350px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.news .news-des{
+    position: absolute;
+    bottom: 40px;
+}
+.news .news-title{
+    width: 800px;
+}
+.news .news-title a{
+    font-size: 20px;
+}
+.news .news-footer{
+    position: absolute;
+    bottom: 15px;
+}
+div.des .compact_content{
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    padding: 0;
+}

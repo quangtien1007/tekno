@@ -27,5 +27,6 @@ class ViewServiceProvider extends ServiceProvider
     {
         // Using class based composers...
         View::composer('layouts.client', NavComposer::class);
+        View::composer('client.sanpham', NavComposer::class);
     }
 }
