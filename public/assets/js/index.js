@@ -165,46 +165,85 @@ const handleChecked1 = () =>{
     }
 }
 
-// const addToCompare = (product_id) => {
-//     var id = product_id;
-//     var name = document.getElementById('name').value;
-//     var price = document.getElementById('price').value;
-//     var image = document.getElementById('image').value;
+const addToCompare = (product_id) => {
+    var id = product_id;
+    var name = document.getElementById('name'+id).value;
+    var price = document.getElementById('price'+id).value;
+    var image = document.getElementById('image'+id).value;
+    var url = document.getElementById('url'+id).href;
+    // console.log(url);
 
-//     var newItem = {
-//         'id':id,
-//         'name':name,
-//         'price':price,
-//         'image':image
-//     }
+    var newItem = {
+        'id':id,
+        'name':name,
+        'price':price,
+        'image':image,
+        'url':url
+    }
 
-//     if(localStorage.getItem('compare') == null){
-//         localStorage.setItem('compare',[]);
-//     }
+    if(localStorage.getItem('compare') == null){
+        localStorage.setItem('compare','[]');
+    }
 
-//     var oldData = JSON.parse(localStorage.getItem('compare'));
+    var oldData = JSON.parse(localStorage.getItem('compare'));
 
-//     var matches = $.grep(oldData,function(obj){
-//         return obj.id == id;
-//     })
+    var matches = $.grep(oldData,function(obj){
+        return obj.id == id;
+    })
 
-//     if(matches.length){
+    if(matches.length){
 
-//     } else{
-//         if(oldData.length<=3){
-//             oldData.data.push(newItem);
-//             $('#row_compare').find('tbody').append(`
-//                 <tr id="row_compare"`+id+`">
-//                 <td> +newItem. name+*</td>
-//                 <td> newItem.price </td>
-//                 <td><img width="200px" src="` +image+ `"></td>
-//                 <td></td>
-//                 <td></td>
-//                 <td></td>
-//                 <td><a href=" sán pham</a></td>
-//                 <td onclick="delete_compare(` +id+`)"><a style="cursor:pointer;" >Xóa sosanh</a></td></tr>
-//                 `
-//             )
-//         }
-//     }
-// }
+    } else{
+        if(oldData.length<=2){
+            oldData.push(newItem);
+            $('#row_compare').find('tbody').append(`
+                <tr id="row_compare`+id+`">
+                <td><img width="100px" src="` +newItem.image+ `"></td>
+                <td>` +newItem.name+`</td>
+                <td>`+ newItem.price +`</td>
+                <td><a href="`+newItem.url+`">Xem sản phẩm</a></td>
+                <td><a style="cursor:pointer;" onclick="deleteCompare(`+id+`)">Xóa</a></td></tr>
+                `
+            )
+        }
+    }
+    localStorage.setItem('compare',JSON.stringify(oldData));
+    $('#myModal').modal();
+}
+
+window.onload = viewCompared;
+function viewCompared(){
+    if(localStorage.getItem('compare')!=null){
+        var data =  JSON.parse(localStorage.getItem('compare'));
+
+        for(i=0;i<data.length;i++){
+            var id = data[i].id;
+            var name = data[i].name;
+            var image = data[i].image;
+            var price = data[i].price;
+            var url = data[i].url;
+            $('#row_compare').find('tbody').append(`
+                <tr id="row_compare`+id+`">
+                <td><img width="100px" src="` +image+ `"></td>
+                <td>` +name+`</td>
+                <td>`+ price +`</td>
+                <td><a href="`+url+`">Xem sản phẩm</a></td>
+                <td onclick="delete_compare(`+id+`)"><a style="cursor:pointer;" >Xóa</a></td></tr>
+                `
+            )
+        }
+    }
+}
+const deleteCompare = (id) =>{
+    if(localStorage.getItem('compare')!=null){
+        var data =  JSON.parse(localStorage.getItem('compare'));
+
+        var index = data.findIndex(item => item.id === id);
+
+        data.splice(index, 1);
+
+        localStorage.setItem("compare",JSON.stringify(data));
+        //remove
+        document.getElementById("row_compare"+id).remove();
+    }
+}

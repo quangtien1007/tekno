@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{{route('client')}}">Trang chủ</a></li>
                         <li><a href="#">Sản phẩm</a></li>
                         <li class="active">{{$tenloai}} </li>
                     </ul>
@@ -55,13 +55,13 @@
                         <div class="price-filter">
                             <div id="price-slider"></div>
                             <div class="input-number price-min">
-                                <input id="price-min" type="number">
+                                <input id="price-min" type="number" name="price-min">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                             <span>-</span>
                             <div class="input-number price-max">
-                                <input id="price-max" type="number">
+                                <input id="price-max" type="number" name="price-max">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
@@ -96,7 +96,7 @@
 
                     <!-- aside Widget -->
                     <div class="aside">
-                        <h3 class="aside-title">Top selling</h3>
+                        <h3 class="aside-title">Bán chạy</h3>
                         <div class="product-widget">
                             <div class="product-img">
                                 <img src="./img/product01.png" alt="">
@@ -118,7 +118,7 @@
                     <div class="store-filter clearfix">
                         <div class="store-sort">
                             <label>
-                                Sort By:
+                                Lọc:
                                 <form action="{{ route('client.sanpham') }}" method="post">
                                     @csrf
                                     @if(isset($tenloai))
@@ -136,7 +136,7 @@
                             </label>
 
                             <label>
-                                Show:
+                                Hiển thị:
                                 <select class="input-select">
                                     <option value="0">20</option>
                                     <option value="1">50</option>
@@ -160,7 +160,7 @@
                                     <img src="{{ env('APP_URL') . '/storage/app/sanpham/' . $item->hinhanh }}" alt="">
                                     <div class="product-label">
                                         <span class="sale">-10%</span>
-                                        <span class="new">NEW</span>
+                                        <span class="new">MỚI</span>
                                     </div>
                                 </div>
                                 <div class="product-body">
@@ -179,16 +179,16 @@
                                         <i class="fa fa-star"></i>
                                     </div>
                                     <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">yêu thích</span></button>
+                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
+                                        <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
                                     <form action="{{route('client.giohang.them')}}" method="post">
                                         @csrf
                                         <input type="hidden" name="tensanpham_slug" value="{{$item->tensanpham_slug}}">
-                                        <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+                                        <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>
                                     </form>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
 
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
-                        <span class="store-qty">Showing 20-100 products</span>
+                        {{-- <span class="store-qty">Showing 20-100 products</span> --}}
                         {{-- <ul class="store-pagination">
                             <li class="active">1</li>
                             <li><a href="#">2</a></li>

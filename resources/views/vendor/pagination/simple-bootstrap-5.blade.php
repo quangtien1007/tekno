@@ -13,7 +13,7 @@
 					</a>
 				</li>
 			@endif
-			
+
 			{{-- Next Page Link --}}
 			@if ($paginator->hasMorePages())
 				<li class="page-item">

@@ -102,7 +102,7 @@
 											<div class="product-body">
 												<p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
 												<h3 class="product-name">
-                                                    <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
+                                                    <a id="url{{$item->id}}" href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                                 </h3>
 												<h4 class="product-price">{{number_format($item->dongia)}}
                                                     <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
@@ -128,30 +128,14 @@
                                                 </form>
 											</div>
                                             <!-- input hidden de so sanh san pham -->
-                                            <input type="hidden" value="{{$item->tensanpham}}" id="name">
-                                            <input type="hidden" value="{{$item->dongia}}" id="price">
-                                            <input type="hidden" value="{{$item->hinhanh}}" id="image">
+                                            <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
+                                            <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
+                                            <input type="hidden" value="{{ env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
                                              <!-- /input hidden de so sanh san pham -->
 										</div>
 										<!-- /product -->
                                         @endforeach
-
 										<!-- /product -->
-
-                                        <script type="text/javascript">
-                                            const addToCompare = (product_id) => {
-                                                var id = product_id;
-                                                var name = document.getElementById('name').value;
-                                                var price = document.getElementById('price').value;
-                                                var image = document.getElementById('image').value;
-
-                                                $('#compare').modal('show')  //this is the first time to toggle the modal
-                                                // $('#compare').modal('toggle')  //this is the second time "to turn it off"
-                                                // success:function(){
-                                                // $('#compare').modal('toggle')  //this is the third time to "turn it on again"
-                                                // }
-                                            }
-                                        </script>
 
 									</div>
 									<div id="slick-nav-1" class="products-slick-nav"></div>
@@ -162,28 +146,41 @@
 					</div>
 					<!-- Products tab & slick -->
 				</div>
-                <div class="container">
-                    {{-- <h2>Large Modal</h2> --}}
-                    <!-- Trigger the modal with a button -->
-                    {{-- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#compare">Open Large Modal</button> --}}
-
+                  <!-- Modal -->
+                  <div class="container">
                     <!-- Modal -->
-                    <div class="modal fade" id="compare" role="dialog">
+                    <div class="modal fade" id="myModal" role="dialog">
                       <div class="modal-dialog modal-lg">
+
+                        <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
+                            <h4 class="modal-title">So sánh sản phẩm (Tối đa 3 sản phẩm)</h4>
                           </div>
                           <div class="modal-body">
-                            <p>This is a large modal.</p>
+                            <table class="table" id="row_compare">
+                                <thead>
+                                  <tr>
+                                      <th>Hỉnh ảnh</th>
+                                      <th>Sản phẩm</th>
+                                      <th>Giá</th>
+                                        <th>Thông số kỹ thuật</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                              </table>
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                           </div>
                         </div>
+
                       </div>
                     </div>
+
                   </div>
 				<!-- /row -->
 			</div>

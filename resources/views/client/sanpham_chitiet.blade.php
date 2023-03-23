@@ -91,7 +91,7 @@
 
 							<div class="product-options">
 								<label>
-									Storage
+									D.Lượng
 									<select name="dlsp" class="input-select">
                                         @foreach ($dl->where('sanpham_id',$sanpham->id) as $item)
 										<option value="{{$item->dungluong}}">{{$item->dungluong}}</option>
@@ -99,7 +99,7 @@
 									</select>
 								</label>
 								<label>
-									Color
+									Màu
 									<select name="msp" class="input-select">
                                         @foreach ($msp->where('sanpham_id',$sanpham->id) as $item)
 										<option value="{{$item->mau}}">{{$item->mau}}</option>
@@ -108,7 +108,6 @@
 								</label>
 							</div>
 
-                            {{-- {{dd($msp->where('sanpham_id',$sanpham->id))}} --}}
 							<div class="add-to-cart">
 								<div class="qty-label">
 									Qty
@@ -118,18 +117,18 @@
 										<span class="qty-down">-</span>
 									</div>
 								</div>
-								<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>
 							</div>
 
                         </form>
 							<ul class="product-btns">
-								<li><a href="#"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-exchange"></i> add to compare</a></li>
+								<li><a href="#"><i class="fa fa-heart-o"></i> yêu thích</a></li>
+
 							</ul>
 
 							<ul class="product-links">
 								<li>Category:</li>
-								<li><a href="#">Headphones</a></li>
+								<li><a href="#">Tai nghe</a></li>
 								<li><a href="#">Accessories</a></li>
 							</ul>
 
@@ -151,9 +150,9 @@
 						<div id="product-tab">
 							<!-- product tab nav -->
 							<ul class="tab-nav">
-								<li class="active"><a data-toggle="tab" href="#tab1">Description</a></li>
-								<li><a data-toggle="tab" href="#tab2">Details</a></li>
-								<li><a data-toggle="tab" href="#tab3">Reviews (3)</a></li>
+								<li class="active"><a data-toggle="tab" href="#tab1">Mô tả sản phẩm</a></li>
+								<li><a data-toggle="tab" href="#tab2">Thông số kỹ thuật</a></li>
+								<li><a data-toggle="tab" href="#tab3">Đánh giá (3)</a></li>
 							</ul>
 							<!-- /product tab nav -->
 
@@ -163,7 +162,9 @@
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
 										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											@php
+                                                echo $sanpham->motasanpham;
+                                            @endphp
 										</div>
 									</div>
 								</div>
@@ -173,7 +174,8 @@
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
 										<div class="col-md-12">
-											<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+											<p>
+                                            </p>
 										</div>
 									</div>
 								</div>
@@ -270,54 +272,30 @@
 										<div class="col-md-6">
 											<div id="reviews">
 												<ul class="reviews">
+                                                    @php
+                                                    $danhgia = DB::table('danhgia')->get();
+                                                    @endphp
+                                                    @foreach ($danhgia as $item)
 													<li>
 														<div class="review-heading">
-															<h5 class="name">John</h5>
+															<h5 class="name">{{DB::table('users')->where('id',$item->user_id)->first()->name}}</h5>
 															<p class="date">27 DEC 2018, 8:0 PM</p>
 															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
+                                                                @if(isset($item->sao))
+                                                                    @for ($i = 0; $i < $item->sao; $i++)
+                                                                    <i class="fa fa-star"></i>
+                                                                    @endfor
+                                                                    @for ($i = 0; $i < 5 - $item->sao; $i++)
+                                                                    <i class="fa fa-star-o empty"></i>
+                                                                    @endfor
+                                                                @endif
 															</div>
 														</div>
 														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+															<p>{{$item->noidung}}</p>
 														</div>
 													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
-													<li>
-														<div class="review-heading">
-															<h5 class="name">John</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
-															<div class="review-rating">
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star"></i>
-																<i class="fa fa-star-o empty"></i>
-															</div>
-														</div>
-														<div class="review-body">
-															<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-														</div>
-													</li>
+                                                    @endforeach
 												</ul>
 												<ul class="reviews-pagination">
 													<li class="active">1</li>
@@ -334,6 +312,7 @@
 										<div class="col-md-3">
 											<div id="review-form">
 												<form class="review-form">
+                                                    @csrf
 													<input class="input" type="text" placeholder="Your Name">
 													<input class="input" type="email" placeholder="Your Email">
 													<textarea class="input" placeholder="Your Review"></textarea>
@@ -376,7 +355,7 @@
 
 					<div class="col-md-12">
 						<div class="section-title text-center">
-							<h3 class="title">Related Products</h3>
+							<h3 class="title">Sản phẩm tương tự</h3>
 						</div>
 					</div>
                     @foreach($sanphamlienquan as $value)
@@ -393,9 +372,9 @@
 								</div>
 							</div>
 							<div class="product-body">
-								<p class="product-category">Category</p>
+								<p class="product-category">{{DB::table('loaisanpham')->where('id',$sanpham->loaisanpham_id)->first()->tenloai}}</p>
 								<h3 class="product-name">
-                                    <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $value->tensanpham_slug]) }}">{{ $value->tensanpham }}</a>
+                                    <a id="url{{$value->id}}" href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $value->tensanpham_slug]) }}">{{ $value->tensanpham }}</a>
                                 </h3>
 								<h4 class="product-price">{{number_format($value->dongia)}}
                                     <del class="product-old-price">{{number_format($value->dongia + ($value->dongia*0.1))}}</del>
@@ -403,21 +382,61 @@
 								<div class="product-rating">
 								</div>
 								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-									<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">yêu thích</span></button>
+									<button onclick="addToCompare({{$value->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
+									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
 								</div>
 							</div>
 							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> add to cart</button>
+								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>
 							</div>
+                              <!-- input hidden de so sanh san pham -->
+                              <input type="hidden" value="{{$value->tensanpham}}" id="name{{$value->id}}">
+                              <input type="hidden" value="{{$value->dongia}}" id="price{{$value->id}}">
+                              <input type="hidden" value="{{ env('APP_URL') . '/storage/app/sanpham/'.$value->hinhanh }}" id="image{{$value->id}}">
+                               <!-- /input hidden de so sanh san pham -->
 						</div>
 					</div>
 					<!-- /product -->
                     @endforeach
 
 					<div class="clearfix visible-sm visible-xs"></div>
+                       <!-- Modal -->
+                  <div class="container">
+                    <!-- Modal -->
+                    <div class="modal fade" id="myModal" role="dialog">
+                      <div class="modal-dialog modal-lg">
 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            {{-- <button type="button" class="close" data-dismiss="modal">&times;</button> --}}
+                            <h4 class="modal-title">So sánh sản phẩm (Tối đa 3 sản phẩm)</h4>
+                          </div>
+                          <div class="modal-body">
+                            <table class="table" id="row_compare">
+                                <thead>
+                                  <tr>
+                                      <th>Hỉnh ảnh</th>
+                                      <th>Sản phẩm</th>
+                                      <th>Giá</th>
+                                        <th>Thông số kỹ thuật</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                              </table>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                  </div>
 				</div>
 				<!-- /row -->
 			</div>
