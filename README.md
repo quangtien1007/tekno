@@ -1,4 +1,4 @@
-## techshop
+## tekno
 Guide to start project Laravel:<br><br>
 1. `composer install`<br><br>
 2. `php artisan migrate:fresh` <br><br>
