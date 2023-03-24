@@ -11,6 +11,7 @@ class DanhGiaSanPham extends Model
     protected $table = 'danhgia';
     protected $fillable = [
         'user_id',
+        'sanpham_id',
         'sao',
         'noidung',
     ];

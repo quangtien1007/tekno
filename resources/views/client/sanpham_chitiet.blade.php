@@ -273,7 +273,7 @@
 											<div id="reviews">
 												<ul class="reviews">
                                                     @php
-                                                    $danhgia = DB::table('danhgia')->get();
+                                                    $danhgia = DB::table('danhgia')->where('sanpham_id',$sanpham->id)->get();
                                                     @endphp
                                                     @foreach ($danhgia as $item)
 													<li>
@@ -306,31 +306,42 @@
 												</ul>
 											</div>
 										</div>
-										<!-- /Reviews -->
-
+                                        <!-- /Reviews -->
+                                        <?php
+                                        if (Auth::user()) {
+                                            $is_danhgia = DB::table('danhgia')->where('user_id',Auth::user()->id)->where('sanpham_id',$sanpham->id)->first();
+                                            $donhang = DB::table('donhang')->where('user_id',Auth::user()->id)->where('tinhtrang_id',8)->where('sanpham_id',$sanpham->id)->first();//Đơn hàng thành công
+                                            // $sanphamhientai = DB::table('donhang_chitiet')->where('donhang_id',$donhang->id)->where('sanpham_id',$sanpham->id)->first();//Sản phẩm hiện tại
+                                        ?>
+                                        {{-- {{dd($donhang)}} --}}
+                                        @if ($donhang && !$is_danhgia)
 										<!-- Review Form -->
 										<div class="col-md-3">
 											<div id="review-form">
-												<form class="review-form">
+												<form class="review-form" action="{{route('client.danhgia')}}" method="POST">
                                                     @csrf
-													<input class="input" type="text" placeholder="Your Name">
-													<input class="input" type="email" placeholder="Your Email">
-													<textarea class="input" placeholder="Your Review"></textarea>
+													<input class="input" type="text" name="ten" placeholder="Tên của bạn">
+													{{-- <input class="input" type="email" name="" placeholder="Your Email"> --}}
+													<textarea class="input" name="noidung" placeholder="Đánh giá của bạn"></textarea>
 													<div class="input-rating">
-														<span>Your Rating: </span>
+														<span>Đánh giá: </span>
 														<div class="stars">
-															<input id="star5" name="rating" value="5" type="radio"><label for="star5"></label>
-															<input id="star4" name="rating" value="4" type="radio"><label for="star4"></label>
-															<input id="star3" name="rating" value="3" type="radio"><label for="star3"></label>
-															<input id="star2" name="rating" value="2" type="radio"><label for="star2"></label>
-															<input id="star1" name="rating" value="1" type="radio"><label for="star1"></label>
+															<input id="star5" name="sao" value="5" type="radio"><label for="star5"></label>
+															<input id="star4" name="sao" value="4" type="radio"><label for="star4"></label>
+															<input id="star3" name="sao" value="3" type="radio"><label for="star3"></label>
+															<input id="star2" name="sao" value="2" type="radio"><label for="star2"></label>
+															<input id="star1" name="sao" value="1" type="radio"><label for="star1"></label>
+                                                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                                                            <input type="hidden" name="sanpham_id" value="{{$sanpham->id}}">
 														</div>
 													</div>
-													<button class="primary-btn">Submit</button>
+													<button type="submit" class="primary-btn">Gửi đánh giá</button>
 												</form>
 											</div>
 										</div>
 										<!-- /Review Form -->
+                                        @endif
+                                        <?php } ?>
 									</div>
 								</div>
 								<!-- /tab3  -->

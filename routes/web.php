@@ -13,6 +13,7 @@ use App\Http\Controllers\DonHangChiTietController;
 use App\Http\Controllers\NguoiDungController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\BaiVietController;
+use App\Http\Controllers\DanhGiaController;
 use Illuminate\Support\Facades\Auth;
 // Đăng ký, đăng nhập, Quên mật khẩu
 Auth::routes();
@@ -58,8 +59,11 @@ Route::get('/payment', [PayPalController::class, 'payment'])->name('payment');
 Route::get('/cancel', [PayPalController::class, 'cancel'])->name('payment.cancel');
 Route::get('/payment/success', [PayPalController::class, 'success'])->name('payment.success');
 
-// // Liên hệ
+// Liên hệ
 Route::get('/lien-he', [HomeController::class, 'getLienHe'])->name('client.lienhe');
+
+//Đánh giá sản phẩm
+Route::post('/danh-gia', [DanhGiaController::class, 'postDanhGia'])->name('client.danhgia');
 
 // // Trang khách hàng
 Route::get('/khach-hang/dang-ky', [HomeController::class, 'getDangKy'])->name('user.dangky');

@@ -332,6 +332,7 @@ class HomeController extends Controller
             $ct->dungluong_id = isset($dungluong->id) ? $dungluong->id : '218';
             $ct->soluongban = $value->qty;
             $ct->dongiaban = $value->price;
+            $ct->save();
 
 
             //cập nhật số lượng tồn của màu và dung lượng sản phẩm
@@ -339,7 +340,6 @@ class HomeController extends Controller
                 DB::table('mausanpham')->where('id', $mau->id)->update(['soluongton' => $mau->soluongton - $value->qty]);
             }
             if (isset($dungluong->id)) {
-
                 DB::table('dungluongsanpham')->where('id', $dungluong->id)->update(['soluongton' => $dungluong->soluongton - $value->qty]);
             }
         }
@@ -351,7 +351,7 @@ class HomeController extends Controller
 
         if ($request->payment_opt == 'cod') {
             //
-            $ct->save();
+            // $ct->save();
             Mail::to(Auth::user()->email)->send(new DatHangEmail($dh));
             return redirect()->route('client.dathangthanhcong');
             // //
@@ -378,7 +378,6 @@ class HomeController extends Controller
             $response = $provider->setExpressCheckout($data); //set data cho response
             $response = $provider->setExpressCheckout($data, true);
 
-            $ct->save();
             Mail::to(Auth::user()->email)->send(new DatHangEmail($dh));
             DB::update(
                 'update donhang set tinhtrang_id = ? ,is_thanhtoan = ?, pt_thanhtoan = ? where id = ?',
@@ -451,7 +450,7 @@ class HomeController extends Controller
                     'update donhang set tinhtrang_id = ? ,is_thanhtoan = ?, pt_thanhtoan = ? where id = ?',
                     [2, 1, $request->payment_opt, $id_dh]
                 );
-                $ct->save();
+                // $ct->save();
                 Mail::to(Auth::user()->email)->send(new DatHangEmail($dh));
                 header('Location: ' . $vnp_Url);
                 die();
