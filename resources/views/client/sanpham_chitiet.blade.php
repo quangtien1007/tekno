@@ -310,10 +310,8 @@
                                         <?php
                                         if (Auth::user()) {
                                             $is_danhgia = DB::table('danhgia')->where('user_id',Auth::user()->id)->where('sanpham_id',$sanpham->id)->first();
-                                            $donhang = DB::table('donhang')->where('user_id',Auth::user()->id)->where('tinhtrang_id',8)->where('sanpham_id',$sanpham->id)->first();//Đơn hàng thành công
-                                            // $sanphamhientai = DB::table('donhang_chitiet')->where('donhang_id',$donhang->id)->where('sanpham_id',$sanpham->id)->first();//Sản phẩm hiện tại
+                                            $donhang = DB::table('donhang')->where('user_id',Auth::user()->id)->where('tinhtrang_id',8)->first();//Đơn hàng thành công
                                         ?>
-                                        {{-- {{dd($donhang)}} --}}
                                         @if ($donhang && !$is_danhgia)
 										<!-- Review Form -->
 										<div class="col-md-3">
@@ -321,7 +319,6 @@
 												<form class="review-form" action="{{route('client.danhgia')}}" method="POST">
                                                     @csrf
 													<input class="input" type="text" name="ten" placeholder="Tên của bạn">
-													{{-- <input class="input" type="email" name="" placeholder="Your Email"> --}}
 													<textarea class="input" name="noidung" placeholder="Đánh giá của bạn"></textarea>
 													<div class="input-rating">
 														<span>Đánh giá: </span>

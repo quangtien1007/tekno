@@ -228,7 +228,7 @@ function viewCompared(){
                 <td>` +name+`</td>
                 <td>`+ price +`</td>
                 <td><a href="`+url+`">Xem sản phẩm</a></td>
-                <td onclick="delete_compare(`+id+`)"><a style="cursor:pointer;" >Xóa</a></td></tr>
+                <td onclick="deleteCompare(`+id+`)"><a style="cursor:pointer;" >Xóa</a></td></tr>
                 `
             )
         }
@@ -245,5 +245,106 @@ const deleteCompare = (id) =>{
         localStorage.setItem("compare",JSON.stringify(data));
         //remove
         document.getElementById("row_compare"+id).remove();
+    }
+}
+
+const addToWishlist = (product_id) => {
+    var id = product_id;
+    var name = document.getElementById('name'+id).value;
+    var price = document.getElementById('price'+id).value;
+    var image = document.getElementById('image'+id).value;
+    var url = document.getElementById('url'+id).href;
+    // alert(name);
+
+    var newItem = {
+        'id':id,
+        'name':name,
+        'price':price,
+        'image':image,
+        'url':url
+    }
+
+    if(localStorage.getItem('wishlist') == null){
+        localStorage.setItem('wishlist','[]');
+    }
+
+    var oldWishlist = JSON.parse(localStorage.getItem('wishlist'));
+
+    var matches = $.grep(oldWishlist,function(obj){
+        return obj.id == id;
+    })
+
+    if(matches.length){
+
+    } else{
+        if(oldWishlist.length<=15){
+            oldWishlist.push(newItem);
+            let counter = 0;
+            for (let i = 0; i < oldWishlist.length; i++) {
+                if (oldWishlist[i]) counter++;
+            }
+
+
+            $('#wishlist-qty').append(
+                counter
+            )
+            // table_wishlist
+        }
+    }
+    localStorage.setItem('wishlist',JSON.stringify(oldWishlist));
+
+    // $('#myModal').modal();
+}
+window.onload = viewWishlist;
+function viewWishlist(){
+    if(localStorage.getItem('wishlist')!=null){
+        var data =  JSON.parse(localStorage.getItem('wishlist'));
+
+        for(i=0;i<data.length;i++){
+            var id = data[i].id;
+            var name = data[i].name;
+            var image = data[i].image;
+            var price = data[i].price;
+            var url = data[i].url;
+            $('#table_wishlist').find('tbody').append(`
+                <tr id="row_wishlist`+id+`">
+                <td><img width="100px" src="` +image+ `"></td>
+                <td>` +name+`</td>
+                <td>`+ price +`</td>
+                <td><a href="`+url+`">Xem sản phẩm</a></td>
+                <td onclick="deleteWishlist(`+id+`)"><a style="cursor:pointer;" >Xóa</a></td></tr>
+                `
+            )
+        }
+    }
+}
+
+const deleteWishlist = (id) =>{
+    if(localStorage.getItem('wishlist')!=null){
+        var data =  JSON.parse(localStorage.getItem('wishlist'));
+
+        var index = data.findIndex(item => item.id === id);
+
+        data.splice(index, 1);
+
+        localStorage.setItem("wishlist",JSON.stringify(data));
+        //remove
+        document.getElementById("row_wishlist"+id).remove();
+    }
+}
+const deleteAllWishlist = () =>{
+    if(localStorage.getItem('wishlist')!=null){
+        var data = [];
+        localStorage.setItem("wishlist",JSON.stringify(data));
+        document.getElementById("body_wishlist").remove();
+        // $('#table_wishlist').find('tbody').append(`
+        // <tr id="row_wishlist`+''+`">
+        // <td><img width="100px" src="` +''''+ `"></td>
+        // <td>` +''+`</td>
+        // <td>`+ '' +`</td>
+        // <td><a href="`+''+`">Xem sản phẩm</a></td>
+        // <td onclick="deleteWishlist(`+''+`)"><a style="cursor:pointer;" >Xóa</a></td></tr>
+        // `
+    // )
     }
 }

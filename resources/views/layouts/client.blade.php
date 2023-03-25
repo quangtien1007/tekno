@@ -13,12 +13,14 @@
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
         <script src="{{asset('assets/js/index.js')}}"></script>
-        {{-- <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> </script> --}}
+
+         <!-- fotnawesome pro -->
+        <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet" type="text/css" />
 
 		<!-- Bootstrap -->
         <!-- Latest compiled and minified CSS -->
         {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" />
+        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" /> --}}
 		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
 
 		<!-- Slick -->
@@ -100,11 +102,13 @@
 							<div class="header-ctn">
 								<!-- Wishlist -->
 								<div>
-									<a href="#">
-										<i class="fa fa-heart-o"></i>
-										<span>Yêu thích</span>
-										<div class="qty">2</div>
-									</a>
+                                    <tbody>
+                                        <a href="{{route('client.yeuthich')}}">
+                                            <i class="fa fa-heart-o"></i>
+                                            <span>Yêu thích</span>
+                                            <div id="wishlist-qty" class="qty"></div>
+                                        </a>
+                                    </tbody>
 								</div>
 								<!-- /Wishlist -->
 
@@ -169,7 +173,7 @@
 				<!-- responsive-nav -->
 				<div id="responsive-nav">
 					<!-- NAV -->
-					<ul class="navbar sticky-top bg-body-tertiary">
+					<ul class="main-nav nav navbar-nav">
 						<li class="active"><a href="#">Trang chủ</a></li>
 						<li><a href="#">Hot Deals</a></li>
 						@foreach ($navdata as $item)

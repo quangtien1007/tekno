@@ -65,6 +65,11 @@ Route::get('/lien-he', [HomeController::class, 'getLienHe'])->name('client.lienh
 //Đánh giá sản phẩm
 Route::post('/danh-gia', [DanhGiaController::class, 'postDanhGia'])->name('client.danhgia');
 
+//Sản phẩm yêu thích
+Route::get('/yeu-thich', function () {
+    return view('client.yeuthich');
+})->name('client.yeuthich');
+
 // // Trang khách hàng
 Route::get('/khach-hang/dang-ky', [HomeController::class, 'getDangKy'])->name('user.dangky');
 Route::get('/khach-hang/dang-nhap', [HomeController::class, 'getDangNhap'])->name('user.dangnhap');

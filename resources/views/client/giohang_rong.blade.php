@@ -28,16 +28,18 @@
         <div class="container">
             <!-- row -->
             <div class="row">
+                <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="text-center order_complete">
-                        <i class="fal fa-shopping-cart"></i>
+                        <i style="font-size: 40px" class="fal fa-shopping-cart"></i>
                         <div class="heading_s1">
                             <h3>Giỏ hàng chưa có sản phẩm!</h3>
                         </div>
                         <p>Giỏ hàng của bạn đang rỗng, xin hãy lấp đầy nó bằng việc duyệt qua các sản phẩm của cửa hàng và bỏ vào giỏ các sản phẩm mà bạn yêu thích và có ý định sẽ sở hữu nó.</p>
-                        <a href="{{ route('client') }}" class="btn btn-fill-out">TIẾP TỤC MUA SẮM</a>
+                        <a href="{{ route('client') }}" class="primary-btn">TIẾP TỤC MUA SẮM</a>
                     </div>
                 </div>
+                <div class="col-md-2"></div>
             </div>
             <!-- /row -->
         </div>

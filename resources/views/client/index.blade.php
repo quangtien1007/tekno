@@ -115,7 +115,7 @@
 													<i class="fa fa-star"></i>
 												</div>
                                                     <div class="product-btns">
-                                                        <button type="submit" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">thêm vào yêu thích</span></button>
+                                                        <button onclick="addToWishlist({{$item->id}})" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">thêm vào yêu thích</span></button>
                                                         <button onclick="addToCompare({{$item->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
 													    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
 												</div>
