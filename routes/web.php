@@ -14,6 +14,7 @@ use App\Http\Controllers\NguoiDungController;
 use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\DanhGiaController;
+use App\Http\Controllers\InboxController;
 use Illuminate\Support\Facades\Auth;
 // Đăng ký, đăng nhập, Quên mật khẩu
 Auth::routes();
@@ -85,6 +86,12 @@ Route::prefix('khach-hang')->group(function () {
 
     // 	// Cập nhật thông tin tài khoản
     Route::post('/cap-nhat-ho-so', [NguoiDungController::class, 'postSua'])->name('user.capnhathoso');
+});
+
+//Chat realtime/ livewire
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
+    Route::get('/inbox/{id}', [InboxController::class, 'show'])->name('inbox.show');
 });
 
 // Trang tài khoản quản lý

@@ -12,6 +12,7 @@
 		"laravel/sanctum": "^3.0",
 		"laravel/tinker": "^2.7",
 		"laravel/ui": "^4.0",
+		"livewire/livewire": "^2.12",
 		"maatwebsite/excel": "^3.1",
 		"psr/simple-cache": "2.0",
 		"srmklive/paypal": "~1.0",
@@ -31,7 +32,10 @@
 			"App\\": "app/",
 			"Database\\Factories\\": "database/factories/",
 			"Database\\Seeders\\": "database/seeders/"
-		}
+		},
+        "files": [
+            "app/helpers.php"
+        ]
 	},
 	"autoload-dev": {
 		"psr-4": {

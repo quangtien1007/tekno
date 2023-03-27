@@ -99,7 +99,7 @@ class HomeController extends Controller
     {
         // $lsp = LoaiSanPham::where('tenloai_slug', $request->tenloai_slug)->first();
         $msp = DungLuongSanPham::all();
-
+        
         if (isset($request->search) && isset($request->cate_select)) {
             $sanpham = SanPham::where('tensanpham', 'LIKE', "%{$request->search}%")
                 ->where('loaisanpham_id', 'LIKE', "%{$request->cate_select}%")

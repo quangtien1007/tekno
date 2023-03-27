@@ -110,7 +110,7 @@
 		down = $this.find('.qty-down');
 
 		down.on('click', function () {
-			var value = parseInt($input.val()) - 1;
+			var value = parseInt($input.val()) - 500000;
 			value = value < 1 ? 1 : value;
 			$input.val(value);
 			$input.change();
@@ -118,7 +118,7 @@
 		})
 
 		up.on('click', function () {
-			var value = parseInt($input.val()) + 1;
+			var value = parseInt($input.val()) + 500000;
 			$input.val(value);
 			$input.change();
 			updatePriceSlider($this , value)
@@ -150,12 +150,12 @@
 	var priceSlider = document.getElementById('price-slider');
 	if (priceSlider) {
 		noUiSlider.create(priceSlider, {
-			start: [1, 999],
+			start: [1000000, 90000000],
 			connect: true,
-			step: 1,
+			step: 500000,
 			range: {
-				'min': 1,
-				'max': 999
+				'min': 1000000,
+				'max': 90000000
 			}
 		});
 

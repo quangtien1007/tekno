@@ -66,6 +66,7 @@
 									<li><a class="dropdown-item" href="{{ route('admin.baiviet') }}"><i class="fa-solid fa-newspaper"></i> Bài viết</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.tinhtrang') }}"><i class="fa-regular fa-rectangle-list"></i></i> Tình trạng</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.sanpham') }}"><i class="fa-solid fa-cubes"></i> Sản phẩm</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('inbox.index') }}"><i class="fa-solid fa-list"></i> Chat</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.donhang') }}"><i class="fa-solid fa-cart-arrow-down"></i> Đơn hàng</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.nguoidung') }}"><i class="fa-solid fa-users"></i> Tài khoản người dùng</a></li>
 								</ul>

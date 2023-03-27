@@ -31,24 +31,8 @@
             <div class="row">
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
-                    <!-- aside Widget -->
-                    <div class="aside">
-                        <h3 class="aside-title">Loại</h3>
-                        <div class="checkbox-filter">
-                            @foreach ($navdata as $item)
-                            <div class="input-checkbox">
-                                <input type="checkbox" id="category-{{$loop->iteration}}">
-                                <label for="category-{{$loop->iteration}}">
-                                    <span></span>
-                                    {{$item->tenloai}}
-                                    <small>({{count(DB::table('sanpham')->where('loaisanpham_id',$item->id)->get())}})</small>
-                                </label>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    <!-- /aside Widget -->
-
+                    <form action="" method="post">
+                        @csrf
                     <!-- aside Widget -->
                     <div class="aside">
                         <h3 class="aside-title">Giá</h3>
@@ -91,9 +75,10 @@
                                 @endforeach
                             @endif
                         </div>
+                        <button type="submit" class="primary-btn"><i class="fa-solid fa-magnifying-glass"></i>  Tìm</button>
                     </div>
                     <!-- /aside Widget -->
-
+                    </form>
                     <!-- aside Widget -->
                     <div class="aside">
                         <h3 class="aside-title">Bán chạy</h3>
