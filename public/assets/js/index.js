@@ -1,3 +1,4 @@
+window.onload = viewCompared;
 const handleCheckedRed = () =>{
     if(document.getElementById('chk_do').checked)
     {
@@ -211,7 +212,7 @@ const addToCompare = (product_id) => {
     $('#myModal').modal();
 }
 
-window.onload = viewCompared;
+
 function viewCompared(){
     if(localStorage.getItem('compare')!=null){
         var data =  JSON.parse(localStorage.getItem('compare'));
@@ -234,6 +235,18 @@ function viewCompared(){
         }
     }
 }
+$( document ).ready(function() {
+    console.log( "ready!" );
+    viewCompared();
+    var oldWishlist = JSON.parse(localStorage.getItem('wishlist'));
+    let counter = 0;
+    for (let i = 0; i < oldWishlist.length; i++) {
+        if (oldWishlist[i]) counter++;
+    }
+    $('#wishlist-qty').append(
+        counter ? counter : '0'
+    )
+});
 const deleteCompare = (id) =>{
     if(localStorage.getItem('compare')!=null){
         var data =  JSON.parse(localStorage.getItem('compare'));
@@ -284,9 +297,18 @@ const addToWishlist = (product_id) => {
                 if (oldWishlist[i]) counter++;
             }
 
+            if(document.getElementById("wishlist-qty")){
+                document.getElementById("wishlist-qty").remove();
+            }
+
+            const el = document.createElement('div');
+            el.setAttribute('id','wishlist-qty');
+            el.classList.add('qty');
+
+            document.getElementById('wishlist_list').append(el);
 
             $('#wishlist-qty').append(
-                counter
+                counter ? counter : '0'
             )
             // table_wishlist
         }
@@ -337,14 +359,5 @@ const deleteAllWishlist = () =>{
         var data = [];
         localStorage.setItem("wishlist",JSON.stringify(data));
         document.getElementById("body_wishlist").remove();
-        // $('#table_wishlist').find('tbody').append(`
-        // <tr id="row_wishlist`+''+`">
-        // <td><img width="100px" src="` +''''+ `"></td>
-        // <td>` +''+`</td>
-        // <td>`+ '' +`</td>
-        // <td><a href="`+''+`">Xem sản phẩm</a></td>
-        // <td onclick="deleteWishlist(`+''+`)"><a style="cursor:pointer;" >Xóa</a></td></tr>
-        // `
-    // )
     }
 }

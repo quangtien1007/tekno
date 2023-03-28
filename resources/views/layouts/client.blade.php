@@ -20,9 +20,8 @@
 		<!-- Bootstrap -->
         <!-- Latest compiled and minified CSS -->
         {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> --}}
-        {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" /> --}}
+       {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" /> --}}
 		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
-        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
 		<!-- Slick -->
 		<link rel="stylesheet" href="{{asset('assets/css/slick.css')}}"/>
@@ -38,12 +37,6 @@
 		<!-- Custom stlylesheet -->
 		<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"/>
 
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		<!--[if lt IE 9]>
-		  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-		<![endif]-->
 
     </head>
 	<body>
@@ -104,7 +97,7 @@
 								<!-- Wishlist -->
 								<div>
                                     <tbody>
-                                        <a href="{{route('client.yeuthich')}}">
+                                        <a id="wishlist_list" href="{{route('client.yeuthich')}}">
                                             <i class="fa fa-heart-o"></i>
                                             <span>Yêu thích</span>
                                             <div id="wishlist-qty" class="qty"></div>

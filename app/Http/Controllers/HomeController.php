@@ -99,7 +99,14 @@ class HomeController extends Controller
     {
         // $lsp = LoaiSanPham::where('tenloai_slug', $request->tenloai_slug)->first();
         $msp = DungLuongSanPham::all();
-        
+        // if (isset($request->price_min) && isset($request->price_max)) {
+        //     for ($i = 0; $i < count($request->hang_id); $i++) {
+        //         $sanpham = SanPham::where('dongia', '>', $request->price_min)
+        //             ->where('dongia', '<=', $request->price_max)
+        //             ->where('loaisanpham_id', $request->hang_id[$i])->get();
+        //     }
+        //     dd($sanpham);
+        // }
         if (isset($request->search) && isset($request->cate_select)) {
             $sanpham = SanPham::where('tensanpham', 'LIKE', "%{$request->search}%")
                 ->where('loaisanpham_id', 'LIKE', "%{$request->cate_select}%")
@@ -245,7 +252,7 @@ class HomeController extends Controller
             'price' => $sanpham->dongia,
             'color' => (isset($request->msp) ? $request->msp : 'null'),
             'storage' => (isset($request->dlsp) ? $request->dlsp : 'null'),
-            'qty' => 1,
+            'qty' => $request->qty,
             'weight' => 0,
             'options' => [
                 'image' => $sanpham->hinhanh

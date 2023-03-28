@@ -164,11 +164,10 @@
                                       <th>Hỉnh ảnh</th>
                                       <th>Sản phẩm</th>
                                       <th>Giá</th>
-                                        <th>Thông số kỹ thuật</th>
+                                    <th>Thông số kỹ thuật</th>
                                   </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                               </table>
                           </div>

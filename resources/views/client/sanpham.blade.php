@@ -31,7 +31,7 @@
             <div class="row">
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
-                    <form action="" method="post">
+                    <form method="">
                         @csrf
                     <!-- aside Widget -->
                     <div class="aside">
@@ -39,13 +39,13 @@
                         <div class="price-filter">
                             <div id="price-slider"></div>
                             <div class="input-number price-min">
-                                <input id="price-min" type="number" name="price-min">
+                                <input id="price-min" type="number" name="price_min">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
                             <span>-</span>
                             <div class="input-number price-max">
-                                <input id="price-max" type="number" name="price-max">
+                                <input id="price-max" type="number" name="price_max">
                                 <span class="qty-up">+</span>
                                 <span class="qty-down">-</span>
                             </div>
@@ -64,7 +64,7 @@
                                 @endphp
                                     @foreach ($hsx as $item)
                                         <div class="input-checkbox">
-                                            <input type="checkbox" id="brand-{{$item->id}}">
+                                            <input type="checkbox" value="{{$item->id}}" name="hang_id[]" id="brand-{{$item->id}}">
                                             <label for="brand-{{$item->id}}">
                                                 <span></span>
                                                 {{$item->tenhang}}
