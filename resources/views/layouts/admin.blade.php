@@ -90,6 +90,7 @@
 		</nav>
 
 		<main class="pt-3 pb-2">
+            @include('flash-massage')
 			@yield('content')
 		</main>
 

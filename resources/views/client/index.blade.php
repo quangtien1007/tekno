@@ -277,7 +277,7 @@
 											<div class="product-body">
 												<p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
 												<h3 class="product-name">
-                                                    <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
+                                                    <a id="url{{$item->id}}" href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                                 </h3>
 												<h4 class="product-price">{{number_format($item->dongia)}}
                                                     <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
@@ -290,8 +290,8 @@
 													<i class="fa fa-star"></i>
 												</div>
 												<div class="product-btns">
-													<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-													<button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
+													<button onclick="addToWishlist({{$item->id}})" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
+													<button onclick="addToCompare({{$item->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
 													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
 												</div>
 											</div>
@@ -300,6 +300,11 @@
 											</div>
 										</div>
 										<!-- /product -->
+                                         <!-- input hidden de so sanh san pham -->
+                                         <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
+                                         <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
+                                         <input type="hidden" value="{{ env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
+                                          <!-- /input hidden de so sanh san pham -->
                                         @endforeach
 									</div>
 									<div id="slick-nav-2" class="products-slick-nav"></div>

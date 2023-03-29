@@ -11,17 +11,21 @@
 
 		<!-- Google font -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+        <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+        {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> --}}
         <script src="{{asset('assets/js/index.js')}}"></script>
+
 
          <!-- fotnawesome pro -->
         <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet" type="text/css" />
 
 		<!-- Bootstrap -->
-        <!-- Latest compiled and minified CSS -->
-        {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> --}}
-       {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" /> --}}
 		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
+        <script src="{{asset('assets/js/flashjs/dist/flash.min.js')}}"></script>
+        <link rel="stylesheet" href="{{asset('assets/js/flashjs/dist/flash.min.css')}}">
+        <!-- Latest compiled and minified CSS -->
 
 		<!-- Slick -->
 		<link rel="stylesheet" href="{{asset('assets/css/slick.css')}}"/>
@@ -140,7 +144,6 @@
 								</div>
 								<!-- /Cart -->
                                 <a href="{{route('inbox.index')}}">chat ne</a>
-
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">

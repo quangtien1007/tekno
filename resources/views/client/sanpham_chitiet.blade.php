@@ -52,12 +52,12 @@
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
 							<div class="product-preview">
-								<img src="{{ env('APP_URL') . '/storage/app/sanpham/' . $sanpham->hinhanh}}"  alt="">
+								<img src="{{ env('APP_URL') . 'storage/app/sanpham/' . $sanpham->hinhanh}}"  alt="">
 							</div>
 
                             @foreach ($images as $item)
 							<div class="product-preview">
-								<img src="{{env('APP_URL').$item}}"/>
+								<img src="{{env('APP_URL').'/'.$item}}"/>
 							</div>
                             @endforeach
 						</div>

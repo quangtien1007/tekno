@@ -35,7 +35,7 @@
 			</table>
 		</div>
 	</div>
-	
+
 	<form action="{{ route('admin.hangsanxuat.nhap') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">

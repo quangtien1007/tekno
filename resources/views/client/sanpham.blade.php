@@ -151,7 +151,7 @@
                                 <div class="product-body">
                                     <p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
                                     <h3 class="product-name">
-                                        <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $lsp->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
+                                        <a id="url{{$item->id}}" href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $lsp->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                     </h3>
                                     <h4 class="product-price">{{number_format($item->dongia)}}<sup>đ</sup>
                                         <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}<sup>đ</sup></del>
@@ -164,8 +164,8 @@
                                         <i class="fa fa-star"></i>
                                     </div>
                                     <div class="product-btns">
-                                        <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">yêu thích</span></button>
-                                        <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
+                                        <button onclick="addToWishlist({{$item->id}})" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">yêu thích</span></button>
+                                        <button onclick="addToCompare({{$item->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
                                         <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
                                     </div>
                                 </div>
@@ -181,10 +181,48 @@
                         <!-- /product -->
 
                         <div class="clearfix visible-sm visible-xs"></div>
+                         <!-- input hidden de so sanh san pham -->
+                         <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
+                         <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
+                         <input type="hidden" value="{{ env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
+                          <!-- /input hidden de so sanh san pham -->
                         @endforeach
                     </div>
                     <!-- /store products -->
+                    <!-- Modal -->
+                    <div class="container">
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                        <div class="modal-dialog modal-lg">
 
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">So sánh sản phẩm (Tối đa 3 sản phẩm)</h4>
+                            </div>
+                            <div class="modal-body">
+                                <table class="table" id="row_compare">
+                                    <thead>
+                                    <tr>
+                                        <th>Hỉnh ảnh</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Giá</th>
+                                        <th>Thông số kỹ thuật</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                            </div>
+                            </div>
+
+                        </div>
+                        </div>
+
+                    </div>
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
                         {{-- <span class="store-qty">Showing 20-100 products</span> --}}

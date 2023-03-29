@@ -53,7 +53,7 @@
                                                     <input class="primary-btn order-submit" type="submit"></button>
                                             </div>
                                             <div class="col-lg-8 col-md-4">
-                                                <a style="pointer:cursor; float: right;" onclick="deleteAllWishlist()" class="primary-btn">XÓA GIỎ HÀNG</a>
+                                                <a style="cursor: pointer; float: right;" onclick="deleteAllWishlist()" class="primary-btn">XÓA GIỎ HÀNG</a>
                                             </div>
                                         </div>
                                     </td>
