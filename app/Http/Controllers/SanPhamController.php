@@ -15,6 +15,7 @@ use App\Imports\DungLuongSanPhamImport;
 use App\Exports\SanPhamExport;
 use App\Models\MauSanPham;
 use App\Models\DungLuongSanPham;
+use App\Models\FormMau;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 
@@ -53,7 +54,9 @@ class SanPhamController extends Controller
     {
         $loaisanpham = LoaiSanPham::all();
         $hangsanxuat = HangSanXuat::all();
-        return view('admin.sanpham.them', compact('loaisanpham', 'hangsanxuat'));
+        $form = FormMau::all();
+
+        return view('admin.sanpham.them', compact('loaisanpham', 'hangsanxuat', 'form'));
     }
 
     public function postThem(Request $request)
@@ -66,6 +69,7 @@ class SanPhamController extends Controller
             'hinhanh' => ['nullable', 'image', 'max:2048'],
             'hinhanhmota' => ['nullable', 'max:2048'],
             'motasanpham' => ['nullable'],
+            'thongsokythuat' => ['nullable'],
         ]);
 
         // Kiểm tra tập tin rỗng hay không?
@@ -124,6 +128,7 @@ class SanPhamController extends Controller
         $orm->hinhanh = $image_url1;
         if (!empty($image)) $orm->hinhanhmota = implode('|', $image);
         $orm->motasanpham = $request->motasanpham;
+        $orm->thongsokythuat = $request->thongsokythuat;
         $orm->save();
 
         $sp = DB::select("SHOW TABLE STATUS LIKE 'sanpham'"); //Câu lệnh xem trạng thái của bảng
@@ -191,7 +196,8 @@ class SanPhamController extends Controller
         $hangsanxuat = HangSanXuat::all();
         $sanpham = SanPham::find($id);
         $loaisanpham = LoaiSanPham::all();
-        return view('admin.sanpham.sua', compact('sanpham', 'loaisanpham', 'hangsanxuat'));
+        $form = FormMau::all();
+        return view('admin.sanpham.sua', compact('sanpham', 'loaisanpham', 'hangsanxuat', 'form'));
     }
 
     public function postSua(Request $request, $id)
@@ -247,6 +253,7 @@ class SanPhamController extends Controller
         if (!empty($path)) $orm->hinhanh = $path;
         if (!empty($image)) $orm->hinhanhmota = implode('|', $image);
         $orm->motasanpham = $request->motasanpham;
+        $orm->thongsokythuat = $request->thongsokythuat;
         $orm->save();
         // $orm->mausanpham = implode('|', $request->mausanpham);
         // $orm->dungluong = implode('|', $request->dungluong);

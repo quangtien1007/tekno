@@ -7,6 +7,7 @@
 			$var = DB::table('sanpham')->where('id',$sanpham->id)->first();
 			$images = explode('|',$var->hinhanhmota);
 		@endphp
+
 		<!-- BREADCRUMB -->
 		<div id="breadcrumb" class="section">
 			<!-- container -->
@@ -37,7 +38,7 @@
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
 							<div class="product-preview">
-								<img src="{{ env('APP_URL') . '/storage/app/sanpham/' . $sanpham->hinhanh}}"  alt="">
+								<img src="{{ env('APP_URL') . 'storage/app/sanpham/' . $sanpham->hinhanh}}"  alt="">
 							</div>
                             @foreach ($images as $item)
 							<div class="product-preview">
@@ -57,7 +58,7 @@
 
                             @foreach ($images as $item)
 							<div class="product-preview">
-								<img src="{{env('APP_URL').'/'.$item}}"/>
+								<img src="{{env('APP_URL').''.$item}}"/>
 							</div>
                             @endforeach
 						</div>
@@ -174,8 +175,9 @@
 								<div id="tab2" class="tab-pane fade in">
 									<div class="row">
 										<div class="col-md-12">
-											<p>
-                                            </p>
+											@php
+                                                echo $sanpham->thongsokythuat;
+                                            @endphp
 										</div>
 									</div>
 								</div>

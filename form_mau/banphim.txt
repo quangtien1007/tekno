@@ -1,0 +1,40 @@
+<table style="border-collapse: collapse; width: 71.1009%; height: 195.8px; border-width: 1px; margin-left: auto; margin-right: auto;" border="1"><colgroup><col style="width: 48.503%;"><col style="width: 51.497%;"></colgroup>
+<tbody>
+<tr style="height: 28.6px;">
+<td style="height: 28.6px; border-width: 1px;">Tương th&iacute;ch</td>
+<td style="height: 28.6px; border-width: 1px; padding-left: 40px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">C&aacute;ch kết nối:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Độ d&agrave;i d&acirc;y/Khoảng c&aacute;ch kết nối:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Loại switch:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr>
+<td style="border-width: 1px;">Kiểu b&agrave;n ph&iacute;m:</td>
+<td style="border-width: 1px; padding-left: 40px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Số ph&iacute;m:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Đ&egrave;n LED:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Cổng sạc:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">H&atilde;ng:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>

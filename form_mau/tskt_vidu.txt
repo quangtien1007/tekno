@@ -1,0 +1,109 @@
+<table style="border-collapse: collapse; width: 71.1009%; height: 1360.8px; border-width: 1px; margin-left: auto; margin-right: auto;" border="1"><colgroup><col style="width: 48.5276%;"><col style="width: 51.4534%;"></colgroup>
+<tbody>
+<tr style="height: 29.7875px; background-color: rgb(126, 140, 141);">
+<td style="height: 29.7875px; border-width: 1px;" colspan="2"><strong>M&agrave;n h&igrave;nh</strong></td>
+</tr>
+<tr style="height: 29.7875px;">
+<td style="height: 29.7875px; border-width: 1px;">C&ocirc;ng nghệ m&agrave;n h&igrave;nh</td>
+<td style="height: 29.7875px; border-width: 1px; padding-left: 40px;">IPS LCD</td>
+</tr>
+<tr style="height: 30.9875px;">
+<td style="height: 30.9875px; border-width: 1px;">Độ ph&acirc;n giải</td>
+<td style="height: 30.9875px; border-width: 1px; padding-left: 40px;">Liquid Retina (828 x 1792 Pixels)</td>
+</tr>
+<tr style="height: 29.7875px;">
+<td style="height: 29.7875px; border-width: 1px;">M&agrave;n hinh rộng</td>
+<td style="height: 29.7875px; border-width: 1px; padding-left: 40px;">6.1" - Tần số qu&eacute;t&nbsp;<a href="https://www.thegioididong.com/hoi-dap/tan-so-quet-man-hinh-may-tinh-la-gi-1292309#subhmenuid1" target="_blank" rel="noopener">60 Hz</a></td>
+</tr>
+<tr style="height: 29.7875px;">
+<td style="height: 29.7875px; border-width: 1px;">Độ s&aacute;ng tối đa</td>
+<td style="height: 29.7875px; border-width: 1px; padding-left: 40px;">625 nits</td>
+</tr>
+<tr style="height: 29.7875px;">
+<td style="height: 29.7875px; border-width: 1px;">Mặt k&iacute;nh cảm ứng</td>
+<td style="height: 29.7875px; border-width: 1px; padding-left: 40px;"><a class="" href="https://www.thegioididong.com/hoi-dap/kinh-oleophobic-ion-cuong-luc-tren-cac-dong-appl-1167791" target="_blank" rel="noopener">K&iacute;nh cường lực Oleophobic (ion cường lực)</a></td>
+</tr>
+<tr style="height: 29.8px; background-color: rgb(126, 140, 141);">
+<td style="height: 29.8px; border-width: 1px;" colspan="2"><strong>Camera trước</strong></td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Độ ph&acirc;n giải</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;">2 camera 12MP</td>
+</tr>
+<tr style="height: 326.263px; text-align: left;">
+<td style="border-width: 1px; height: 326.263px; text-align: left;">Quay phim</td>
+<td style="border-width: 1px; height: 326.263px;">
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#fullhd" target="_blank" rel="noopener">FullHD 1080p@240fps</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#fullhd" target="_blank" rel="noopener">FullHD 1080p@60fps</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#fullhd" target="_blank" rel="noopener">FullHD 1080p@30fps</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#4k" target="_blank" rel="noopener">4K 2160p@24fps</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#4k" target="_blank" rel="noopener">4K 2160p@30fps</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#4k" target="_blank" rel="noopener">4K 2160p@60fps</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#hd" target="_blank" rel="noopener">HD 720p@30fps</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/cac-chuan-quay-phim-tren-dien-thoai-tablet-pho-bi-1174134#fullhd" target="_blank" rel="noopener">FullHD 1080p@120fps</a></p>
+</td>
+</tr>
+<tr style="height: 597.5px;">
+<td style="border-width: 1px; height: 597.5px;">T&iacute;nh năng:</td>
+<td style="border-width: 1px; height: 597.5px;">
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/che-do-autofocus-trong-chup-anh-tren-smartphone-906408" target="_blank" rel="noopener">Tự động lấy n&eacute;t (AF)</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/che-do-touch-focus-khi-chup-anh-tren-smartphone-906412" target="_blank" rel="noopener">Chạm lấy n&eacute;t</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/chuc-nang-nhan-dien-khuon-mat-la-gi-907903" target="_blank" rel="noopener">Nhận diện khu&ocirc;n mặt</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/che-do-chup-anh-hdr-tren-smartphone-la-gi-906400" target="_blank" rel="noopener">HDR</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/chup-anh-panorama-toan-canh-tren-camera-cua-smar-906425" target="_blank" rel="noopener">To&agrave;n cảnh (Panorama)</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/che-do-chup-dem-night-mode-la-gi-907873" target="_blank" rel="noopener">Ban đ&ecirc;m (Night Mode)</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/zoom-quang-hoc-va-zoom-ky-thuat-so-la-gi-co-gi-khac-nhau-1296828#zoom-quang-hoc" target="_blank" rel="noopener">Zoom quang học</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/che-do-quay-phim-time-lapse-la-gi-1172228#hmenuid1" target="_blank" rel="noopener">Tr&ocirc;i nhanh thời gian (Time Lapse)</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/camera-goc-rong-goc-sieu-rong-tren-smartphone-l-1172240" target="_blank" rel="noopener">G&oacute;c si&ecirc;u rộng (Ultrawide)</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/camera-goc-rong-goc-sieu-rong-tren-smartphone-l-1172240" target="_blank" rel="noopener">G&oacute;c rộng (Wide)</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/deep-fusion-tren-dong-iphone-11-pro-la-gi-tinh-nan-1197418#hmenuid1" target="_blank" rel="noopener">Deep Fusion</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/che-do-quay-video-slow-motion-la-gi-luu-y-khi-quay-video-1013728" target="_blank" rel="noopener">Quay chậm (Slow Motion)</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/chup-anh-xoa-phong-la-gi-no-co-tac-dung-nhu-the-na-1138006" target="_blank" rel="noopener">X&oacute;a ph&ocirc;ng</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/zoom-quang-hoc-va-zoom-ky-thuat-so-la-gi-co-gi-khac-nhau-1296828#zoom-ky-thuat-so" target="_blank" rel="noopener">Zoom kỹ thuật số</a></p>
+<p class="circle" style="padding-left: 40px;"><a href="https://www.thegioididong.com/hoi-dap/che-do-chong-rung-quang-hoc-ois-chup-anh-tren-sm-906416" target="_blank" rel="noopener">Chống rung quang học (OIS)</a></p>
+</td>
+</tr>
+<tr style="height: 22.725px; background-color: rgb(126, 140, 141);">
+<td style="border-width: 1px; height: 22.725px;" colspan="2"><strong>Hệ điều h&agrave;nh &amp; CPU</strong></td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Hệ điều h&agrave;nh</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;"><a class="" href="https://www.thegioididong.com/hoi-dap/ios-15-co-gi-moi-khi-nao-ra-iphone-nao-duoc-cap-nhat-phien-1337757" target="_blank" rel="noopener">iOS 15</a></td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Chip xử l&yacute;</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;"><a class="" href="https://www.thegioididong.com/hoi-dap/tim-hieu-ve-chip-apple-a13-bionic-tren-iphone-11-n-1197492" target="_blank" rel="noopener">Apple A13 Bionic 6 nh&acirc;n</a></td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Chip đồ họa</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;">2 nh&acirc;n 2.65 GHz &amp; 4 nh&acirc;n 1.8 GHz</td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Tốc độ GPU</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;">Apple GPU 4 nh&acirc;n</td>
+</tr>
+<tr style="height: 22.725px; background-color: rgb(126, 140, 141);">
+<td style="border-width: 1px; height: 22.725px;" colspan="2"><strong>Pin &amp; Sạc</strong></td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Dung lượng pin:</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;">3110 mAh</td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Loại pin:</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;"><a class="" href="https://www.thegioididong.com/hoi-dap/tim-hieu-pin-li-ion-la-gi-985040" target="_blank" rel="noopener">Li-Ion</a></td>
+</tr>
+<tr style="height: 22.7875px;">
+<td style="border-width: 1px; height: 22.7875px;">Hỗ trợ sạc tối đa:</td>
+<td style="border-width: 1px; height: 22.7875px; padding-left: 40px;">18 W</td>
+</tr>
+<tr>
+<td style="border-width: 1px;">C&ocirc;ng nghệ pin:</td>
+<td style="border-width: 1px; padding-left: 40px;">
+<p class="circle"><a href="https://www.thegioididong.com/hoi-dap/cong-nghe-sac-nhanh-tren-smartphone-755549" target="_blank" rel="noopener">Sạc pin nhanh</a></p>
+<p class="circle"><a href="https://www.thegioididong.com/hoi-dap/cong-nghe-sac-khong-day-la-gi-761328" target="_blank" rel="noopener">Sạc kh&ocirc;ng d&acirc;y</a></p>
+<p class="circle"><a href="https://www.thegioididong.com/hoi-dap/che-do-tiet-kiem-pin-va-sieu-tiet-kiem-pin-la-gi-926730" target="_blank" rel="noopener">Tiết kiệm pin</a></p>
+</td>
+</tr>
+</tbody>
+</table>

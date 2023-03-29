@@ -6,12 +6,12 @@
 		<div class="card-body">
 			<form action="{{ route('admin.sanpham.them') }}" method="post" enctype="multipart/form-data">
 				@csrf
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="loaisanpham_id">Loại sản phẩm</label>
 					<select class="form-select @error('loaisanpham_id') is-invalid @enderror" id="loaisanpham_id" name="loaisanpham_id" required>
 						<option value="">-- Chọn --</option>
-						<?php 
+						<?php
 							showCategories($loaisanpham);
 						?>
 					</select>
@@ -32,7 +32,7 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="tensanpham">Tên sản phẩm</label>
 					<input type="text" class="form-control @error('tensanpham') is-invalid @enderror" id="tensanpham" name="tensanpham" value="{{ old('tensanpham') }}" required />
@@ -40,7 +40,7 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="dongia">Đơn giá</label>
 					<input type="number" min="0" class="form-control @error('dongia') is-invalid @enderror" id="dongia" name="dongia" value="{{ old('dongia') }}" required />
@@ -48,7 +48,7 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-						
+
 				<div class="mb-3">
 					<label class="form-label" for="hinhanh">Hình ảnh sản phẩm</label>
 					<input type="file" class="form-control @error('hinhanh') is-invalid @enderror" id="hinhanh" name="hinhanh" value="{{ old('hinhanh') }}" />
@@ -56,7 +56,7 @@
 					<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="hinhanhmota">Hình ảnh mô tả</label>
 					<input type="file" multiple='multiple' class="form-control @error('hinhanhmota') is-invalid @enderror" id="hinhanh" name="hinhanhmota[]" value="{{ old('hinhanhmota') }}" />
@@ -92,9 +92,7 @@
 					<span id="gt_tim" style="display: none">Giá trị<input id="igt_tim" class="form-control" name="mausanpham[]" type="number" disabled></span>
 					<a href="" class="form-label">Mau khac</a>
 				</div>
-				<script>
-				
-				</script>
+
 				<div class="mb-3">
 					<label class="form-label" for="dungluong">Dung lượng:</label> &nbsp
 					64GB<input type="checkbox" value="64GB" name="dungluong[]" id="dl64" onclick="handleChecked64()"> &nbsp
@@ -118,20 +116,22 @@
 					<span id="gt1" style="display: none">Gia tri<input id="igt1" class="form-control" name="dungluong[]" type="number" disabled></span>
 				</div>
 
-				<script>
-					
-				</script>
 				<div class="mb-3">
 					<label class="form-label" for="motasanpham">Mô tả sản phẩm</label>
-					<textarea class="form-control" id="myeditorinstance" name="motasanpham">{{ old('motasanpham') }}</textarea>
+					<textarea class="form-control" id="myeditorinstance" name="motasanpham">{{$form[0]->form }}</textarea>
 				</div>
-				
+
+                <div class="mb-3">
+					<label class="form-label" for="thongsokythuat">Thông số kỹ thuật</label>
+					<textarea class="form-control" id="myeditorinstance" name="thongsokythuat">{{ $form[1]->form }}</textarea>
+				</div>
+
 				<button type="submit" class="btn btn-primary"><i class="fal fa-save"></i> Thêm vào CSDL</button>
 			</form>
 		</div>
 	</div>
 @endsection
-<?php 
+<?php
 function showCategories($categories, $parent_id = 0, $char = '')
 	{
 		foreach ($categories as $key => $item) {

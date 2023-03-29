@@ -1,0 +1,94 @@
+<table style="border-collapse: collapse; width: 71.2443%; height: 602.025px; border-width: 1px; margin-left: auto; margin-right: auto;" border="1"><colgroup><col style="width: 48.53%;"><col style="width: 51.4499%;"></colgroup>
+<tbody>
+<tr style="height: 29.7875px; background-color: rgb(126, 140, 141);">
+<td style="height: 29.7875px; border-width: 1px;" colspan="2"><strong>M&agrave;n h&igrave;nh</strong></td>
+</tr>
+<tr style="height: 29.7875px;">
+<td style="height: 29.7875px; border-width: 1px;">C&ocirc;ng nghệ m&agrave;n h&igrave;nh</td>
+<td style="height: 29.7875px; border-width: 1px; padding-left: 40px;">&nbsp;</td>
+</tr>
+<tr style="height: 30.9875px;">
+<td style="height: 30.9875px; border-width: 1px;">Độ ph&acirc;n giải</td>
+<td style="height: 30.9875px; border-width: 1px; padding-left: 40px;">&nbsp;</td>
+</tr>
+<tr style="height: 29.7875px;">
+<td style="height: 29.7875px; border-width: 1px;">M&agrave;n hinh rộng</td>
+<td style="height: 29.7875px; border-width: 1px; padding-left: 40px;">&nbsp;</td>
+</tr>
+<tr style="height: 24.325px;">
+<td style="border-width: 1px; height: 24.325px;">Webcam</td>
+<td style="border-width: 1px; padding-left: 40px; height: 24.325px;">&nbsp;</td>
+</tr>
+<tr style="background-color: rgb(126, 140, 141); height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;" colspan="2"><strong>Bộ xử l&yacute;</strong></td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">C&ocirc;ng nghệ CPU:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Số nh&acirc;n - Số luồng:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Tốc độ CPU:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Tốc độ tối đa:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Bộ nhớ đệm:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 29.8px; background-color: rgb(126, 140, 141);">
+<td style="height: 29.8px; border-width: 1px;" colspan="2"><strong>Bộ nhớ RAM, Ổ cứng</strong></td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">RAM:</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Loại RAM:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Tốc độ Bus RAM:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.4px;">
+<td style="border-width: 1px; height: 22.4px;">Hỗ trợ RAM tối đa:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 22.4px;">&nbsp;</td>
+</tr>
+<tr style="height: 44.8px;">
+<td style="border-width: 1px; height: 44.8px;">Ổ cứng:</td>
+<td style="border-width: 1px; padding-left: 40px; height: 44.8px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.725px; background-color: rgb(126, 140, 141);">
+<td style="border-width: 1px; height: 22.725px;" colspan="2"><strong>Cổng kết nối &amp; t&iacute;nh năng mở rộng</strong></td>
+</tr>
+<tr style="height: 44.8px;">
+<td style="border-width: 1px; height: 44.8px;">Cổng giao tiếp:</td>
+<td style="border-width: 1px; height: 44.8px; padding-left: 40px;">
+<p class="circle">&nbsp;</p>
+<p class="circle">&nbsp;</p>
+</td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Kết nối kh&ocirc;ng d&acirc;y:</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.725px; background-color: rgb(126, 140, 141);">
+<td style="border-width: 1px; height: 22.725px;" colspan="2"><strong>Pin &amp; Sạc</strong></td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Pin</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;">&nbsp;</td>
+</tr>
+<tr style="height: 22.725px;">
+<td style="border-width: 1px; height: 22.725px;">Sạc</td>
+<td style="border-width: 1px; height: 22.725px; padding-left: 40px;">&nbsp;</td>
+</tr>
+</tbody>
+</table>
