@@ -1,0 +1,8 @@
+SELECT sanpham_id, soluong
+FROM (SELECT sanpham_id, SUM(soluongban) AS soluong
+             FROM donhang_chitiet
+             GROUP BY sanpham_id) A
+WHERE soluong IN (SELECT MAX(B.X) FROM(SELECT sanpham_id, SUM(soluongban) AS X
+                      FROM donhang_chitiet
+                      GROUP BY sanpham_id) B)
+//tim san pham co luot ban cao nhat

@@ -78,6 +78,13 @@
             <div class="col-md-5">
                 <div class="heading_s1">
                     <h3><strong class="order-total">THÔNG TIN LIÊN HỆ CHÚNG TÔI</strong></h3>
+                </div><br>
+                <div class="col-sm">
+                    <h4>Giờ làm việc: 8:00 am - 21:00 pm</h4>
+                    <h4>Email: tekno@gmail.com</h4>
+                    <h4>Số điện thoại: 0386015481</h4>
+                    <h4>Địa chỉ: 18, Ung Văn Khiêm, phường Đông Xuyên, thành phố Long Xuyên</h4>
+                    <h4>Fax: +84 (8) 3623 3818.</h4>
                 </div>
             </div>
         </div>

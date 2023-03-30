@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\SanPham;
 use App\Models\User;
 use App\Models\MauSanPham;
@@ -100,10 +102,20 @@ class HomeController extends Controller
     {
         // $lsp = LoaiSanPham::where('tenloai_slug', $request->tenloai_slug)->first();
         $msp = DungLuongSanPham::all();
+        if (isset($request->price_min) && isset($request->price_max)) {
+            $sanpham = SanPham::where('dongia', '>', $request->price_min)
+                ->where('dongia', '<', $request->price_max)
+                ->paginate(15);
+            $tenloai = 'Tìm kiếm';
+            $lsp = LoaiSanPham::where('id', $request->loaisanpham_id)->first();
+            // dd($sanpham);
+            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp', 'msp'));
+        }
         if (isset($request->search)) {
             $sanpham = SanPham::where('tensanpham', 'LIKE', "%{$request->search}%")->paginate(15);
-            $lsp = LoaiSanPham::where('id', $request->cate_select)->first();
             $tenloai = 'Tìm kiếm';
+            $lsp = LoaiSanPham::where('tenloai_slug', 'LIKE', "%{$request->search}%")->first();
+
             return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp', 'msp'));
         }
         if (isset($request->tenloai_slug)) {
@@ -112,6 +124,7 @@ class HomeController extends Controller
 
             if ($request->sapxep == 'popularity') // Mua nhiều nhất
             {
+                
                 $sanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
                     ->where('sanpham.loaisanpham_id', $lsp->id)
                     ->selectRaw('sanpham.*, coalesce(sum(donhang_chitiet.soluongban), 0) tongsoluongban')
@@ -251,7 +264,7 @@ class HomeController extends Controller
         ]);
 
         // Quay về trang chủ kèm thông báo dạng flash session
-        return redirect()->route('client')->with('status', 'Đã thêm sản phẩm <strong>' . $sanpham->tensanpham . '</strong> vào giỏ.');
+        return redirect()->route('client')->with('success', 'Đã thêm sản phẩm ' . $sanpham->tensanpham . 'vào giỏ.');
     }
 
     public function getGioHang_Xoa($row_id)

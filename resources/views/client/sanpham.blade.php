@@ -31,7 +31,7 @@
             <div class="row">
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
-                    <form method="">
+                    <form action="{{route('client.sanpham')}}" method="post">
                         @csrf
                     <!-- aside Widget -->
                     <div class="aside">
@@ -50,7 +50,11 @@
                                 <span class="qty-down">-</span>
                             </div>
                         </div>
+                        {{-- <input type="hidden" name="loaisanpham_id" value="{{$lsp->id}}"> --}}
                     </div>
+                    <br>
+                    <button type="submit" class="primary-btn"><i class="fa-solid fa-magnifying-glass"></i>  Tìm</button>
+                </form>
                     <!-- /aside Widget -->
 
                     <!-- aside Widget -->
@@ -64,21 +68,20 @@
                                 @endphp
                                     @foreach ($hsx as $item)
                                         <div class="input-checkbox">
-                                            <input type="checkbox" value="{{$item->id}}" name="hang_id[]" id="brand-{{$item->id}}">
+                                            {{-- <input type="checkbox" value="{{$item->id}}" name="hang_id[]" id="brand-{{$item->id}}"> --}}
                                             <label for="brand-{{$item->id}}">
                                                 <span></span>
                                                 {{$item->tenhang}}
-                                                <small>({{count(DB::table('sanpham')->where('hangsanxuat_id',$item->id)->get())}})</small>
+                                                <small>({{count(DB::table('sanpham')->where('hangsanxuat_id',$item->id)->where('loaisanpham_id',$lsp->id)->get())}})</small>
                                             </label>
                                         </div>
                                     @endforeach
                                 @endforeach
                             @endif
                         </div>
-                        <button type="submit" class="primary-btn"><i class="fa-solid fa-magnifying-glass"></i>  Tìm</button>
                     </div>
                     <!-- /aside Widget -->
-                    </form>
+
                     <!-- aside Widget -->
                     <div class="aside">
                         <h3 class="aside-title">Bán chạy</h3>
@@ -194,40 +197,46 @@
                         @endforeach
                     </div>
                     <!-- /store products -->
+                   <!-- Modal -->
+                   <div class="container">
                     <!-- Modal -->
-                    <div class="container">
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
-                        <div class="modal-dialog modal-lg">
+                    <div class="modal fade" id="myModal" role="dialog">
+                      <div class="modal-dialog modal-lg">
 
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title">So sánh sản phẩm (Tối đa 3 sản phẩm)</h4>
-                            </div>
-                            <div class="modal-body">
-                                <table class="table" id="row_compare">
-                                    <thead>
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">So sánh sản phẩm (Tối đa 3 sản phẩm)</h4>
+                          </div>
+                          <style>
+                            td{
+                                text-align: center
+                            }
+                          </style>
+                          <div class="modal-body">
+                            <table class="table table-bordered" id="row_compare">
+                                <thead>
                                     <tr>
-                                        <th>Hỉnh ảnh</th>
+                                        <th>Ảnh</th>
                                         <th>Sản phẩm</th>
                                         <th>Giá</th>
-                                        <th>Thông số kỹ thuật</th>
+                                        <th>Thông số kỹ thuat</th>
                                     </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-                            </div>
-                            </div>
+                                </thead>
+                                <tbody>
 
-                        </div>
+                                </tbody>
+                              </table>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                          </div>
                         </div>
 
+                      </div>
                     </div>
+
+                  </div>
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
                         {{-- <span class="store-qty">Showing 20-100 products</span> --}}

@@ -188,7 +188,17 @@
 			<!-- /container -->
 		</nav>
 		<!-- /NAVIGATION -->
-
+        @if(session()->has('success'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{ session('success') }}
+            </div>
+        @endif
+        <script type="text/javascript">
+        $(document).ready(function(){
+          $(".alert-success").delay(3000).slideUp(300);
+            });
+        </script>
         @yield('content')
 
 		<!-- FOOTER -->

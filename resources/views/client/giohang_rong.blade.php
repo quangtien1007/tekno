@@ -10,10 +10,10 @@
             <!-- row -->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="breadcrumb-header">Regular Page</h3>
+                    <h3 class="breadcrumb-header">Giỏ hàng</h3>
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Blank</li>
+                        <li><a href="{{route('client')}}">Home</a></li>
+                        <li class="active">Giỏ hàng</li>
                     </ul>
                 </div>
             </div>

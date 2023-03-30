@@ -36,7 +36,7 @@
 							<div class="tab-pane fade active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
 								<div class="card">
 									<div class="card-header">
-										<h5>Trang chủ khách hàng</h5>
+										<h3>Trang chủ khách hàng</h3>
 									</div>
 									<div class="card-body">
 										<p class="text-center"><img src="{{ asset('images/consumer.png') }}" /></p>
@@ -48,7 +48,7 @@
 							<div class="tab-pane fade" id="orders" role="tabpanel" aria-labelledby="orders-tab">
 								<div class="card">
 									<div class="card-header">
-										<h5>Đơn hàng của tôi</h5>
+										<h3>Đơn hàng của tôi</h3>
 									</div>
                                     <style>
                                         td{
@@ -142,7 +142,7 @@
 									<div class="col-lg-6">
 										<div class="card">
 											<div class="card-header">
-												<h5>Nhà riêng</h5>
+												<h3>Nhà riêng</h3>
 											</div>
 											<div class="card-body">
 												<address>
@@ -160,7 +160,7 @@
 									<div class="col-lg-6">
 										<div class="card">
 											<div class="card-header">
-												<h5>Cơ quan</h5>
+												<h3>Cơ quan</h3>
 											</div>
 											<div class="card-body">
 												<address>
@@ -180,7 +180,7 @@
 							<div class="tab-pane fade" id="account-detail" role="tabpanel" aria-labelledby="account-detail-tab">
 								<div class="card">
 									<div class="card-header">
-										<h5>Thông tin tài khoản</h5>
+										<h3>Thông tin tài khoản</h3>
 									</div>
 									<div class="card-body">
 										<form action="{{ route('user.capnhathoso') }}" method="post">
