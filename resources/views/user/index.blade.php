@@ -3,29 +3,11 @@
 @section('title', 'Quản lý tài khoản')
 
 @section('content')
-	<div class="breadcrumb_section bg_gray page-title-mini">
-		<div class="container">
-			<div class="row align-items-center">
-				<div class="col-md-6">
-					<div class="page-title">
-						<h1>Quản lý tài khoản</h1>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<ol class="breadcrumb justify-content-md-end">
-						<li class="breadcrumb-item"><a href="{{ route('client') }}">Trang chủ</a></li>
-						<li class="breadcrumb-item active">Quản lý tài khoản</li>
-					</ol>
-				</div>
-			</div>
-		</div>
-	</div>
-
 	<div class="main_content">
 		<div class="section">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-3 col-md-4">
+					<div class="col-lg-2 col-md-4">
 						<div class="dashboard_menu">
 							<ul class="nav nav-tabs flex-column" role="tablist">
 								<li class="nav-item">
@@ -49,9 +31,9 @@
 							</ul>
 						</div>
 					</div>
-					<div class="col-lg-9 col-md-8">
+					<div class="col-lg-10 col-md-8">
 						<div class="tab-content dashboard_content">
-							<div class="tab-pane fade active show" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+							<div class="tab-pane fade active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
 								<div class="card">
 									<div class="card-header">
 										<h5>Trang chủ khách hàng</h5>
@@ -68,9 +50,14 @@
 									<div class="card-header">
 										<h5>Đơn hàng của tôi</h5>
 									</div>
+                                    <style>
+                                        td{
+                                            text-align: center
+                                        }
+                                    </style>
 									<div class="card-body">
-										<div class="table-responsive">
-											<table class="table">
+										<div class=" table table-responsive ">
+											<table class="table table-bordered">
 												<thead>
 													<tr>
 														<th width="10%">#</th>

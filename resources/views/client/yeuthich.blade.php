@@ -30,10 +30,10 @@
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive shop_cart_table">
-                        <table class="table" id="table_wishlist">
+                        <table class="table table-bordered" id="table_wishlist">
                             <thead>
-                                <tr>
-                                    <th class="product-thumbnail">&nbsp;</th>
+                                <tr class="danger">
+                                    <th class="product-thumbnail">&nbsp;Hình</th>
                                     <th class="product-name">Sản phẩm</th>
                                     <th class="product-price">Đơn giá</th>
                                     <th class="product-storage">Xem</th>
@@ -64,6 +64,9 @@
                 </div>
             </div>
             <style>
+                table{
+                    border-radius: 20px;
+                }
                 td{
                     text-align: center;
                     vertical-align: center;

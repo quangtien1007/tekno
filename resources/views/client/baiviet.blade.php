@@ -38,11 +38,11 @@
                     </div>
                     <br>
                     <h3>Tin mới nhất</h3>
-                    <div class="row shop_container"style="background: rgb(239, 239, 239);border-radius:10px">
+                    <div class="row"style="background: rgb(239, 239, 239);border-radius:10px">
                         @foreach($baiviet as $value)
                         <div class="col-lg-12 col-md-4 col-6">
                                         <div class="news">
-                                            <div class="news-thumbnail">
+                                            <div class="news-thumbnail col-md-12">
                                                 <a href="{{ route('client.baivietchitiet', ['tieude_slug' => $value->tieude_slug]) }}">
                                                     <img width="300" src="{{ env('APP_URL') . '/storage/app/' . $value->thumbnail }}" />
                                                 </a>

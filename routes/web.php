@@ -89,7 +89,7 @@ Route::prefix('khach-hang')->group(function () {
 });
 
 //Chat realtime/ livewire
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => 'user'], function () {
     Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
     Route::get('/inbox/{id}', [InboxController::class, 'show'])->name('inbox.show');
 });

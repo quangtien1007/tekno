@@ -147,6 +147,7 @@ const handleChecked1 = () => {
 const addToCompare = (product_id) => {
     var id = product_id;
     var name = document.getElementById("name" + id).value;
+    var tskt = document.getElementById("tskt" + id).value;
     var price = document.getElementById("price" + id).value;
     var image = document.getElementById("image" + id).value;
     var url = document.getElementById("url" + id).href;
@@ -155,6 +156,7 @@ const addToCompare = (product_id) => {
     var newItem = {
         id: id,
         name: name,
+        tskt: tskt,
         price: price,
         image: image,
         url: url,
@@ -218,25 +220,25 @@ function viewCompared() {
                 .find("tbody")
                 .append(
                     `
-                <tr id="row_compare` +
+            <tr id="row_compare` +
                         id +
                         `">
-                <td><img width="100px" src="` +
+            <td><img width="100px" src="` +
                         image +
                         `"></td>
-                <td>` +
+            <td>` +
                         name +
                         `</td>
-                <td>` +
+            <td>` +
                         price +
                         `</td>
-                <td><a href="` +
+            <td><a href="` +
                         url +
                         `">Xem sản phẩm</a></td>
-                <td onclick="deleteCompare(` +
+            <td onclick="deleteCompare(` +
                         id +
                         `)"><a style="cursor:pointer;" >Xóa</a></td></tr>
-                `
+            `
                 );
         }
     }

@@ -83,12 +83,7 @@
 							<div class="header-search">
 								<form action="{{route('client.sanpham')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
-									<select name="cate_select" class="input-select">
-										@foreach ($navdata as $item)
-                                        <option value="{{$item->id}}">{{$item->tenloai}}</option>
-                                        @endforeach
-									</select>
-									<input name="search"class="input" placeholder="Tìm kiếm tại đây...">
+									<input required name="search" class="input" placeholder="Tìm kiếm tại đây...">
 									<button class="search-btn">Tìm kiếm</button>
 								</form>
 							</div>
@@ -112,7 +107,7 @@
 
 								<!-- Cart -->
 								<div class="dropdown">
-									<a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+									<a style="cursor: pointer" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 										<i class="fa fa-shopping-cart"></i>
 										<span>Giỏ hàng</span>
 										<div class="qty">{{ Cart::count() ?? 0 }}</div>
@@ -143,7 +138,7 @@
 									</div>
 								</div>
 								<!-- /Cart -->
-                                <a href="{{route('inbox.index')}}">chat ne</a>
+
 								<!-- Menu Toogle -->
 								<div class="menu-toggle">
 									<a href="#">
@@ -289,6 +284,25 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
+        <a id="test-fixed" href="{{route('inbox.index')}}">
+            <i class="fa-regular fa-message fa-bounce fa-2xl"></i>
+          </a>
+            <style>
+                #test-fixed{
+                    background: #d10024;
+                    width: 60px;
+                    height: 60px;
+                    position: fixed;
+                    right: 50px;
+                    bottom: 15px;
+                    border-radius: 50%;
+                }
+                #test-fixed i{
+                    color: white;
+                    margin-top: 30px;
+                    margin-left: 16px;
+                }
+            </style>
 
 		<!-- jQuery Plugins -->
 		<script src="{{asset('assets/js/jquery.min.js')}}"></script>

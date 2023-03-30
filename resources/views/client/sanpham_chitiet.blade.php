@@ -386,8 +386,8 @@
 								<h3 class="product-name">
                                     <a id="url{{$value->id}}" href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $value->tensanpham_slug]) }}">{{ $value->tensanpham }}</a>
                                 </h3>
-								<h4 class="product-price">{{number_format($value->dongia)}}
-                                    <del class="product-old-price">{{number_format($value->dongia + ($value->dongia*0.1))}}</del>
+								<h4 class="product-price">{{number_format($value->dongia)}}<sup>đ</sup>
+                                    <del class="product-old-price">{{number_format($value->dongia + ($value->dongia*0.1))}}<sup>đ</sup></del>
                                 </h4>
 								<div class="product-rating">
 								</div>

@@ -30,9 +30,9 @@
             <div class="row">
                 <div class="col-12">
                     <div class="table-responsive shop_cart_table">
-                        <table class="table">
+                        <table class="table table-bordered">
                             <thead>
-                                <tr>
+                                <tr class="danger">
                                     <th class="product-thumbnail">&nbsp;</th>
                                     <th class="product-name">Sản phẩm</th>
                                     <th class="product-price">Đơn giá</th>
@@ -74,6 +74,11 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <style>
+                                input[type="text"]{
+                                    text-align: center
+                                }
+                            </style>
                             <tfoot>
                                 <tr>
                                     <td colspan="6" class="px-0">

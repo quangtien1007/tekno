@@ -33,11 +33,11 @@
                     @if(isset($clicked_user)) {{ $clicked_user->name }}
 
                     @elseif(auth()->user()->is_admin == true)
-                        Select a user to see the chat
+                        Chọn vào người dùng để xem tin nhắn
                     @elseif($admin->is_online)
-                        <i class="fa fa-circle text-success"></i> We are online
+                        <i class="fa fa-circle text-success"></i> Nhân viên đang online
                     @else
-                        Messages
+                        Chăm sóc khách hàng
                     @endif
                 </div>
                     <div class="card-body message-box">
@@ -66,14 +66,14 @@
                                                 </a>
                                             </div>
                                         @endif
-                                        <small class="text-muted w-100">Sent <em>{{ $message->created_at }}</em></small>
+                                        <small class="text-muted w-100">Đã gửi <em>{{ $message->created_at }}</em></small>
                                     </div>
                                 @endforeach
                             @else
-                                No messages to show
+                                Chưa có tin nhắn nào
                             @endif
                             @if(!isset($clicked_user) and auth()->user()->is_admin == true)
-                                Click on a user to see the messages
+                                Click vào người dùng để xem tin nhắn
                             @endif
                         @endif
                     </div>
@@ -81,21 +81,21 @@
                     <div class="card-footer">
                         <form wire:submit.prevent="SendMessage" enctype="multipart/form-data">
                             <div wire:loading wire:target='SendMessage'>
-                                Sending message . . .
+                                Đang gửi tin nhắn . . .
                             </div>
                             <div wire:loading wire:target="file">
-                                Uploading file . . .
+                                Đang upload tập tin . . .
                             </div>
                             @if($file)
                                 <div class="mb-2">
-                                   You have an uploaded file <button type="button" wire:click="resetFile" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Remove {{ $file->getClientOriginalName() }}</button>
+                                   Bạn đã upload 1 file <button type="button" wire:click="resetFile" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Gỡ {{ $file->getClientOriginalName() }}</button>
                                 </div>
                             @else
-                                No file is uploaded.
+                                Không có tập tin nào được upload.
                             @endif
                             <div class="row">
                                 <div class="col-md-7">
-                                    <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block" placeholder="Type a message" @if(!$file) required @endif>
+                                    <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block" placeholder="Nhập tin nhắn..." @if(!$file) required @endif>
                                 </div>
                                 @if(empty($file))
                                 <div class="col-md-1">
@@ -108,7 +108,7 @@
                                 </div>
                                 @endif
                                 <div class="col-md-4">
-                                    <button class="btn btn-primary d-inline-block w-100"><i class="far fa-paper-plane"></i> Send</button>
+                                    <button class="btn btn-primary d-inline-block w-100"><i class="far fa-paper-plane"></i> Gửi</button>
                                 </div>
                             </div>
                         </form>

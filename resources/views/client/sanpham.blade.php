@@ -138,6 +138,11 @@
                     <!-- store products -->
                     <div class="row">
                         @foreach ($sanpham as $item)
+                        @php
+                            if(!isset($lsp)){
+                                $lsp = DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first();
+                            }
+                        @endphp
                         <!-- product -->
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
@@ -149,7 +154,7 @@
                                     </div>
                                 </div>
                                 <div class="product-body">
-                                    <p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
+                                    <p class="product-category">{{$lsp->tenloai}}</p>
                                     <h3 class="product-name">
                                         <a id="url{{$item->id}}" href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $lsp->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                     </h3>

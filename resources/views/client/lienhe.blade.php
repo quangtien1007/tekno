@@ -10,10 +10,10 @@
             <!-- row -->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="breadcrumb-header">Regular Page</h3>
+                    <h3 class="breadcrumb-header">LIÊN HỆ</h3>
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Blank</li>
+                        <li><a href="{{route('client')}}">Home</a></li>
+                        <li class="active">Liên hệ</li>
                     </ul>
                 </div>
             </div>
@@ -22,105 +22,66 @@
         <!-- /container -->
     </div>
     <!-- /BREADCRUMB -->
-    <!-- SECTION -->
-    <div class="section pb_70">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-4 col-md-6">
-                    <div class="contact_wrap contact_style3">
-                        <div class="contact_icon">
-                            <i class="linearicons-map2"></i>
-                        </div>
-                        <div class="contact_text">
-                            <span>Địa chỉ</span>
-                            <p>18 Ung Văn Khiêm, P. Đông Xuyên, TPLX</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="contact_wrap contact_style3">
-                        <div class="contact_icon">
-                            <i class="linearicons-envelope-open"></i>
-                        </div>
-                        <div class="contact_text">
-                            <span>Địa chỉ Email</span>
-                            <a href="larashop@gmail.com">larashop@gmail.com</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="contact_wrap contact_style3">
-                        <div class="contact_icon">
-                            <i class="linearicons-tablet2"></i>
-                        </div>
-                        <div class="contact_text">
-                            <span>Điện thoại</span>
-                            <p>+84 2963 01 11 10</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="container contact" style="background: ">
+        <div class="row">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3924.6272952611885!2d105.43015021461053!3d10.37165579259696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x310a731e7546fd7b%3A0x953539cd7673d9e5!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBBbiBHaWFuZyAtIMSQSFFHIFRQSENN!5e0!3m2!1svi!2s!4v1680165049906!5m2!1svi!2s"
+                width="1200" height="300" style="border:0;" allowfullscreen=""
+                loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
         </div>
     </div>
-    <div class="section pt-0">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="heading_s1">
-                        <h2>Để lại lời nhắn</h2>
-                    </div>
-                    <p class="leads">Nếu quý khách cần thêm thông tin hoặc phản hồi hãy để lại lời nhắn.</p>
-                    <div class="field_form">
-                        <form method="post" name="enq">
-                            <div class="row">
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Họ và tên *" required />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="Email *" required />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Điện thoại *" required />
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Chủ đề *" required />
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <textarea class="form-control" id="message" name="message" rows="4" placeholder="Nội dung lời nhắn *" required></textarea>
-                                </div>
-                                <div class="col-md-12">
-                                    <button type="submit" class="btn btn-fill-out">GỞI LỜI NHẮN</button>
-                                </div>
-                                <div class="col-md-12">
-                                    <div id="alert-msg" class="alert-msg text-center"></div>
-                                </div>
+    <br><br><br>
+    <div class="container">
+        <div class="heading_s1">
+            <h2 style="text-align:center"><strong class="order-total">Hãy để lại thông tin để chúng tôi có thể liên hệ bạn</strong></h2>
+        </div>
+    </div>
+    <br><br><br><br>
+    <!-- SECTION -->
+    <div class="container">
+        <!-- row -->
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                <div class="login_wrap">
+                    <div class="padding_eight_all bg-white">
+                        <div class="heading_s1">
+                            <h3><strong class="order-total">THÔNG TIN CỦA BẠN</strong></h3>
+                        </div>
+                        <form action="{{ route('login') }}" method="post">
+                            @csrf
+                            <div class="form-group">
+                                <input type="text" class="form-control{{ ($errors->has('name') || $errors->has('name')) ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Nhập tên của bạn *" required />
+                                @if ($errors->has('email') || $errors->has('username'))
+                                    <span class="invalid-feedback" role="alert"><strong>{{ empty($errors->first('email')) ? $errors->first('username') : $errors->first('email') }}</strong></span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control{{ ($errors->has('email') || $errors->has('username')) ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" placeholder="Nhập Email của bạn *" required />
+                                @if ($errors->has('email') || $errors->has('username'))
+                                    <span class="invalid-feedback" role="alert"><strong>{{ empty($errors->first('email')) ? $errors->first('username') : $errors->first('email') }}</strong></span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Nhập lời nhắn của bạn..." class="form-control" rows="5" id="comment"></textarea>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                @enderror
+                            </div>
+                            <div class="form-group" style="width: 100px ">
+                                <button type="submit" class="primary-btn submit">GỬI THÔNG TIN</button>
                             </div>
                         </form>
                     </div>
                 </div>
-                <div class="col-lg-6 pt-2 pt-lg-0 mt-4 mt-lg-0">
-                    <div id="map" class="contact_map2" data-zoom="14" data-latitude="10.370575" data-longitude="105.431131" data-icon="{{ asset('images/marker.png') }}"></div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5">
+                <div class="heading_s1">
+                    <h3><strong class="order-total">THÔNG TIN LIÊN HỆ CHÚNG TÔI</strong></h3>
                 </div>
             </div>
         </div>
+        <!-- /row -->
     </div>
-    {{-- <div class="section">
-        <!-- container -->
-        <div class="container">
-            <!-- row -->
-            <div class="row">
-                <div class="text-center order_complete">
-                    <i class="fal fa-check-circle"></i>
-                    <div class="heading_s1">
-                        <h3>Bạn đã đặt hàng thành công!</h3>
-                    </div>
-                    <p>Cảm ơn bạn đã đặt hàng! Đơn hàng của bạn đang được xử lý và sẽ hoàn thành trong vòng 3-6 giờ. Bạn sẽ nhận được một email xác nhận khi đơn đặt hàng của bạn được hoàn thành.</p>
-                    <a href="{{ route('client') }}" class="btn btn-fill-out">TIẾP TỤC MUA SẮM</a>
-                </div>
-            </div>
-            <!-- /row -->
-        </div>
-        <!-- /container -->
-    </div> --}}
     <!-- /SECTION -->
 @endsection

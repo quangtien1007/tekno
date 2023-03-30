@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\BaiViet;
+use App\Models\FormMau;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -28,7 +29,8 @@ class BaiVietController extends Controller
      */
     public function getThem()
     {
-        return view('admin.baiviet.them');
+        $form = FormMau::all();
+        return view('admin.baiviet.them', compact('form'));
     }
 
     /**
@@ -71,8 +73,9 @@ class BaiVietController extends Controller
      */
     public function getSua($id)
     {
+        $form = FormMau::all();
         $baiviet = BaiViet::find($id);
-        return view('admin.baiviet.sua', compact('baiviet'));
+        return view('admin.baiviet.sua', compact('baiviet', 'form'));
     }
 
     /**
@@ -88,10 +91,15 @@ class BaiVietController extends Controller
         $bv->tieude = $request->tieude;
         $bv->tieude_slug = Str::slug($request->tieude, '-');
         $bv->author_id = Auth::user()->id;
-        $bv->thumbnail = $request->thumbnail;
+        if ($request->hasFile('thumbnail')) {
+            $extension = $request->file('thumbnail')->extension();
+            $filename = Str::slug($request->tieude, '-') . '.' . $extension;
+            $path = Storage::putFileAs('baiviet/' . $bv->tenloai_slug, $request->file('thumbnail'), $filename);
+        }
+        if (!empty($path)) $bv->thumbnail = $path;
         $bv->noidung = $request->noidung;
         $bv->save();
-        return view('admin.baiviet.danhsach');
+        return redirect()->route('admin.baiviet');
     }
 
     /**
