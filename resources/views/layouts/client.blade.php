@@ -40,7 +40,7 @@
 
 		<!-- Custom stlylesheet -->
 		<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"/>
-
+        @livewireStyles
 
     </head>
 	<body>
@@ -196,7 +196,7 @@
         @endif
         <script type="text/javascript">
         $(document).ready(function(){
-          $(".alert-success").delay(3000).slideUp(300);
+          $(".alert-success").delay(8000).slideUp(300);
             });
         </script>
         @yield('content')
@@ -211,8 +211,8 @@
 					<div class="row">
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">About Us</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</p>
+								<h3 class="footer-title"></h3>
+								<p>Cửa hàng chúng tôi chuyên cung cấp các sản phẩm công nghệ mới nhất với chất lượng tốt nhất thị trường.</p>
 								<ul class="footer-links">
 									<li><a href="#"><i class="fa fa-map-marker"></i>18, Ung Văn Khiêm</a></li>
 									<li><a href="#"><i class="fa fa-phone"></i>+84-38-601-5481</a></li>
@@ -222,13 +222,13 @@
 						</div>
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Categories</h3>
+								<h3 class="footer-title">Theo loại</h3>
 								<ul class="footer-links">
 									<li><a href="#">Hot deals</a></li>
-									<li><a href="#">Laptops</a></li>
-									<li><a href="#">Smartphones</a></li>
-									<li><a href="#">Cameras</a></li>
-									<li><a href="#">Accessories</a></li>
+									<li><a href="#">Laptop</a></li>
+									<li><a href="#">Điện thoại</a></li>
+									<li><a href="#">Tablet</a></li>
+									<li><a href="#">Phụ kiện</a></li>
 								</ul>
 							</div>
 						</div>
@@ -237,26 +237,26 @@
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Information</h3>
+								<h3 class="footer-title">Thông tin</h3>
 								<ul class="footer-links">
 									<li><a href="#">About Us</a></li>
-									<li><a href="#">Contact Us</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-									<li><a href="#">Orders and Returns</a></li>
-									<li><a href="#">Terms & Conditions</a></li>
+									<li><a href="#">Liên hệ</a></li>
+									<li><a href="#">Chính sách bảo hành</a></li>
+									<li><a href="#">Chính sách đổi tra</a></li>
+									<li><a href="#">Quy chế hoạt động</a></li>
 								</ul>
 							</div>
 						</div>
 
 						<div class="col-md-3 col-xs-6">
 							<div class="footer">
-								<h3 class="footer-title">Service</h3>
+								<h3 class="footer-title">Dịch vụ</h3>
 								<ul class="footer-links">
-									<li><a href="#">My Account</a></li>
-									<li><a href="#">View Cart</a></li>
-									<li><a href="#">Wishlist</a></li>
-									<li><a href="#">Track My Order</a></li>
-									<li><a href="#">Help</a></li>
+									<li><a href="{{route('user')}}">Tài khoản</a></li>
+									<li><a href="{{route('client.giohang')}}">Xem giỏ hàng</a></li>
+									<li><a href="{{route('client.yeuthich')}}">Yêu thích</a></li>
+									<li><a href="#">Theo dõi đơn hàng</a></li>
+									<li><a href="{{route('inbox.index')}}">Trợ giúp</a></li>
 								</ul>
 							</div>
 						</div>
@@ -294,26 +294,7 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
-        <a id="test-fixed" href="{{route('inbox.index')}}">
-            <i class="fa-regular fa-message fa-bounce fa-2xl"></i>
-          </a>
-            <style>
-                #test-fixed{
-                    background: #d10024;
-                    width: 60px;
-                    height: 60px;
-                    position: fixed;
-                    right: 50px;
-                    bottom: 15px;
-                    border-radius: 50%;
-                }
-                #test-fixed i{
-                    color: white;
-                    margin-top: 30px;
-                    margin-left: 16px;
-                }
-            </style>
-
+        @livewire('test', ['users' => getUserMessage() , 'messages' => $messages ?? null])
 		<!-- jQuery Plugins -->
 		<script src="{{asset('assets/js/jquery.min.js')}}"></script>
 		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
@@ -321,6 +302,6 @@
 		<script src="{{asset('assets/js/nouislider.min.js')}}"></script>
 		<script src="{{asset('assets/js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('assets/js/main.js')}}"></script>
-
+        @livewireScripts
 	</body>
 </html>

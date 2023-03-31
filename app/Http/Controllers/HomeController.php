@@ -20,11 +20,23 @@ use App\Models\BaiViet;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Srmklive\PayPal\Services\ExpressCheckout;
+use \App\Models\Message;
 
 class HomeController extends Controller
 {
     public function getHome()
     {
+        //show tin nhan
+        $messages = null;
+        // Show just the users and not the admins as well
+        $users = User::where('is_admin', false)->orderBy('id', 'DESC')->get();
+        if (Auth::check()) {
+            if (auth()->user()->is_admin == false) {
+                $messages = Message::where('user_id', auth()->id())->orWhere('receiver', auth()->id())->orderBy('id', 'DESC')->get();
+            } else {
+                $messages = null;
+            }
+        }
         $sanpham = SanPham::orderby('id', 'asc')->limit(10)->get();
         $laptop = SanPham::where('loaisanpham_id', 3)->paginate(5);
         $laptop1 = SanPham::where('loaisanpham_id', 3)->paginate(9);
@@ -32,7 +44,7 @@ class HomeController extends Controller
         $cusac = SanPham::where('loaisanpham_id', 5)->paginate(4);
         $tablet = SanPham::where('loaisanpham_id', 2)->paginate(4);
         $tainghe = SanPham::where('loaisanpham_id', 6)->paginate(3);
-        return view('client.index', compact('sanpham', 'navdata', 'tainghe', 'laptop', 'cusac', 'tablet', 'laptop1'));
+        return view('client.index', compact('sanpham', 'navdata', 'tainghe', 'laptop', 'cusac', 'tablet', 'laptop1', 'messages', 'users'));
     }
 
     public function getDangKy()
@@ -124,7 +136,6 @@ class HomeController extends Controller
 
             if ($request->sapxep == 'popularity') // Mua nhiều nhất
             {
-                
                 $sanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
                     ->where('sanpham.loaisanpham_id', $lsp->id)
                     ->selectRaw('sanpham.*, coalesce(sum(donhang_chitiet.soluongban), 0) tongsoluongban')
@@ -470,7 +481,7 @@ class HomeController extends Controller
             }
         }
 
-        return redirect()->route('client.dathangthanhcong');
+        // return redirect()->route('client.dathangthanhcong');
     }
 
     public function getDatHangThanhCong()

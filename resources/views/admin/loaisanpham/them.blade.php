@@ -13,7 +13,7 @@
 						<?php showCategories($category)?>
 					</select>
 				</div>
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="tenloai">Tên loại</label>
 					<input type="text" class="form-control @error('tenloai') is-invalid @enderror" id="tenloai" name="tenloai" value="{{ old('tenloai') }}" required />
@@ -30,13 +30,13 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<button type="submit" class="btn btn-success"><i class="fal fa-save"></i> Thêm vào CSDL</button>
 			</form>
 		</div>
 	</div>
 @endsection
-<?php 
+<?php
 function showCategories($categories, $parent_id = 0, $char = '')
 	{
 		foreach ($categories as $key => $item) {
@@ -52,5 +52,4 @@ function showCategories($categories, $parent_id = 0, $char = '')
 			}
 		}
 	}
-
 ?>

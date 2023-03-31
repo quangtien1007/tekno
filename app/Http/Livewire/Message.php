@@ -20,7 +20,6 @@ class Message extends Component
 
     public function render()
     {
-
         return view('livewire.message', [
             'users' => $this->users,
             'admin' => $this->admin
@@ -53,6 +52,7 @@ class Message extends Component
         $new_message = new \App\Models\Message();
         $new_message->message = $this->message;
         $new_message->user_id = auth()->id();
+        //neu khong phai admin thi send toi admin
         if (!auth()->user()->is_admin == true) {
             $admin = User::where('is_admin', true)->first();
             $this->user_id = $admin->id;

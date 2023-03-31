@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Models\SanPham;
+use App\Models\User;
+use \App\Models\Message;
+use Illuminate\Support\Facades\Auth;
+
+
 if (!function_exists('isPhoto')) {
     function isPhoto($path)
     {
@@ -29,5 +36,13 @@ if (!function_exists('isVideo')) {
             return true;
         }
         return false;
+    }
+}
+if (!function_exists('getUserMessage')) {
+    function getUserMessage()
+    {
+        // Show just the users and not the admins as well
+        $users = User::where('is_admin', false)->orderBy('id', 'DESC')->get();
+        return $users;
     }
 }

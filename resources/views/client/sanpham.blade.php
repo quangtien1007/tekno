@@ -68,12 +68,10 @@
                                 @endphp
                                     @foreach ($hsx as $item)
                                         <div class="input-checkbox">
-                                            {{-- <input type="checkbox" value="{{$item->id}}" name="hang_id[]" id="brand-{{$item->id}}"> --}}
-                                            <label for="brand-{{$item->id}}">
-                                                <span></span>
-                                                {{$item->tenhang}}
-                                                <small>({{count(DB::table('sanpham')->where('hangsanxuat_id',$item->id)->where('loaisanpham_id',$lsp->id)->get())}})</small>
-                                            </label>
+                                                <a href="{{route('client.sanpham.danhmucchitiet',['tenloai_slug'=> $lsp->tenloai_slug,'tenhang_slug'=>$item->tenhang_slug])}}">
+                                                    <img src="{{ env('APP_URL') . '/storage/app/' . $item->hinhanh }}" width="100" class="img-thumbnail" />
+                                                    </a>
+                                                <a>({{count(DB::table('sanpham')->where('hangsanxuat_id',$item->id)->where('loaisanpham_id',$lsp->id)->get())}})</a>
                                         </div>
                                     @endforeach
                                 @endforeach

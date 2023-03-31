@@ -376,3 +376,45 @@ const deleteAllWishlist = () => {
         document.getElementById("body_wishlist").remove();
     }
 };
+
+const openChat = () => {
+    document.getElementById("chat-area").style.display = "block";
+};
+const hideChat = () => {
+    document.getElementById("chat-area").style.display = "none";
+    var a = `<div id="footer_chat" wire:poll="mountComponent()">
+    <form wire:submit.prevent="SendMessage" enctype="multipart/form-data">
+        <div wire:loading wire:target='SendMessage'>
+            Đang gửi tin nhắn . . .
+        </div>
+        <div wire:loading wire:target="file">
+            Đang upload tập tin . . .
+        </div>
+        @if($file)
+            <div class="mb-2">
+               Bạn đã upload 1 file <button type="button" wire:click="resetFile" class="btn btn-danger btn-sm"><i class="fa fa-times"></i> Gỡ {{ $file->getClientOriginalName() }}</button>
+            </div>
+        @else
+            Không có tập tin nào được upload.
+        @endif
+        <div class="row footer_chat">
+            <div class="col-md-7">
+                <input wire:model="message" class="form-control input shadow-none w-100 d-inline-block input-message" placeholder="Nhập tin nhắn..." @if(!$file) required @endif>
+            </div>
+            @if(empty($file))
+            <div class="col-md-1">
+                <button type="button" class="border" id="file-area">
+                    <label>
+                        <i class="fa fa-file-upload"></i>
+                        <input type="file" wire:model="file">
+                    </label>
+                </button>
+            </div>
+            @endif
+            <div class="col-md-4">
+                <button class="btn btn-send btn-danger d-inline-block w-100"><i class="far fa-paper-plane"></i> Gửi</button>
+            </div>
+        </div>
+    </form>
+</div>`
+};

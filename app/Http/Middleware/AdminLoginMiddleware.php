@@ -22,6 +22,6 @@ class AdminLoginMiddleware
                 return $next($request);
             }
         }
-        return abort(403, 'Ban khong co quyen truy cap');
+        return redirect()->route('user.dangnhap');
     }
 }

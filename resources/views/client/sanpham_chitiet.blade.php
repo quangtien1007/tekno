@@ -89,8 +89,8 @@
 								<span class="product-available">In Stock</span>
 							</div>
 							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-
 							<div class="product-options">
+                                @if($sanpham->loaisanpham_id == 1 || $sanpham->loaisanpham_id == 2 || $sanpham->loaisanpham_id == 3 )
 								<label>
 									D.Lượng
 									<select name="dlsp" class="input-select">
@@ -99,6 +99,7 @@
                                         @endforeach
 									</select>
 								</label>
+                                @if($sanpham->loaisanpham_id == 1)
 								<label>
 									Màu
 									<select name="msp" class="input-select">
@@ -107,11 +108,12 @@
                                         @endforeach
 									</select>
 								</label>
+                                @endif
+                                @endif
 							</div>
-
 							<div class="add-to-cart">
 								<div class="qty-label">
-									Qty
+									Số lượng
 									<div class="input-number">
 										<input name="qty" type="number" value="1" readonly>
 										<span class="qty-up">+</span>

@@ -31,7 +31,7 @@ Route::get('/detail', function () {
 Route::get('/san-pham', [HomeController::class, 'getSanPham'])->name('client.sanpham');
 Route::post('/san-pham', [HomeController::class, 'postSanPham'])->name('client.sanpham');
 Route::get('/san-pham/loai/{tenloai_slug}/', [HomeController::class, 'getSanPham'])->name('client.sanpham.danhmuc');
-// Route::get('/san-pham/loai/{tenloai_slug}/{tenhang_slug}', [HomeController::class, 'getDanhMucChiTiet'])->name('frontend.sanpham.danhmucchitiet');
+Route::get('/san-pham/loai/{tenloai_slug}/{tenhang_slug}', [HomeController::class, 'getDanhMucChiTiet'])->name('client.sanpham.danhmucchitiet');
 // Route::get('/san-pham/hang/{tenhang_slug}', [HomeController::class, 'getHangSanXuat'])->name('frontend.sanpham.hangsanxuat');
 Route::get('/san-pham/{tenloai_slug}/{tensanpham_slug}', [HomeController::class, 'getSanPham_ChiTiet'])->name('client.sanpham.chitiet');
 Route::post('/so-sanh', [HomeController::class, 'postSoSanh'])->name('client.sosanh.sanpham');
@@ -90,8 +90,8 @@ Route::prefix('khach-hang')->group(function () {
 
 //Chat realtime/ livewire
 Route::group(['middleware' => 'user'], function () {
-    Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index');
-    Route::get('/inbox/{id}', [InboxController::class, 'show'])->name('inbox.show');
+    Route::get('/inbox', [InboxController::class, 'index'])->name('inbox.index'); //admin.inbox.index
+    Route::get('/inbox/{id}', [InboxController::class, 'show'])->name('inbox.show'); //admin.inbox.show
 });
 
 // Trang tài khoản quản lý

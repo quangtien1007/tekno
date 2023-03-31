@@ -2188,6 +2188,182 @@ textarea.input {
     position: static;
     margin: 15px 0px;
 }
+/*=========================================================
+	CUSTOM CSS
+===========================================================*/
+button[type="submit"].login {
+    width: 100%;
+}
+button[type="submit"].submit {
+    width: 200px;
+}
+a.login {
+    width: 100%;
+}
+.news {
+    margin: 15px 5px;
+    display: flex;
+}
+.news .news-thumbnail {
+    width: 350px;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+.news .news-des {
+    position: absolute;
+    bottom: 40px;
+}
+.news .news-title {
+    width: 800px;
+}
+.news .news-title a {
+    font-size: 20px;
+}
+.news .news-footer {
+    position: absolute;
+    bottom: 15px;
+}
+div.des .compact_content {
+    width: 70%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    padding: 0;
+}
+/* custom chat */
+#bubble-chat {
+    z-index: 100;
+    background: #d10024;
+    width: 60px;
+    height: 60px;
+    position: fixed;
+    right: 30px;
+    bottom: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 1s;
+}
+#bubble-chat i {
+    color: white;
+    margin-top: 30px;
+    margin-left: 16px;
+}
+#chat-area {
+    display: none;
+    background: #dddddd;
+    width: 350px;
+    height: 400px;
+    position: fixed;
+    right: 30px;
+    z-index: 100;
+    bottom: 15px;
+    transition: all 1s;
+    border-radius: 20px;
+}
+#header_chat {
+    border-radius: 5px 5px 0 0;
+    width: 100%;
+    height: 40px;
+    background-color: #d10024;
+}
+#header_chat a {
+    cursor: pointer;
+    float: right;
+    margin-top: 6px;
+    margin-right: 10px;
+    font-size: 14pt;
+}
+#footer_chat {
+    position: absolute;
+    bottom: 0px;
+    /* border-radius: 0 0 20px 20px; */
+    width: 100%;
+    height: 70px;
+    background-color: #acacac;
+}
+.card-footer {
+    position: absolute;
+    bottom: 50px;
+}
+.avatar {
+    height: 50px;
+    width: 50px;
+}
+.list-group-item:hover,
+.list-group-item:focus {
+    background: rgba(24, 32, 23, 0.37);
+    cursor: pointer;
+}
+.chatbox {
+    height: 80vh !important;
+    overflow-y: scroll;
+}
+.message-box {
+    height: 40vh !important;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+    width: 100%;
+}
+.message-box p {
+    font-size: 14px;
+}
+.single-message {
+    background: #f1f0f0;
+    border-radius: 12px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+.received {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.sent {
+    margin-left: auto !important;
+    margin-right: 10px;
+    background-image: radial-gradient(
+        circle 860px at 11.8% 33.5%,
+        rgb(240, 30, 30) 0%,
+        rgba(244, 49, 74, 1) 30.5%,
+        rgba(249, 75, 37, 1) 56.1%,
+        rgba(250, 88, 19, 1) 75.6%,
+        rgba(253, 102, 2, 1) 100.2%
+    );
+    color: white !important;
+}
+.sent small {
+    color: white !important;
+}
+.link:hover {
+    list-style: none !important;
+    text-decoration: none;
+}
+.online-icon {
+    font-size: 11px !important;
+}
+#file-area {
+    cursor: pointer;
+}
+#file-area > label > input {
+    display: none !important;
+}
+.header-item {
+    color: white;
+}
+.header-item i {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.input-message {
+    margin-left: 10px;
+    margin-bottom: 5px;
+}
+.btn-send {
+    width: 80px;
+}
 
 /*=========================================================
 	13 -> RESPONSIVE
@@ -2232,6 +2408,11 @@ textarea.input {
     .section-tab-nav li {
         margin-top: 10px;
     }
+    #chat-area {
+        width: 250px;
+        height: 300px;
+        right: 0px;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -2246,46 +2427,7 @@ textarea.input {
         float: none;
         margin-top: 10px;
     }
-}
-/* custom css */
-button[type="submit"].login {
-    width: 100%;
-}
-button[type="submit"].submit {
-    width: 200px;
-}
-a.login {
-    width: 100%;
-}
-.news {
-    margin: 15px 5px;
-    display: flex;
-}
-.news .news-thumbnail {
-    width: 350px;
-    border-radius: 10px;
-    margin-right: 20px;
-}
-.news .news-des {
-    position: absolute;
-    bottom: 40px;
-}
-.news .news-title {
-    width: 800px;
-}
-.news .news-title a {
-    font-size: 20px;
-}
-.news .news-footer {
-    position: absolute;
-    bottom: 15px;
-}
-div.des .compact_content {
-    width: 70%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    padding: 0;
+    #chat-area {
+        display: none;
+    }
 }

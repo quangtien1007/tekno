@@ -182,6 +182,7 @@
                                 I've read and accept the <a href="#">terms & conditions</a>
                             </label>
                         </div>
+                        <input type="hidden" name="redirect" id="">
                         <button type="submit" class="primary-btn order-submit">Thanh toán</a>
                 </form>
             </div>
