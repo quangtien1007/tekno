@@ -15,31 +15,31 @@
         <!-- Scripts -->
         <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
         {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script> --}}
-        <script src="{{asset('public/assets/js/index.js')}}"></script>
+        <script src="{{asset('assets/js/index.js')}}"></script>
 
 
          <!-- fotnawesome pro -->
         <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet" type="text/css" />
 
 		<!-- Bootstrap -->
-		<link rel="stylesheet" href="{{ asset('public/assets/css/bootstrap.min.css') }}"/>
-        <script src="{{asset('public/assets/js/flashjs/dist/flash.min.js')}}"></script>
-        <link rel="stylesheet" href="{{asset('public/assets/js/flashjs/dist/flash.min.css')}}">
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
+        <script src="{{asset('assets/js/flashjs/dist/flash.min.js')}}"></script>
+        <link rel="stylesheet" href="{{asset('assets/js/flashjs/dist/flash.min.css')}}">
         <!-- Latest compiled and minified CSS -->
 
 		<!-- Slick -->
-		<link rel="stylesheet" href="{{asset('public/assets/css/slick.css')}}"/>
-		<link rel="stylesheet" href="{{asset('public/assets/css/slick-theme.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/slick.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/slick-theme.css')}}"/>
 
 		<!-- nouislider -->
-		<link rel="stylesheet" href="{{asset('public/assets/css/nouislider.min.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/nouislider.min.css')}}"/>
 
 		<!-- Font Awesome Icon -->
 		{{-- <link rel="stylesheet" href="{{asset('assets/css/font-awesome.min.css')}}"> --}}
         <script src="https://kit.fontawesome.com/80a51985d7.js" crossorigin="anonymous"></script>
 
 		<!-- Custom stlylesheet -->
-		<link rel="stylesheet" href="{{asset('public/assets/css/style.css')}}"/>
+		<link rel="stylesheet" href="{{asset('assets/css/style.css')}}"/>
         @livewireStyles
 
     </head>
@@ -296,12 +296,12 @@
 		<!-- /FOOTER -->
         @livewire('test', ['users' => getUserMessage() , 'messages' => $messages ?? null])
 		<!-- jQuery Plugins -->
-		<script src="{{asset('public/assets/js/jquery.min.js')}}"></script>
-		<script src="{{asset('public/assets/js/bootstrap.min.js')}}"></script>
-		<script src="{{asset('public/assets/js/slick.min.js')}}"></script>
-		<script src="{{asset('public/assets/js/nouislider.min.js')}}"></script>
-		<script src="{{asset('public/assets/js/jquery.zoom.min.js')}}"></script>
-		<script src="{{asset('public/assets/js/main.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.min.js')}}"></script>
+		<script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+		<script src="{{asset('assets/js/slick.min.js')}}"></script>
+		<script src="{{asset('assets/js/nouislider.min.js')}}"></script>
+		<script src="{{asset('assets/js/jquery.zoom.min.js')}}"></script>
+		<script src="{{asset('assets/js/main.js')}}"></script>
         @livewireScripts
 	</body>
 </html>
