@@ -21,11 +21,6 @@ Auth::routes();
 
 // Trang chủ
 Route::get('/', [HomeController::class, 'getHome'])->name('client');
-Route::get('/home', [HomeController::class, 'getHome'])->name('client');
-
-Route::get('/detail', function () {
-    return view('client.sanpham');
-})->name('client.sanpham');
 
 // // Trang sản phẩm
 Route::get('/san-pham', [HomeController::class, 'getSanPham'])->name('client.sanpham');
