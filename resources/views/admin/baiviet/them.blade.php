@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Viết bài</div>
 		<div class="card-body">
-			<form action="" method="post" enctype="multipart/form-data">
+			<form action="admin.baiviet.add" method="post" enctype="multipart/form-data">
 				@csrf
 
 				<div class="mb-3">

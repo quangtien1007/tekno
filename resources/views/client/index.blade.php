@@ -121,7 +121,7 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-                                                <form action="{{route('client.giohang.them')}}" method="post">
+                                                <form action="{{route('client.giohang.add')}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="tensanpham_slug" value="{{$item->tensanpham_slug}}">
                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>

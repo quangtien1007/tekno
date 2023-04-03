@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Cập nhật tài khoản</div>
 		<div class="card-body">
-			<form action="{{ route('admin.nguoidung.sua', ['id' => $nguoidung->id]) }}" method="post">
+			<form action="{{ route('admin.nguoidung.update', ['id' => $nguoidung->id]) }}" method="post">
 				@csrf
 				
 				<div class="mb-3">

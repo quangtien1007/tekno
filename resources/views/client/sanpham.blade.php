@@ -31,7 +31,7 @@
             <div class="row">
                 <!-- ASIDE -->
                 <div id="aside" class="col-md-3">
-                    <form action="{{route('client.sanpham')}}" method="post">
+                    <form action="{{route('client.sanpham.search')}}" method="post">
                         @csrf
                     <!-- aside Widget -->
                     <div class="aside">
@@ -105,7 +105,7 @@
                         <div class="store-sort">
                             <label>
                                 Lọc:
-                                <form action="{{ route('client.sanpham') }}" method="post">
+                                <form action="{{ route('client.sanpham.search') }}" method="post">
                                     @csrf
                                     @if(isset($tenloai))
 										<input type="hidden" id="tenloai_slug" name="tenloai_slug" value="{{ Str::slug($tenloai, '-') }}" />
@@ -176,7 +176,7 @@
                                     </div>
                                 </div>
                                 <div class="add-to-cart">
-                                    <form action="{{route('client.giohang.them')}}" method="post">
+                                    <form action="{{route('client.giohang.add')}}" method="post">
                                         @csrf
                                         <input type="hidden" name="tensanpham_slug" value="{{$item->tensanpham_slug}}">
                                         <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>

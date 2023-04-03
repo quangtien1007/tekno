@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Thêm tình trạng</div>
 		<div class="card-body">
-			<form action="{{ route('admin.tinhtrang.them') }}" method="post">
+			<form action="{{ route('admin.tinhtrang.add') }}" method="post">
 				@csrf
 				
 				<div class="mb-3">

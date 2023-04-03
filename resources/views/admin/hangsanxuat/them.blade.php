@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Thêm hãng sản xuất</div>
 		<div class="card-body">
-			<form action="{{ route('admin.hangsanxuat.them') }}" method="post" enctype="multipart/form-data">
+			<form action="{{ route('admin.hangsanxuat.add') }}" method="post" enctype="multipart/form-data">
 				@csrf
 				
 				<div class="mb-3">

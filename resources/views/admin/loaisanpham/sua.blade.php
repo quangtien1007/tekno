@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Sửa loại sản phẩm</div>
 		<div class="card-body">
-			<form action="{{ route('admin.loaisanpham.sua', ['id' => $loaisanpham->id]) }}" method="post">
+			<form action="{{ route('admin.loaisanpham.update', ['id' => $loaisanpham->id]) }}" method="post">
 				@csrf
 				
 				<div class="mb-3">

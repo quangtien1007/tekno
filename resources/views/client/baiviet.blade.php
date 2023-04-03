@@ -43,13 +43,13 @@
                         <div class="col-lg-12 col-md-4 col-6">
                                         <div class="news">
                                             <div class="news-thumbnail col-md-12">
-                                                <a href="{{ route('client.baivietchitiet', ['tieude_slug' => $value->tieude_slug]) }}">
+                                                <a href="{{ route('client.baiviet.chitiet', ['tieude_slug' => $value->tieude_slug]) }}">
                                                     <img width="300" src="{{ env('APP_URL') . '/storage/app/' . $value->thumbnail }}" />
                                                 </a>
                                             </div>
                                             <div class="news-info">
                                                 <div class="news-title">
-                                                    <a href="{{ route('client.baivietchitiet', ['tieude_slug' => $value->tieude_slug]) }}">
+                                                    <a href="{{ route('client.baiviet.chitiet', ['tieude_slug' => $value->tieude_slug]) }}">
                                                         <strong>{{$value->tieude}}</strong>
                                                     </a>
                                                 </div>

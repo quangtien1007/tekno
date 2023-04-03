@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Thêm sản phẩm</div>
 		<div class="card-body">
-			<form action="{{ route('admin.sanpham.them') }}" method="post" enctype="multipart/form-data">
+			<form action="{{ route('admin.sanpham.add') }}" method="post" enctype="multipart/form-data">
 				@csrf
 
 				<div class="mb-3">

@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Thêm tài khoản</div>
 		<div class="card-body">
-			<form action="{{ route('admin.nguoidung.them') }}" method="post">
+			<form action="{{ route('admin.nguoidung.add') }}" method="post">
 				@csrf
 				
 				<div class="mb-3">

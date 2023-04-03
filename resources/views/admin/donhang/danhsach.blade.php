@@ -75,8 +75,8 @@
 								<img src="https://cdn-icons-png.flaticon.com/512/5619/5619958.png" alt="logo-paypal" width="100px">
 								@endif
 							</td>
-							<td class="text-center"><a href="{{ route('admin.donhang.sua', ['id' => $value->id]) }}"><i class="fal fa-edit"></i></a></td>
-							<td class="text-center"><a href="{{ route('admin.donhang.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa đơn hàng của khách {{ $value->User->name }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
+							<td class="text-center"><a href="{{ route('admin.donhang.edit', ['id' => $value->id]) }}"><i class="fal fa-edit"></i></a></td>
+							<td class="text-center"><a href="{{ route('admin.donhang.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa đơn hàng của khách {{ $value->User->name }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
 						</tr>
 					@endforeach
 				</tbody>

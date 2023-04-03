@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Sửa tình trạng</div>
 		<div class="card-body">
-			<form action="{{ route('admin.tinhtrang.sua', ['id' => $tinhtrang->id]) }}" method="post">
+			<form action="{{ route('admin.tinhtrang.update', ['id' => $tinhtrang->id]) }}" method="post">
 				@csrf
 				
 				<div class="mb-3">

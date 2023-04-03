@@ -40,7 +40,7 @@
                             text-align:top;
                         }
                     </style> --}}
-                    <form action="{{route('client.dathang')}}" method="post" id="checkoutform">
+                    <form action="{{route('client.dathang.add')}}" method="post" id="checkoutform">
                         @csrf
                             <div class="form-group">
                                 <input type="text" style="text-align: top" class="input" name="name" placeholder="Họ và tên *" value="{{ Auth::user()->name ?? '' }}" required />

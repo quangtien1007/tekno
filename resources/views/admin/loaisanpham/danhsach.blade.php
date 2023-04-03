@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Loại sản phẩm</div>
 		<div class="card-body table-responsive">
-			<p><a href="{{ route('admin.loaisanpham.them') }}" class="btn btn-success"><i class="fal fa-plus"></i> Thêm mới</a></p>
+			<p><a href="{{ route('admin.loaisanpham.create') }}" class="btn btn-success"><i class="fal fa-plus"></i> Thêm mới</a></p>
 			<table class="table table-bordered table-hover table-sm mb-0">
 				<thead>
 					<tr>

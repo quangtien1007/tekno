@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Chỉnh sửa đơn hàng</div>
 		<div class="card-body">
-			<form action="{{ route('admin.donhang.sua', ['id' => $donhang->id]) }}" method="post">
+			<form action="{{ route('admin.donhang.update', ['id' => $donhang->id]) }}" method="post">
 				@csrf
 				
 				<div class="mb-3">
