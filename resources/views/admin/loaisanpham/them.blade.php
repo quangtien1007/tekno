@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Thêm loại sản phẩm</div>
 		<div class="card-body">
-			<form action="{{ route('admin.loaisanpham.them') }}" enctype="multipart/form-data" method="post">
+			<form action="{{ route('admin.loaisanpham.add') }}" enctype="multipart/form-data" method="post">
 				@csrf
 				<div class="mb-3">
 					<label class="form-label" for="parent_id">Category</label>

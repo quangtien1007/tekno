@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Người dùng</div>
 		<div class="card-body table-responsive">
-			<p><a href="{{ route('admin.nguoidung.them') }}" class="btn btn-success"><i class="fal fa-plus"></i> Thêm mới</a></p>
+			<p><a href="{{ route('admin.nguoidung.create') }}" class="btn btn-success"><i class="fal fa-plus"></i> Thêm mới</a></p>
 			<table class="table table-bordered table-hover table-sm mb-0">
 				<thead>
 					<tr>
@@ -25,8 +25,8 @@
 							<td>{{ $value->username }}</td>
 							<td>{{ $value->email }}</td>
 							<td>{{ $value->role }}</td>
-							<td class="text-center"><a  href="{{ route('admin.nguoidung.sua', ['id' => $value->id]) }}"><i class="fal fa-edit text-success"></i></a></td>
-							<td class="text-center"><a href="{{ route('admin.nguoidung.xoa', ['id' => $value->id]) }}"><i class="fal fa-trash-alt text-danger"></i></a></td>
+							<td class="text-center"><a  href="{{ route('admin.nguoidung.edit', ['id' => $value->id]) }}"><i class="fal fa-edit text-success"></i></a></td>
+							<td class="text-center"><a href="{{ route('admin.nguoidung.delete', ['id' => $value->id]) }}"><i class="fal fa-trash-alt text-danger"></i></a></td>
 						</tr>
 					@endforeach
 				</tbody>

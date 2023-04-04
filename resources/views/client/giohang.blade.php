@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Home')
+@section('title', 'Giỏ hàng')
 
 @section('content')
     <!-- BREADCRUMB -->
@@ -64,19 +64,22 @@
                                         <td class="product-color" data-title="Color"><a href="#">{{ $value->color }}</a></td>
                                         <td class="product-quantity" data-title="Quantity">
                                             <div class="quantity">
-                                                <a class="minus" href="{{ route('client.giohang.giam', ['row_id' => $value->rowId]) }}"><i class="fa-solid fa-minus"></i></a>
+                                                <a class="minus" href="{{ route('client.giohang.down', ['row_id' => $value->rowId]) }}"><i class="fa-solid fa-minus"></i></a>
                                                 <input readonly type="text" name="qty" value="{{ $value->qty }}" class="qty" size="4" />
-                                                <a class="plus" href="{{ route('client.giohang.tang', ['row_id' => $value->rowId]) }}"><i class="fa-solid fa-plus"></i></a>
+                                                <a class="plus" href="{{ route('client.giohang.up', ['row_id' => $value->rowId]) }}"><i class="fa-solid fa-plus"></i></a>
                                             </div>
                                         </td>
                                         <td class="product-subtotal" data-title="Total">{{ number_format($value->price * $value->qty) }}<sup>đ</sup></td>
-                                        <td class="product-remove" data-title="Remove"><a href="{{ route('client.giohang.xoa', ['row_id' => $value->rowId]) }}"><i class="fa-solid fa-xmark"></i></a></td>
+                                        <td class="product-remove" data-title="Remove"><a href="{{ route('client.giohang.delete', ['row_id' => $value->rowId]) }}"><i class="fa-solid fa-xmark"></i></a></td>
                                     </tr>
                                 @endforeach
                             </tbody>
                             <style>
                                 input[type="text"]{
-                                    text-align: center
+                                    text-align: center;
+                                }
+                                td{
+                                    vertical-align: middle;
                                 }
                             </style>
                             <tfoot>
@@ -90,7 +93,7 @@
                                                     <input class="primary-btn order-submit" type="submit"></button>
                                             </div>
                                             <div class="col-lg-8 col-md-4">
-                                                <a style="float: right;" href="{{ route('client.giohang.xoatatca') }}" class="primary-btn order-submit" type="submit">XÓA GIỎ HÀNG</a>
+                                                <a style="float: right;" href="{{ route('client.giohang.destroy') }}" class="primary-btn order-submit" type="submit">XÓA GIỎ HÀNG</a>
                                             </div>
                                         </div>
                                     </td>

@@ -1,64 +1,58 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900);
 
 :root {
-	--font-family-sans-serif: "Roboto", sans-serif;
-	--font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
-body {
-	font-family: 'Roboto', sans-serif;
+    --font-family-sans-serif: "Roboto", sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
 }
 
 a:link {
-	text-decoration: none !important;
+    text-decoration: none !important;
 }
 
-.card, .form-select, .form-control, .btn {
-	border-radius: 0 !important;
-}
-
-.dropdown-header, .dropdown-item {
-	padding: .25rem 1rem !important;
+.dropdown-header,
+.dropdown-item {
+    padding: 0.25rem 1rem !important;
 }
 
 .pagination {
-	margin-bottom: 0 !important;
+    margin-bottom: 0 !important;
 }
 
 .product-name {
-	font-size: 1rem;
+    font-size: 1rem;
 }
 
 .product-price {
-	font-size: 0.9rem;
-	color: #ff0000;
+    font-size: 0.9rem;
+    color: #ff0000;
 }
 
 table.dataTable {
-	border-collapse: collapse !important;
+    border-collapse: collapse !important;
 }
 
 div.dataTables_wrapper div.dataTables_length {
-	float: left;
+    float: left;
 }
 
 div.dataTables_wrapper div.dataTables_filter {
-	float: right;
+    float: right;
 }
 
 div.dataTables_wrapper div.dataTables_info {
-	float: left;
+    float: left;
 }
 
 div.dataTables_wrapper div.dataTables_paginate {
-	float: right;
+    float: right;
 }
 
 div.dataTables_wrapper div.dataTables_length,
 div.dataTables_wrapper div.dataTables_filter,
 div.dataTables_wrapper div.dataTables_info,
 div.dataTables_wrapper div.dataTables_paginate {
-	text-align: justify !important;
+    text-align: justify !important;
 }
 
 .table-responsive > .table-bordered {
@@ -66,23 +60,26 @@ div.dataTables_wrapper div.dataTables_paginate {
 }
 
 hr {
-	margin-top: .5rem !important;
-	margin-bottom: .5rem !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
 }
-
+th {
+    text-align: center;
+}
 .table > tbody > tr > td {
-	vertical-align: middle;
+    text-align: center;
+    vertical-align: middle;
 }
 
 .table-classes td p {
-	margin: 0 !important;
-	padding: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 
 .cke_chrome {
-	border: 1px solid rgba(0,0,0,.15) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
 }
 
 #ckf-modal-footer {
-	display: none !important;
+    display: none !important;
 }

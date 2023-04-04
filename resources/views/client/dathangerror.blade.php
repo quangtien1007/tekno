@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Home')
+@section('title', 'Đặt hàng')
 
 @section('content')
     <!-- BREADCRUMB -->
@@ -12,8 +12,7 @@
                 <div class="col-md-12">
                     <h3 class="breadcrumb-header">Có lỗi khi đặt hàng</h3>
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Blank</li>
+                        <li><a href="{{route('client')}}">Trang chủ</a></li>
                     </ul>
                 </div>
             </div>

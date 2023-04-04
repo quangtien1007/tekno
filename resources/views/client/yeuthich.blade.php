@@ -10,7 +10,7 @@
             <!-- row -->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="breadcrumb-header">Sản phâm yêu thích</h3>
+                    <h3 class="breadcrumb-header">Sản phẩm yêu thích</h3>
                     <ul class="breadcrumb-tree">
                         <li><a href="{{route('client')}}">Trang chủ</a></li>
                         <li class="active">Giỏ hàng</li>
@@ -69,7 +69,7 @@
                 }
                 td{
                     text-align: center;
-                    vertical-align: center;
+                    vertical-align: middle;
                 }
                 div.t1 { display: table; }
                 div.t {

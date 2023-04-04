@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>@yield('title', 'Trang chủ') - {{ config('app.name', 'Tekno') }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/favicon.png') }}" />
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
 		<!-- Google font -->
@@ -22,6 +22,7 @@
         <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet" type="text/css" />
 
 		<!-- Bootstrap -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"/>
         <script src="{{asset('assets/js/flashjs/dist/flash.min.js')}}"></script>
         <link rel="stylesheet" href="{{asset('assets/js/flashjs/dist/flash.min.css')}}">
@@ -81,7 +82,7 @@
 						<!-- SEARCH BAR -->
 						<div class="col-md-6">
 							<div class="header-search">
-								<form action="{{route('client.sanpham')}}" method="POST" enctype="multipart/form-data">
+								<form action="{{route('client.sanpham.search')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
 									<input required name="search" class="input" placeholder="Tìm kiếm tại đây...">
 									<button class="search-btn">Tìm kiếm</button>
@@ -124,7 +125,7 @@
                                                         <a href="#">{{ $value->name }}</a></h3>
 													<h4 class="product-price"><span class="qty">{{ $value->qty }} x</span>{{ number_format($value->price) }}</h4>
 												</div>
-                                                <a class="delete" href="{{ route('client.giohang.xoa', ['row_id' => $value->rowId]) }}"><i class="fa fa-close"></i></a>
+                                                <a class="delete" href="{{ route('client.giohang.delete', ['row_id' => $value->rowId]) }}"><i class="fa fa-close"></i></a>
 											</div>
                                             @endforeach
 										</div>
@@ -166,8 +167,8 @@
 				<!-- responsive-nav -->
 				<div id="responsive-nav">
 					<!-- NAV -->
-					<ul class="main-nav nav navbar-nav">
-						<li class="active"><a href="#">Trang chủ</a></li>
+					<ul class="navbar navbar-light main-nav nav navbar-nav">
+						<li class="active"><a href="{{route('client')}}">Trang chủ</a></li>
 						<li><a href="#">Hot Deals</a></li>
 						@foreach ($navdata as $item)
                         <li>
@@ -189,14 +190,16 @@
 		</nav>
 		<!-- /NAVIGATION -->
         @if(session()->has('success'))
+        <div class="container">
             <div class="alert alert-success">
                 <button type="button" class="close" data-dismiss="alert">×</button>
                 {{ session('success') }}
             </div>
+        </div>
         @endif
         <script type="text/javascript">
         $(document).ready(function(){
-          $(".alert-success").delay(8000).slideUp(300);
+          $(".alert-success").delay(4000).slideUp(300);
             });
         </script>
         @yield('content')
@@ -239,7 +242,7 @@
 							<div class="footer">
 								<h3 class="footer-title">Thông tin</h3>
 								<ul class="footer-links">
-									<li><a href="#">About Us</a></li>
+									<li><a href="#">Về chúng tôi</a></li>
 									<li><a href="#">Liên hệ</a></li>
 									<li><a href="#">Chính sách bảo hành</a></li>
 									<li><a href="#">Chính sách đổi tra</a></li>

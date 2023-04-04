@@ -6,3 +6,40 @@ WHERE soluong IN (SELECT MAX(B.X) FROM(SELECT sanpham_id, SUM(soluongban) AS X
                       FROM donhang_chitiet
                       GROUP BY sanpham_id) B)
 //tim san pham co luot ban cao nhat
+pass aws(amazon)
+Quangtien1007@@
+------------------
+username: oaexpebznw
+pass: 85EEC03M765SEMD5$
+HOST:tekno-agu.azurewebsites.net
+server name: tekno-agu-server
+----------------------
+db
+pass:8Q6HVH6A185QAJHT$
+name:rfbxjfqwow
+username:tekno-app-database
+server:tekno-app-server
+
+Database=oaexpebznw; Server=tekno-agu-server; User Id=oaexpebznw; Password=85EEC03M765SEMD5$
+tekno-agu-server.mysql.database.azure.com
+---------------
+server admin login : tekno
+pass: quangtien1007@@
+
+
+---------------
+hostname=tekno-agu-server.mysql.database.azure.com
+username=oaexpebznw
+password={your-password}
+ssl-mode=require
+-------------------------------
+DB
+
+PASS:GQ583NBJRS2S58LC$
+USERNAME:ntffznfciy
+tekno-agu-107.mysql.database.azure.com
+
+
+----------------
+thay doi mau thanh dung luong - mau :
+option vi du: 128GB - Trang - So luong : 200

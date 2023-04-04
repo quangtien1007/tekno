@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Loại sản phẩm</div>
 		<div class="card-body table-responsive">
-			<p><a href="{{ route('admin.loaisanpham.them') }}" class="btn btn-success"><i class="fal fa-plus"></i> Thêm mới</a></p>
+			<p><a href="{{ route('admin.loaisanpham.create') }}" class="btn btn-success"><i class="fal fa-plus"></i> Thêm mới</a></p>
 			<table class="table table-bordered table-hover table-sm mb-0">
 				<thead>
 					<tr>
@@ -29,16 +29,16 @@
 							<td class="text-center"><a href="{{ route('admin.loaisanpham.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa loại sản phẩm {{ $value->tenloai }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
 						</tr>
 					@endforeach --}}
-					<?php 
+					<?php
 						showCategories($loaisanpham);
 					?>
-					
+
 				</tbody>
 			</table>
 		</div>
 	</div>
 @endsection
-<?php 
+<?php
 function showCategories($categories, $parent_id = 0, $char = '')
 	{
 		foreach ($categories as $key => $item) {

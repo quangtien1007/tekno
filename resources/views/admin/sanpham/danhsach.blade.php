@@ -5,18 +5,18 @@
 		<div class="card-header">Sản phẩm</div>
 		<div class="card-body table-responsive">
 			<p>
-				<a href="{{ route('admin.sanpham.them') }}" class="btn btn-info"><i class="fal fa-plus"></i> Thêm mới</a>
+				<a href="{{ route('admin.sanpham.create') }}" class="btn btn-info"><i class="fal fa-plus"></i> Thêm mới</a>
 				<a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fal fa-upload"></i>Nhập sản phẩm từ Excel</a>
 				<a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importMau"><i class="fal fa-upload"></i>Nhập màu từ Excel</a>
 				<a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importDL"><i class="fal fa-upload"></i>Nhập dung lượng từ Excel</a>
-				<a href="{{ route('admin.sanpham.xuat') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất ra Excel</a>
+				<a href="{{ route('admin.sanpham.export') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất ra Excel</a>
 			</p>
 				<div class="custom_select">
-					<form action="{{ route('admin.sanpham') }}" method="post">
+					<form action="{{ route('admin.sanpham.sort') }}" method="post">
 						@csrf
 						<select class="form-control form-control" id="sapxep" name="sapxep" onchange="if(this.value != 0) { this.form.submit(); }">
 							<option value="default" {{ session('sapxep') == 'default' ? 'selected' : '' }}>Sắp xếp mặc định</option>
-							<?php 
+							<?php
 								showCategories($selectdata);
 							?>
 						</select>
@@ -30,9 +30,9 @@
 					<tr>
 						<th width="5%">#</th>
 						<th width="10%">Hình ảnh</th>
-						<th width="15%">Loại sản phẩm</th>
-						<th width="35%">Tên sản phẩm</th>
-						<th width="10%">Màu sản phẩm</th>
+						<th width="10%">Loại sản phẩm</th>
+						<th width="20%">Tên sản phẩm</th>
+						<th width="20%">Màu sản phẩm</th>
 						<th width="5%">SL</th>
 						<th width="10%">Đơn giá</th>
 						<th width="5%">Sửa</th>
@@ -47,16 +47,14 @@
 							<td>{{ $value->LoaiSanPham->tenloai }}</td>
 							<td>{{ $value->tensanpham }}</td>
 							<td>
-								@for ($j=0; $j <= count($sanpham)+1;$j++)
-									@foreach ($sanpham->where('id',$value->id) as $item)
-									<span width='30px' style='background:#{{ isset(explode('|',$item->mausanpham)[$j]) ? explode('|',$item->mausanpham)[$j] : '' }}'>&nbsp&nbsp&nbsp&nbsp&nbsp</span>
+									@foreach (DB::table('mausanpham')->where('sanpham_id',$value->id)->get() as $item)
+                                        {{$item->mau}} -
 									@endforeach
-								@endfor
 							</td>
-							<td class="text-end">{{ $value->soluong }}</td>
-							<td class="text-end">{{ number_format($value->dongia) }}</td>
-							<td class="text-center"><a href="{{ route('admin.sanpham.sua', ['id' => $value->id]) }}"><i class="fal fa-edit"></i></a></td>
-							<td class="text-center"><a href="{{ route('admin.sanpham.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->tensanpham }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
+							<td>{{ $value->soluong }}</td>
+							<td>{{ number_format($value->dongia) }}</td>
+							<td><a href="{{ route('admin.sanpham.edit', ['id' => $value->id]) }}"><i class="fal fa-edit"></i></a></td>
+							<td><a href="{{ route('admin.sanpham.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->tensanpham }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
 						</tr>
 					@endforeach
 				</tbody>
@@ -64,8 +62,8 @@
 			{{ $sanpham->links() }}
 		</div>
 	</div>
-	
-	<form action="{{ route('admin.sanpham.nhap') }}" method="post" enctype="multipart/form-data">
+
+	<form action="{{ route('admin.sanpham.import') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
@@ -88,13 +86,13 @@
 			</div>
 		</div>
 	</form>
-	<form action="{{ route('admin.mausanpham.nhap') }}" method="post" enctype="multipart/form-data">
+	<form action="{{ route('admin.mausanpham.import') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div class="modal fade" id="importMau" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="importModalLabel">Nhập từ Excel asdsa</h5>
+						<h5 class="modal-title" id="importModalLabel">Nhập màu từ Excel</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
@@ -111,13 +109,13 @@
 			</div>
 		</div>
 	</form>
-	<form action="{{ route('admin.dlsanpham.nhap') }}" method="post" enctype="multipart/form-data">
+	<form action="{{ route('admin.dlsanpham.import') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div class="modal fade" id="importDL" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="importModalLabel">Nhập từ Excel asdsa</h5>
+						<h5 class="modal-title" id="importModalLabel">Nhập dung lượng từ Excel</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					<div class="modal-body">
@@ -135,7 +133,7 @@
 		</div>
 	</form>
 @endsection
-<?php 
+<?php
 function showCategories($categories, $parent_id = 0, $char = '')
 	{
 		foreach ($categories as $key => $item) {

@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Home')
+@section('title', 'Tin tức')
 
 @section('content')
     <!-- BREADCRUMB -->

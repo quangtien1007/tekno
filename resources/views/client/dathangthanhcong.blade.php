@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Home')
+@section('title', 'Đặt hàng')
 
 @section('content')
     <!-- BREADCRUMB -->
@@ -10,10 +10,9 @@
             <!-- row -->
             <div class="row">
                 <div class="col-md-12">
-                    <h3 class="breadcrumb-header">Regular Page</h3>
+                    <h3 class="breadcrumb-header">Đặt hàng thành công</h3>
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
-                        <li class="active">Blank</li>
+                        <li class="active"><a href="{{route('client')}}">Trang chủ</a></li>
                     </ul>
                 </div>
             </div>
@@ -29,7 +28,7 @@
             <!-- row -->
             <div class="row">
                 <div class="text-center order_complete">
-                    <i class="fal fa-check-circle"></i>
+                    <i style="font-size:30pt" class="fal fa-check-circle"></i>
                     <div class="heading_s1">
                         <h3>Bạn đã đặt hàng thành công!</h3>
                     </div>

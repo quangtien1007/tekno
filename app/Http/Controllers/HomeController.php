@@ -321,9 +321,6 @@ class HomeController extends Controller
             return redirect()->route('user.dangnhap');
     }
 
-    public function vnPayCheckOut()
-    {
-    }
 
     public function postDatHang(Request $request)
     {
@@ -375,7 +372,7 @@ class HomeController extends Controller
             //
             // $ct->save();
             Mail::to(Auth::user()->email)->send(new DatHangEmail($dh));
-            return redirect()->route('client.dathangthanhcong');
+            return redirect()->route('client.dathang.success');
             // //
         } elseif ($request->payment_opt == 'paypal') {
             //
@@ -410,7 +407,7 @@ class HomeController extends Controller
         } elseif ($request->payment_opt == 'vnpay') {
             //
             $vnp_Url = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-            $vnp_Returnurl = "http://localhost:90/techshop/dat-hang-thanh-cong";
+            $vnp_Returnurl = "http://127.0.0.1:8000/dat-hang-thanh-cong";
             $vnp_TmnCode = "NRCQ8CGP"; //Mã website tại VNPAY
             $vnp_HashSecret = "ALFRFFGZLUMPKJOCTRPKKYHCKLMEJPXZ"; //Chuỗi bí mật
 

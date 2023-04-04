@@ -4,9 +4,9 @@
 	<div class="card">
 		<div class="card-header">Cập nhật tài khoản</div>
 		<div class="card-body">
-			<form action="{{ route('admin.nguoidung.sua', ['id' => $nguoidung->id]) }}" method="post">
+			<form action="{{ route('admin.nguoidung.update', ['id' => $nguoidung->id]) }}" method="post">
 				@csrf
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="name">Họ và tên</label>
 					<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ $nguoidung->name }}" required />
@@ -14,7 +14,7 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="email">Địa chỉ email</label>
 					<input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ $nguoidung->email }}" required />
@@ -22,7 +22,7 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="role">Quyền hạn</label>
 					<select class="form-select @error('role') is-invalid @enderror" id="role" name="role" required>
@@ -34,12 +34,12 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<div class="mb-3 form-check">
 					<input class="form-check-input" type="checkbox" id="change_password_checkbox" name="change_password_checkbox" />
 					<label class="form-check-label" for="change_password_checkbox">Đổi mật khẩu</label>
 				</div>
-				
+
 				<div id="change_password_group">
 					<div class="mb-3">
 						<label class="form-label" for="password">Mật khẩu mới</label>
@@ -48,7 +48,7 @@
 							<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 						@enderror
 					</div>
-					
+
 					<div class="mb-3">
 						<label class="form-label" for="password_confirmation">Xác nhận mật khẩu mới</label>
 						<input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" />
@@ -57,7 +57,7 @@
 						@enderror
 					</div>
 				</div>
-				
+
 				<button type="submit" class="btn btn-success"><i class="fal fa-save"></i> Cập nhật</button>
 			</form>
 		</div>

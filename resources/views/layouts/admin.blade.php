@@ -10,7 +10,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}" />
-	{{-- <link rel="stylesheet" href="{{ asset('css/custom.css') }}" /> --}}
+	<link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
 	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
 
 	<!-- Scripts -->
@@ -18,6 +18,7 @@
     <!-- fotnawesome pro -->
     <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet" type="text/css" />
 	<script src="{{ asset('assets/js/tinymce/tinymce.min.js') }}" referrerpolicy="origin"></script>
+    <script src="{{ asset('assets/js/index.js')}}"></script>
 	<script>
 	  tinymce.init({
 		selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
@@ -32,7 +33,7 @@
 		<nav class="navbar navbar-expand-md navbar-light shadow-sm bg-white">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="{{ route('admin') }}">
-					<img class="logo_light" src="{{ asset('images/logo_dark.png') }}" />
+					<img class="logo_light" src="{{ asset('images/logo-tekno-tekno.png') }}" />
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
 					<span class="navbar-toggler-icon"></span>
@@ -66,7 +67,7 @@
 									<li><a class="dropdown-item" href="{{ route('admin.baiviet') }}"><i class="fa-solid fa-newspaper"></i> Bài viết</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.tinhtrang') }}"><i class="fa-regular fa-rectangle-list"></i></i> Tình trạng</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.sanpham') }}"><i class="fa-solid fa-cubes"></i> Sản phẩm</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('inbox.index') }}"><i class="fa-solid fa-list"></i> Chat</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('inbox.index') }}"><i class="fa-brands fa-rocketchat"></i> Chat</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.donhang') }}"><i class="fa-solid fa-cart-arrow-down"></i> Đơn hàng</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.nguoidung') }}"><i class="fa-solid fa-users"></i> Tài khoản người dùng</a></li>
 								</ul>

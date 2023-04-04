@@ -44,28 +44,32 @@ class Test extends Component
 
     public function SendMessage()
     {
-        $new_message = new \App\Models\Message();
-        $new_message->message = $this->message;
-        $new_message->user_id = auth()->id();
-        //neu khong phai admin thi send toi admin
+        if (Auth::check()) {
+            $new_message = new \App\Models\Message();
+            $new_message->message = $this->message;
+            $new_message->user_id = auth()->id();
+            //neu khong phai admin thi send toi admin
 
-        $admin = User::where('is_admin', true)->first();
-        $this->user_id = $admin->id;
+            $admin = User::where('is_admin', true)->first();
+            $this->user_id = $admin->id;
 
-        $new_message->receiver = $this->user_id;
+            $new_message->receiver = $this->user_id;
 
-        // Deal with the file if uploaded
-        if ($this->file) {
-            $file = $this->file->store('public/files');
-            $path = url(Storage::url($file));
-            $new_message->file = $path;
-            $new_message->file_name = $this->file->getClientOriginalName();
+            // Deal with the file if uploaded
+            if ($this->file) {
+                $file = $this->file->store('public/files');
+                $path = url(Storage::url($file));
+                $new_message->file = $path;
+                $new_message->file_name = $this->file->getClientOriginalName();
+            }
+            $new_message->save();
+
+            // Clear the message after it's sent
+            $this->reset(['message']);
+            $this->file = '';
+        } else {
+            return redirect()->route('user.dangnhap')->with('success', 'Hãy đăng nhập để được tư vấn');
         }
-        $new_message->save();
-
-        // Clear the message after it's sent
-        $this->reset(['message']);
-        $this->file = '';
     }
 
     public function getUser($user_id)

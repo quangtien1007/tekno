@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Home')
+@section('title', 'Đặt hàng')
 
 @section('content')
  <!-- BREADCRUMB -->
@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <h3 class="breadcrumb-header">Đặt hàng</h3>
                 <ul class="breadcrumb-tree">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{{route('client')}}">Trang chủ</a></li>
                     <li class="active">Đặt hàng</li>
                 </ul>
             </div>
@@ -40,7 +40,7 @@
                             text-align:top;
                         }
                     </style> --}}
-                    <form action="{{route('client.dathang')}}" method="post" id="checkoutform">
+                    <form action="{{route('client.dathang.add')}}" method="post" id="checkoutform">
                         @csrf
                             <div class="form-group">
                                 <input type="text" style="text-align: top" class="input" name="name" placeholder="Họ và tên *" value="{{ Auth::user()->name ?? '' }}" required />

@@ -47,7 +47,7 @@ class PayPalController extends Controller
 
     public function cancel()
     {
-        return route('frontend.dathangerror');
+        return route('client.dathang.error');
     }
 
     /**
@@ -68,7 +68,7 @@ class PayPalController extends Controller
             [$response['PAYERID'], $response['FIRSTNAME'], $response['LASTNAME'], $response['EMAIL'], $response['L_QTY0'], $response['L_TAXAMT0'], $response['L_AMT0'], $response['L_DESC0']]
         );
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
-            return redirect()->route('frontend.dathangthanhcong');
+            return redirect()->route('client.dathang.success');
         }
 
         dd('Something is wrong.');

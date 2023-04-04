@@ -64,7 +64,7 @@
 														<th>Sản phẩm</th>
 														<th>Ngày đặt hàng</th>
 														<th>Trạng thái</th>
-														<th>Tổng tiền</th>
+														<th>Đơn giá</th>
 														<th width="10%">Chi tiết</th>
 													</tr>
 												</thead>
@@ -79,58 +79,26 @@
 														<td>#{{ $item->id }}</td>
 														<td>{{ DB::table('sanpham')->where('id',$id_sp->sanpham_id)->first()->tensanpham}}</td>
 														<td>{{ $item->created_at }}</td>
-														<td>{{ DB::table('tinhtrang')->where('id',$item->tinhtrang_id)->first()->tinhtrang }}</td>
-														<td>{{ DB::table('donhang_chitiet')->where('donhang_id',$item->id)->first()->dongiaban }}</td>
 														<td>
-															<button type="button" class="btn btn-fill-out btn-sm" data-bs-toggle="modal" data-bs-target="#myModal">
+                                                            <span style="padding: 10px" class="{{ DB::table('tinhtrang')->where('id',$item->tinhtrang_id)->first()->badge}}" >
+                                                                {{ DB::table('tinhtrang')->where('id',$item->tinhtrang_id)->first()->tinhtrang }}
+                                                            </span>
+                                                        </td>
+														<td>
+                                                            {{ number_format(DB::table('donhang_chitiet')->where('donhang_id',$item->id)->first()->dongiaban) }}đ
+                                                        </td>
+														<td>
+															<button style="padding: 10px" type="button" class="btn badge bg-secondary" >
 																Chi tiết
 															</button>
-															<!-- The Modal -->
-														<div class="modal fade" id="myModal">
-															<div class="modal-dialog modal-lg">
-															<div class="modal-content">
-
-																<!-- Modal Header -->
-																<div class="modal-header">
-																<h4 class="modal-title">Chi tiết đơn hàng</h4>
-																<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-																</div>
-
-																<!-- Modal body -->
-																<div class="modal-body">
-																<table class="table table-bordered table-hover">
-																	<tr>
-																		<th>Sản phẩm</th>
-																		<th>Màu</th>
-																		<th>Dung lượng</th>
-																		<th>Số lượng</th>
-																		<th>Giá</th>
-																		<th>Địa chỉ</th>
-																	</tr>
-																	<tr>
-																		<td class="text-center">
-																			<img src="{{  env('APP_URL') . '/storage/app/sanpham/' . DB::table('sanpham')->where('id',$id_sp->sanpham_id)->first()->hinhanh}}" width="100px" alt="">
-																			{{DB::table('sanpham')->where('id',$id_sp->sanpham_id)->first()->tensanpham}}
-																		</td>
-																		<td>{{DB::table('mausanpham')->where('id',$id_sp->mau_id)->first()->mau}}</td>
-																		<td>{{DB::table('dungluongsanpham')->where('id',$id_sp->dungluong_id)->first()->dungluong}}</td>
-																		<td>{{$id_sp->soluongban}}</td>
-																		<td>{{$item->diachigiaohang}}</td>
-																	</tr>
-																</table>
-																</div>
-
-																<!-- Modal footer -->
-																<div class="modal-footer">
-																<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
-																</div>
-
-															</div>
-															</div>
-														</div>
 														</td>
 													</tr>
 													@endforeach
+                                                    <style>
+                                                    td{
+                                                        vertical-align: middle;
+                                                    }
+                                                    </style>
 												</tbody>
 											</table>
 										</div>

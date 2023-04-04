@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Home')
+@section('title')
 
 @section('content')
 <!-- SECTION -->
@@ -41,6 +41,7 @@
 					<div class="col-md-4 col-xs-6">
                         <div class="shop">
                             <div class="shop-img">
+                                {{-- {{dd(env('APP_URL'))}} --}}
                                 <img src="{{ env('APP_URL') . '/storage/index/poster_iphone.jpg' }}" alt="">
 							</div>
 							<div class="shop-body">
@@ -121,7 +122,7 @@
 												</div>
 											</div>
 											<div class="add-to-cart">
-                                                <form action="{{route('client.giohang.them')}}" method="post">
+                                                <form action="{{route('client.giohang.add')}}" method="post">
                                                     @csrf
                                                     <input type="hidden" name="tensanpham_slug" value="{{$item->tensanpham_slug}}">
                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
@@ -160,7 +161,8 @@
                           </div>
                           <style>
                             td{
-                                text-align: center
+                                text-align: center;
+                                vertical-align: middle;
                             }
                           </style>
                           <div class="modal-body">
@@ -391,7 +393,7 @@
 
 					<div class="col-md-6 col-xs-6">
 						<div class="section-title">
-							<h4 class="title">Top selling</h4>
+							<h4 class="title">Bán chạy</h4>
 							<div class="section-nav">
 								<div id="slick-nav-4" class="products-slick-nav"></div>
 							</div>

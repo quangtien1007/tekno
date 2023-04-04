@@ -4,9 +4,9 @@
 	<div class="card">
 		<div class="card-header">Sửa hãng sản xuất</div>
 		<div class="card-body">
-			<form action="{{ route('admin.hangsanxuat.sua', ['id' => $hangsanxuat->id]) }}" method="post" enctype="multipart/form-data">
+			<form action="{{ route('admin.hangsanxuat.edit', ['id' => $hangsanxuat->id]) }}" method="post" enctype="multipart/form-data">
 				@csrf
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="tenhang">Tên hãng sản xuất</label>
 					<input type="text" class="form-control @error('tenhang') is-invalid @enderror" id="tenhang" name="tenhang" value="{{ $hangsanxuat->tenhang }}" required />
@@ -14,7 +14,7 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<div class="mb-3">
 					<label class="form-label" for="hinhanh">Hình ảnh</label>
 					@if(!empty($hangsanxuat->hinhanh))
@@ -26,7 +26,7 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-				
+
 				<button type="submit" class="btn btn-primary"><i class="fal fa-save"></i> Cập nhật</button>
 			</form>
 		</div>

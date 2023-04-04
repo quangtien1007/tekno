@@ -22,6 +22,6 @@ class AdminLoginMiddleware
                 return $next($request);
             }
         }
-        return redirect()->route('user.dangnhap');
+        return abort(403, 'bạn không có quyền truy cập');
     }
 }

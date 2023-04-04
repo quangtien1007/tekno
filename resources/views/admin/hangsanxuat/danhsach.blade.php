@@ -5,9 +5,9 @@
 		<div class="card-header">Hãng sản xuất</div>
 		<div class="card-body table-responsive">
 			<p>
-				<a href="{{ route('admin.hangsanxuat.them') }}" class="btn btn-info"><i class="fal fa-plus"></i> Thêm mới</a>
+				<a href="{{ route('admin.hangsanxuat.create') }}" class="btn btn-info"><i class="fal fa-plus"></i> Thêm mới</a>
 				<a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fal fa-upload"></i> Nhập từ Excel</a>
-				<a href="{{ route('admin.hangsanxuat.xuat') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất ra Excel</a>
+				<a href="{{ route('admin.hangsanxuat.export') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất ra Excel</a>
 			</p>
 			<table class="table table-bordered table-hover table-sm mb-0">
 				<thead>
@@ -27,8 +27,8 @@
 							<td class="text-center"><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" width="100" class="img-thumbnail" /></td>
 							<td>{{ $value->tenhang }}</td>
 							<td>{{ $value->tenhang_slug }}</td>
-							<td class="text-center"><a href="{{ route('admin.hangsanxuat.sua', ['id' => $value->id]) }}"><i class="fal fa-edit"></i></a></td>
-							<td class="text-center"><a href="{{ route('admin.hangsanxuat.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa hãng sản xuất {{ $value->tenhang }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
+							<td class="text-center"><a href="{{ route('admin.hangsanxuat.edit', ['id' => $value->id]) }}"><i class="fal fa-edit"></i></a></td>
+							<td class="text-center"><a href="{{ route('admin.hangsanxuat.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa hãng sản xuất {{ $value->tenhang }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
 						</tr>
 					@endforeach
 				</tbody>
@@ -36,7 +36,7 @@
 		</div>
 	</div>
 
-	<form action="{{ route('admin.hangsanxuat.nhap') }}" method="post" enctype="multipart/form-data">
+	<form action="{{ route('admin.hangsanxuat.import') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
 			<div class="modal-dialog">

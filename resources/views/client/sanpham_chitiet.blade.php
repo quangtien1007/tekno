@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Home')
+@section('title', $sanpham->tensanpham)
 
 @section('content')
         @php
@@ -67,7 +67,7 @@
 
 					<!-- Product details -->
 					<div class="col-md-5">
-                        <form action="{{route('client.giohang.them')}}" method="post">
+                        <form action="{{route('client.giohang.add')}}" method="post">
                             @csrf
 						<div class="product-details">
 							<h2 class="product-name">{{$sanpham->tensanpham}}</h2>
