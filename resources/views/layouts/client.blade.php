@@ -134,7 +134,7 @@
 										</div>
 										<div class="cart-btns">
 											<a href="{{ route('client.giohang') }}">Xem giỏ hàng</a>
-											<a href="{{ route('client.dathang') }}">Thanh toán  <i class="fa fa-arrow-circle-right"></i></a>
+											<a href="{{ route('client.dathang.create') }}">Thanh toán  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
 									</div>
 								</div>
