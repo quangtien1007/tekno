@@ -152,7 +152,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <a href="{{ route('client.dathang') }}" class="primary-btn order-submit">TIẾN HÀNH THANH TOÁN</a>
+                        <a href="{{ route('client.dathang.create') }}" class="primary-btn order-submit">TIẾN HÀNH THANH TOÁN</a>
                     </div>
                 </div>
             </div>

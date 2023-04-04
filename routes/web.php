@@ -22,12 +22,6 @@ Auth::routes();
 // Trang chủ
 Route::get('/', [HomeController::class, 'getHome'])->name('client');
 Route::any('/home', [HomeController::class, 'getHome'])->name('client');
-// Route::get('/detail', function () {
-//     return view('client.sanpham');
-// })->name('client.sanpham');
-Route::any('/tintucdoisong', function () {
-    return view('client.baiviet');
-});
 
 // // Trang sản phẩm
 Route::get('san-pham', [HomeController::class, 'getSanPham'])->name('client.sanpham');
@@ -47,7 +41,7 @@ Route::get('/gio-hang/giam/{row_id}', [HomeController::class, 'getGioHang_Giam']
 Route::get('/gio-hang/tang/{row_id}', [HomeController::class, 'getGioHang_Tang'])->name('client.giohang.up');
 
 // // Trang đặt hàng
-Route::get('/dat-hang', [HomeController::class, 'getDatHang'])->name('client.dathang');
+Route::get('/dat-hang', [HomeController::class, 'getDatHang'])->name('client.dathang.create');
 // Route::post('/vnpay-checkout', [PayPalController::class, 'vnPayCheckOut'])->name('frontend.vnpay');
 Route::post('/dat-hang', [HomeController::class, 'postDatHang'])->name('client.dathang.add');
 Route::get('/dat-hang-thanh-cong', [HomeController::class, 'getDatHangThanhCong'])->name('client.dathang.success');

@@ -12,7 +12,7 @@
 				<a href="{{ route('admin.sanpham.export') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất ra Excel</a>
 			</p>
 				<div class="custom_select">
-					<form action="{{ route('admin.sanpham.sort') }}" method="post">
+					<form action="{{ route('admin.sanpham.search') }}" method="post">
 						@csrf
 						<select class="form-control form-control" id="sapxep" name="sapxep" onchange="if(this.value != 0) { this.form.submit(); }">
 							<option value="default" {{ session('sapxep') == 'default' ? 'selected' : '' }}>Sắp xếp mặc định</option>
@@ -62,7 +62,6 @@
 			{{ $sanpham->links() }}
 		</div>
 	</div>
-
 	<form action="{{ route('admin.sanpham.import') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div class="modal fade" id="importModal" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
