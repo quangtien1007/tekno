@@ -64,7 +64,8 @@ Route::post('/danh-gia', [DanhGiaController::class, 'postDanhGia'])->name('clien
 
 //Sản phẩm yêu thích
 Route::get('/yeu-thich', function () {
-    return view('client.yeuthich');
+    $tenloai = "Yêu thích";
+    return view('client.yeuthich', compact('tenloai'));
 })->name('client.yeuthich');
 
 // // Trang khách hàng

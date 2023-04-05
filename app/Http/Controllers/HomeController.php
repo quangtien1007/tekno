@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
 use App\Models\SanPham;
 use App\Models\User;
 use App\Models\MauSanPham;
@@ -60,7 +58,8 @@ class HomeController extends Controller
     public function getBaiViet()
     {
         $baiviet = BaiViet::paginate(10);
-        return view('client.baiviet', compact('baiviet'));
+        $tenloai = 'Tin tức';
+        return view('client.baiviet', compact('baiviet', 'tenloai'));
     }
 
     public function getBaiVietChiTiet($tieude_slug)
@@ -71,9 +70,10 @@ class HomeController extends Controller
             DB::table('baiviet')->where('id', $baiviet->id)->update(['luotxem' => $baiviet->luotxem + 1]);
         }
         session()->push('baivietvuaxem', $baiviet);
+        $tenloai = $baiviet->tieude;
         // dd(session());
 
-        return view('client.baivietchitiet', compact('baiviet', 'author'));
+        return view('client.baivietchitiet', compact('baiviet', 'author', 'tenloai'));
     }
 
     public function getSanPham($tenloai_slug = '')
@@ -243,7 +243,8 @@ class HomeController extends Controller
 
     public function getLienHe()
     {
-        return view('client.lienhe');
+        $tenloai = 'Liên hệ';
+        return view('client.lienhe', compact('tenloai'));
     }
 
     public function getGioHang()
@@ -347,8 +348,8 @@ class HomeController extends Controller
 
             $ct->donhang_id = $dh->id;
             $ct->sanpham_id = $value->id;
-            $ct->mau_id = isset($mau->id) ? $mau->id : '165';
-            $ct->dungluong_id = isset($dungluong->id) ? $dungluong->id : '218';
+            $ct->mau_id = isset($mau->id) ? $mau->id : 'null';
+            $ct->dungluong_id = isset($dungluong->id) ? $dungluong->id : 'null';
             $ct->soluongban = $value->qty;
             $ct->dongiaban = $value->price;
             $ct->save();

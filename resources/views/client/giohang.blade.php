@@ -86,15 +86,18 @@
                                 <tr>
                                     <td colspan="6" class="px-0">
                                         <div class="row no-gutters align-items-center">
-                                            <div class="col-lg-4 col-md-8 mb-3 t1">
-                                                <div class="coupon field_form input-group t">
+                                            <div class="col-sm-4 col-md-8 mb-3 t1">
+                                                <div class="coupon field_form input t" style="margin-top: 10px">
                                                     <input type="text" class="form-control form-control-sm" placeholder="Mã giảm giá?" />
                                                 </div>
                                                     <input class="primary-btn order-submit" type="submit"></button>
                                             </div>
-                                            <div class="col-lg-8 col-md-4">
-                                                <a style="float: right;" href="{{ route('client.giohang.destroy') }}" class="primary-btn order-submit" type="submit">XÓA GIỎ HÀNG</a>
-                                            </div>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-sm-8 col-md-12">
+                                            <a style="float: right;" href="{{ route('client.giohang.destroy') }}" class="primary-btn order-submit" type="submit">XÓA GIỎ HÀNG</a>
                                         </div>
                                     </td>
                                 </tr>

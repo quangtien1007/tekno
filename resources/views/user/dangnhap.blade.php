@@ -50,7 +50,7 @@
                             <li><a href="#" class="primary-btn order-submit login" style="background: #1d6aeb"><i class="fa-brands fa-facebook"></i>  Facebook</a></li>or
                             <li><a href="#" class="primary-btn order-submit login" style="background: #e1e1e1;color:#1d6aeb;"><img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" width="20" alt="">       Google</a></li>
                         </ul>
-                        <div class="form-note">Bạn chưa có tài khoản? <a href="{{ route('user.dangky') }}">Đăng ký ngay</a></div>
+                        <div class="form-note">Bạn chưa có tài khoản? &nbsp;&nbsp;<a href="{{ route('user.dangky') }}"><strong>Đăng ký ngay</strong></a></div>
                     </div>
                 </div>
             </div>

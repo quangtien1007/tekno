@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Tin tức')
+@section('title', $tenloai ? $tenloai : 'Tin tức')
 
 @section('content')
     <!-- BREADCRUMB -->
@@ -12,7 +12,7 @@
                 <div class="col-md-12">
                     <h3 class="breadcrumb-header">Tin tức</h3>
                     <ul class="breadcrumb-tree">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="{{route('client')}}">Trang chủ</a></li>
                         <li class="active">{{$baiviet->tieude}}</li>
                     </ul>
                 </div>

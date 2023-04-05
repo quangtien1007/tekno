@@ -1,6 +1,6 @@
 @extends('layouts.client')
 
-@section('title', 'Home')
+@section('title', $tenloai ? $tenloai : 'Sản phẩm')
 
 @section('content')
     <!-- BREADCRUMB -->

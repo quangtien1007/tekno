@@ -123,7 +123,7 @@
 												<div class="product-body">
 													<h3 class="product-name">
                                                         <a href="#">{{ $value->name }}</a></h3>
-													<h4 class="product-price"><span class="qty">{{ $value->qty }} x</span>{{ number_format($value->price) }}</h4>
+													<h4 class="product-price"><span class="qty">{{ $value->qty }} x</span>{{ number_format($value->price) }}đ</h4>
 												</div>
                                                 <a class="delete" href="{{ route('client.giohang.delete', ['row_id' => $value->rowId]) }}"><i class="fa fa-close"></i></a>
 											</div>
@@ -168,19 +168,19 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="navbar navbar-light main-nav nav navbar-nav">
-						<li class="active"><a href="{{route('client')}}">Trang chủ</a></li>
+						<li class="{{ request()->routeIs('client') ? 'active' : 'no' }}"><a href="{{route('client')}}">Trang chủ</a></li>
 						<li><a href="#">Hot Deals</a></li>
 						@foreach ($navdata as $item)
-                        <li>
-                            <a class=""
+                        <li class="{{ $tenloai == $item->tenloai ? 'active' : 'no' }}">
+                            <a
                             href="{{ route('client.sanpham.danhmuc',
                             ['tenloai_slug' => $item->tenloai_slug]) }}">
                             {{ $item->tenloai }}
                             </a>
                         </li>
                         @endforeach
-                        <li><a href="{{ route('client.baiviet') }}">Tin tức</a></li>
-                        <li><a href="{{ route('client.lienhe') }}">Liên hệ</a></li>
+                        <li class="{{ request()->routeIs('client.baiviet') || request()->routeIs('client.baiviet.chitiet') ? 'active' : 'no' }}"><a href="{{ route('client.baiviet') }}">Tin tức</a></li>
+                        <li class="{{ request()->routeIs('client.lienhe') ? 'active' : 'no' }}"><a href="{{ route('client.lienhe') }}">Liên hệ</a></li>
 					</ul>
 					<!-- /NAV -->
 				</div>
@@ -305,6 +305,37 @@
 		<script src="{{asset('assets/js/nouislider.min.js')}}"></script>
 		<script src="{{asset('assets/js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('assets/js/main.js')}}"></script>
+
+        <!-- Messenger Plugin chat Code -->
+        <div id="fb-root"></div>
+
+        <!-- Your Plugin chat code -->
+        <div id="fb-customer-chat" class="fb-customerchat">
+        </div>
+
+        <script>
+        var chatbox = document.getElementById('fb-customer-chat');
+        chatbox.setAttribute("page_id", "101447659590656");
+        chatbox.setAttribute("attribution", "biz_inbox");
+        </script>
+
+        <!-- Your SDK code -->
+        <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+            xfbml            : true,
+            version          : 'v16.0'
+            });
+        };
+
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        </script>
         @livewireScripts
 	</body>
 </html>
