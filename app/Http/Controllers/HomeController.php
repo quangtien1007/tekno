@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Livewire\Component;
+use Livewire\WithFileUploads;
 use App\Models\SanPham;
 use App\Models\User;
 use App\Models\MauSanPham;

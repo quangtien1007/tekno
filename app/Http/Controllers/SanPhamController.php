@@ -164,28 +164,28 @@ class SanPhamController extends Controller
             $msp->save();
         }
 
-        // $dlsp = new DungLuongSanPham();
-        // for ($i = 0; $i <= count($request->dungluong) - 2; $i += 3) {
-        //     //chạy từ 0 tới tổng sl ptu trong mảng trừ đi 2, với bước nhảy là 3
-        //     if ($id_sp == 1) {
-        //         $idsp = $id_sp;
-        //     } else {
-        //         $idsp = $id_sp - 1;
-        //         //Lấy id tự động tăng tiếp theo và trừ 1 sẽ ra id hiện tại của sản phẩm vừa thêm
-        //     }
-        //     //                          0  1   2   3    4   5    6    7  8
-        //     //ví dụ về ptu trong mảng [do,200,0.4,vang,100,0.3,trang,10,0.2]
-        //     //count($request->dungluong) sẽ bằng 8 - 2 = 6, khi đó ta sẽ thực hiện được 3 vòng lặp
-        //     // $i=0 là 1 vòng, $i=3 là 2 vòng, $i=6 là 3 vòng và khi $i=9 thì sẽ ngừng
-        //     //$i=0 sẽ lấy được dungluong[0]='do',dungluong[1]='200',dungluong[3]='0.4' và tiếp tục
-        //     $dlsp->id = $id_dlsp;
-        //     $dlsp->sanpham_id = $idsp;
-        //     $dlsp->dungluong = $request->dungluong[$i];
-        //     $dlsp->soluongton = $request->dungluong[$i + 1];
-        //     $dlsp->giatridungluong = $request->dungluong[$i + 2];
-        //     // dd($msp);
-        //     $dlsp->save();
-        // }
+        $dlsp = new DungLuongSanPham();
+        for ($i = 0; $i <= count($request->dungluong) - 2; $i += 3) {
+            //chạy từ 0 tới tổng sl ptu trong mảng trừ đi 2, với bước nhảy là 3
+            if ($id_sp == 1) {
+                $idsp = $id_sp;
+            } else {
+                $idsp = $id_sp - 1;
+                //Lấy id tự động tăng tiếp theo và trừ 1 sẽ ra id hiện tại của sản phẩm vừa thêm
+            }
+            //                          0  1   2   3    4   5    6    7  8
+            //ví dụ về ptu trong mảng [do,200,0.4,vang,100,0.3,trang,10,0.2]
+            //count($request->dungluong) sẽ bằng 8 - 2 = 6, khi đó ta sẽ thực hiện được 3 vòng lặp
+            // $i=0 là 1 vòng, $i=3 là 2 vòng, $i=6 là 3 vòng và khi $i=9 thì sẽ ngừng
+            //$i=0 sẽ lấy được dungluong[0]='do',dungluong[1]='200',dungluong[3]='0.4' và tiếp tục
+            $dlsp->id = $id_dlsp;
+            $dlsp->sanpham_id = $idsp;
+            $dlsp->dungluong = $request->dungluong[$i];
+            $dlsp->soluongton = $request->dungluong[$i + 1];
+            $dlsp->giatridungluong = $request->dungluong[$i + 2];
+            // dd($msp);
+            $dlsp->save();
+        }
         // dd($msp);
 
         return redirect()->route('admin.sanpham')->with('success', 'Thêm sản phẩm thành công');
