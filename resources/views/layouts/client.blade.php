@@ -284,9 +284,7 @@
 								<li><a href="#"><i class="fa fa-cc-amex"></i></a></li>
 							</ul>
 							<span class="copyright">
-								<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 								Copyright &copy;<script>document.write(new Date().getFullYear());</script>  {{ config('app.name', 'Laravel') }} All rights reserved
-							<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
 							</span>
 						</div>
 					</div>
@@ -297,6 +295,36 @@
 			<!-- /bottom footer -->
 		</footer>
 		<!-- /FOOTER -->
+          <!-- Messenger Plugin chat Code -->
+          <div id="fb-root"></div>
+
+          <!-- Your Plugin chat code -->
+          <div id="fb-customer-chat" class="fb-customerchat">
+          </div>
+
+          <script>
+          var chatbox = document.getElementById('fb-customer-chat');
+          chatbox.setAttribute("page_id", "101447659590656");
+          chatbox.setAttribute("attribution", "biz_inbox");
+          </script>
+
+          <!-- Your SDK code -->
+          <script>
+          window.fbAsyncInit = function() {
+              FB.init({
+              xfbml            : true,
+              version          : 'v16.0'
+              });
+          };
+
+          (function(d, s, id) {
+              var js, fjs = d.getElementsByTagName(s)[0];
+              if (d.getElementById(id)) return;
+              js = d.createElement(s); js.id = id;
+              js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
+              fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+          </script>
         @livewire('test', ['users' => getUserMessage() , 'messages' => $messages ?? null])
 		<!-- jQuery Plugins -->
 		<script src="{{asset('assets/js/jquery.min.js')}}"></script>
@@ -305,37 +333,6 @@
 		<script src="{{asset('assets/js/nouislider.min.js')}}"></script>
 		<script src="{{asset('assets/js/jquery.zoom.min.js')}}"></script>
 		<script src="{{asset('assets/js/main.js')}}"></script>
-
-        <!-- Messenger Plugin chat Code -->
-        <div id="fb-root"></div>
-
-        <!-- Your Plugin chat code -->
-        <div id="fb-customer-chat" class="fb-customerchat">
-        </div>
-
-        <script>
-        var chatbox = document.getElementById('fb-customer-chat');
-        chatbox.setAttribute("page_id", "101447659590656");
-        chatbox.setAttribute("attribution", "biz_inbox");
-        </script>
-
-        <!-- Your SDK code -->
-        <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-            xfbml            : true,
-            version          : 'v16.0'
-            });
-        };
-
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = 'https://connect.facebook.net/vi_VN/sdk/xfbml.customerchat.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-        </script>
         @livewireScripts
 	</body>
 </html>
