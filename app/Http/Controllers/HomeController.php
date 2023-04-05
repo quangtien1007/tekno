@@ -44,7 +44,8 @@ class HomeController extends Controller
         $cusac = SanPham::where('loaisanpham_id', 5)->paginate(4);
         $tablet = SanPham::where('loaisanpham_id', 2)->paginate(4);
         $tainghe = SanPham::where('loaisanpham_id', 6)->paginate(3);
-        return view('client.index', compact('sanpham', 'navdata', 'tainghe', 'laptop', 'cusac', 'tablet', 'laptop1', 'messages', 'users'));
+        $tenloai = 'Trang chủ';
+        return view('client.index', compact('sanpham', 'navdata', 'tainghe', 'laptop', 'cusac', 'tablet', 'laptop1', 'messages', 'users', 'tenloai'));
     }
 
     public function getDangKy()
