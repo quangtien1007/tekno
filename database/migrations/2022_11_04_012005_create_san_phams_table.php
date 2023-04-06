@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('tensanpham_slug');
             $table->double('dongia');
             $table->string('hinhanh')->nullable();
-            $table->string('hinhanhmota')->nullable();
+            $table->text('hinhanhmota')->nullable();
             $table->text('motasanpham')->nullable();
             $table->text('thongsokythuat')->nullable();
             $table->dateTime('created_at')->useCurrent();

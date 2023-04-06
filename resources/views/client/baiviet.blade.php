@@ -44,7 +44,7 @@
                                         <div class="news">
                                             <div class="news-thumbnail col-md-12">
                                                 <a href="{{ route('client.baiviet.chitiet', ['tieude_slug' => $value->tieude_slug]) }}">
-                                                    <img width="300" src="{{ env('APP_URL') . '/storage/app/' . $value->thumbnail }}" />
+                                                    <img width="300" src="{{ env('APP_URL') . '/images/' . $value->thumbnail }}" />
                                                 </a>
                                             </div>
                                             <div class="news-info">

@@ -13,7 +13,7 @@
 					<div class="col-md-4 col-xs-6">
 						<div class="shop">
 							<div class="shop-img">
-                                <img src="{{ env('APP_URL') . '/storage/index/poster_macbook.jpg' }}" alt="">
+                                <img src="{{ env('APP_URL') . '/images/index/poster_macbook.jpg' }}" alt="">
 							</div>
 							<div class="shop-body">
                                 <h3>Laptop<br>Giảm giá</h3>
@@ -27,7 +27,7 @@
 					<div class="col-md-4 col-xs-6">
                         <div class="shop">
                             <div class="shop-img">
-                                <img src="{{ env('APP_URL') . '/storage/index/poster_headphones.jpg' }}" alt="">
+                                <img src="{{ env('APP_URL') . '/images/index/poster_headphones.jpg' }}" alt="">
                             </div>
 							<div class="shop-body">
                                 <h3>Phụ kiện<br>Giảm giá</h3>
@@ -42,7 +42,7 @@
                         <div class="shop">
                             <div class="shop-img">
                                 {{-- {{dd(env('APP_URL'))}} --}}
-                                <img src="{{ env('APP_URL') . '/storage/index/poster_iphone.jpg' }}" alt="">
+                                <img src="{{ env('APP_URL') . '/images/index/poster_iphone.jpg' }}" alt="">
 							</div>
 							<div class="shop-body">
 								<h3>Điện thoại<br>Giảm giá</h3>
@@ -94,7 +94,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="{{ env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh }}" alt="">
+												<img src="{{ env('APP_URL') . '/images/sanpham/'.$item->hinhanh }}" alt="">
 												<div class="product-label">
 													<span class="sale">-10%</span>
 													<span class="new">MỚI</span>
@@ -132,7 +132,7 @@
                                             <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                                             <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
                                             <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
-                                            <input type="hidden" value="{{ env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
+                                            <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
                                              <!-- /input hidden de so sanh san pham -->
 										</div>
 										<!-- /product -->
@@ -277,7 +277,7 @@
 										<!-- product -->
 										<div class="product">
 											<div class="product-img">
-												<img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
+												<img src="{{env('APP_URL') . '/images/sanpham/'.$item->hinhanh}}" alt="">
 												<div class="product-label">
 													<span class="sale"> -10%</span>
 													<span class="new">MỚI</span>
@@ -312,7 +312,7 @@
                                          <!-- input hidden de so sanh san pham -->
                                          <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                                          <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
-                                         <input type="hidden" value="{{ env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
+                                         <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
                                           <!-- /input hidden de so sanh san pham -->
                                         @endforeach
 									</div>
@@ -353,7 +353,7 @@
                                 @endphp
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
+										<img src="{{env('APP_URL') . '/images/sanpham/'.$item->hinhanh}}" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
@@ -373,7 +373,7 @@
                                 @foreach ($cusac as $item)
 								<div class="product-widget">
 									<div class="product-img">
-										<img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
+										<img src="{{env('APP_URL') . '/images/sanpham/'.$item->hinhanh}}" alt="">
 									</div>
 									<div class="product-body">
 										<p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
@@ -404,7 +404,7 @@
                                  @foreach ($tablet as $item)
                                  <div class="product-widget">
                                      <div class="product-img">
-                                         <img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
+                                         <img src="{{env('APP_URL') . '/images/sanpham/'.$item->hinhanh}}" alt="">
                                      </div>
                                      <div class="product-body">
                                          <p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
@@ -424,7 +424,7 @@
                                  @foreach ($laptop as $item)
                                  <div class="product-widget">
                                      <div class="product-img">
-                                         <img src="{{env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh}}" alt="">
+                                         <img src="{{env('APP_URL') . '/images/sanpham/'.$item->hinhanh}}" alt="">
                                      </div>
                                      <div class="product-body">
                                          <p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>

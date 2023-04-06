@@ -38,11 +38,11 @@
 					<div class="col-md-5 col-md-push-2">
 						<div id="product-main-img">
 							<div class="product-preview">
-								<img src="{{ env('APP_URL') . 'storage/app/sanpham/' . $sanpham->hinhanh}}"  alt="">
+								<img src="{{ env('APP_URL') . '/images/sanpham/' . $sanpham->hinhanh}}"  alt="">
 							</div>
                             @foreach ($images as $item)
 							<div class="product-preview">
-								<img src="{{env('APP_URL').$item}}" alt="s"/>
+								<img src="{{env('APP_URL') . 'images/sanpham/' .$item}}"/>
 							</div>
                             @endforeach
 						</div>
@@ -53,12 +53,12 @@
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
 							<div class="product-preview">
-								<img src="{{ env('APP_URL') . 'storage/app/sanpham/' . $sanpham->hinhanh}}"  alt="">
+								<img src="{{ env('APP_URL') . 'images/sanpham/' . $sanpham->hinhanh}}"  alt="">
 							</div>
 
                             @foreach ($images as $item)
 							<div class="product-preview">
-								<img src="{{env('APP_URL').''.$item}}"/>
+								<img src="{{env('APP_URL') . 'images/sanpham/' .$item}}"/>
 							</div>
                             @endforeach
 						</div>
@@ -378,7 +378,7 @@
 					<div class="col-md-3 col-xs-6">
 						<div class="product">
 							<div class="product-img">
-								<img src="{{ env('APP_URL') . '/storage/app/sanpham/' . $value->hinhanh }}" alt="">
+								<img src="{{ env('APP_URL') . '/images/sanpham/' . $value->hinhanh }}" alt="">
 								<div class="product-label">
 									<span class="sale">-10%</span>
 								</div>
@@ -405,7 +405,7 @@
                               <!-- input hidden de so sanh san pham -->
                               <input type="hidden" value="{{$value->tensanpham}}" id="name{{$value->id}}">
                               <input type="hidden" value="{{$value->dongia}}" id="price{{$value->id}}">
-                              <input type="hidden" value="{{ env('APP_URL') . '/storage/app/sanpham/'.$value->hinhanh }}" id="image{{$value->id}}">
+                              <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$value->hinhanh }}" id="image{{$value->id}}">
                                <!-- /input hidden de so sanh san pham -->
 						</div>
 					</div>

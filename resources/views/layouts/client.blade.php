@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
-        <title>@yield('title', 'Trang chủ') - {{ config('app.name', 'Tekno') }}</title>
+        <title>@yield('title', 'Trang chủ') - {{ env('APP_NAME') }}</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/images/favicon.png') }}" />
 		 <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
@@ -118,7 +118,7 @@
                                             @foreach(Cart::content() as $value)
 											<div class="product-widget">
 												<div class="product-img">
-													<img src="{{ env('APP_URL') . '/storage/app/sanpham/' . $value->options->image }}" alt="">
+													<img src="{{ env('APP_URL') . '/images/sanpham/' . $value->options->image }}" alt="">
 												</div>
 												<div class="product-body">
 													<h3 class="product-name">

@@ -69,7 +69,7 @@
                                     @foreach ($hsx as $item)
                                         <div class="input-checkbox">
                                                 <a href="{{route('client.sanpham.danhmucchitiet',['tenloai_slug'=> $lsp->tenloai_slug,'tenhang_slug'=>$item->tenhang_slug])}}">
-                                                    <img src="{{ env('APP_URL') . '/storage/app/' . $item->hinhanh }}" width="100" class="img-thumbnail" />
+                                                    <img src="{{ env('APP_URL') . '/public/images/' . $item->hinhanh }}" width="100" class="img-thumbnail" />
                                                     </a>
                                                 <a>({{count(DB::table('sanpham')->where('hangsanxuat_id',$item->id)->where('loaisanpham_id',$lsp->id)->get())}})</a>
                                         </div>
@@ -148,7 +148,7 @@
                         <div class="col-md-4 col-xs-6">
                             <div class="product">
                                 <div class="product-img">
-                                    <img src="{{ env('APP_URL') . '/storage/app/sanpham/' . $item->hinhanh }}" alt="">
+                                    <img src="{{ env('APP_URL') . '/images/sanpham/' . $item->hinhanh }}" alt="">
                                     <div class="product-label">
                                         <span class="sale">-10%</span>
                                         <span class="new">MỚI</span>
@@ -190,7 +190,7 @@
                          <!-- input hidden de so sanh san pham -->
                          <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                          <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
-                         <input type="hidden" value="{{ env('APP_URL') . '/storage/app/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
+                         <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
                           <!-- /input hidden de so sanh san pham -->
                         @endforeach
                     </div>
@@ -208,7 +208,8 @@
                           </div>
                           <style>
                             td{
-                                text-align: center
+                                text-align: center;
+                                vertical-align: middle;
                             }
                           </style>
                           <div class="modal-body">
@@ -237,14 +238,6 @@
                   </div>
                     <!-- store bottom filter -->
                     <div class="store-filter clearfix">
-                        {{-- <span class="store-qty">Showing 20-100 products</span> --}}
-                        {{-- <ul class="store-pagination">
-                            <li class="active">1</li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-                        </ul> --}}
                         {{$sanpham->links()}}
                     </div>
                     <!-- /store bottom filter -->

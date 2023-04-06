@@ -74,7 +74,6 @@ class HomeController extends Controller
         }
         session()->push('baivietvuaxem', $baiviet);
         $tenloai = $baiviet->tieude;
-        // dd(session());
 
         return view('client.baivietchitiet', compact('baiviet', 'author', 'tenloai'));
     }
@@ -252,11 +251,12 @@ class HomeController extends Controller
 
     public function getGioHang()
     {
+        $tenloai = 'Giỏ hàng';
         $sanpham = SanPham::all();
         if (Cart::count())
-            return view('client.giohang', compact('sanpham'));
+            return view('client.giohang', compact('sanpham', 'tenloai'));
         else
-            return view('client.giohang_rong');
+            return view('client.giohang_rong', compact('tenloai'));
     }
 
 

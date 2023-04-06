@@ -38,26 +38,13 @@ class LoaiSanPhamController extends Controller
         // dd();
         $orm = new LoaiSanPham();
         $orm->tenloai = $request->tenloai;
-        if ($request->parent_id != 0) {
-            $slug1 = LoaiSanPham::where('id', $request->parent_id)->first();
-            $tenloai_slug = $slug1->tenloai_slug . '-' . Str::slug($request->tenloai, '-');
-            $orm->tenloai_slug = $tenloai_slug;
-        } else {
-            $orm->tenloai_slug = Str::slug($request->tenloai, '-');
-        }
-
-        if ($request->hasFile('hinhanh')) {
-            $extension = $request->file('hinhanh')->extension();
-            $filename = Str::slug($request->tenloai, '-') . '.' . $extension;
-            $path = Storage::putFileAs('loai/' . $orm->tenloai_slug, $request->file('hinhanh'), $filename);
-        }
-        // dd($request->File('hinhanh'));
+        $orm->tenloai_slug = Str::slug($request->tenloai, '-');
         $orm->parent_id = $request->parent_id;
         // dd($path);
-        if (!empty($path)) $orm->hinhanh = $path;
+        // if (!empty($path)) $orm->hinhanh = $path;
         $orm->save();
 
-        return redirect()->route('admin.loaisanpham.them')->with('success', 'Thêm loại sản phẩm thành công');
+        return redirect()->route('admin.loaisanpham.create')->with('success', 'Thêm loại sản phẩm thành công');
     }
 
     public function getSua($id)

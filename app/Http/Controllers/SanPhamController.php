@@ -77,7 +77,8 @@ class SanPhamController extends Controller
             $file = $request->file('hinhanh');
             // Tạo thư mục nếu chưa có
             $lsp = LoaiSanPham::find($request->loaisanpham_id);
-            File::isDirectory($lsp->tenloai_slug) or Storage::makeDirectory('sanpham/' . $lsp->tenloai_slug, 0775);
+            $path = public_path() . '/images/sanpham/' . $lsp->tenloai_slug;
+            File::isDirectory($lsp->tenloai_slug) or File::makeDirectory($path, $mode = 0777, true, true);
 
             // Xác định tên tập tin
             $extension = $request->file('hinhanh')->extension();
@@ -85,7 +86,7 @@ class SanPhamController extends Controller
 
             // Upload vào thư mục và trả về đường dẫn
             $pathImage = $lsp->tenloai_slug;
-            $upload_path = 'storage/app/sanpham/' . $pathImage . '/';
+            $upload_path = public_path() . '/images/sanpham/' . $pathImage . '/';
             $image_url1 = $pathImage . '/' . $filename;
 
             $file->move($upload_path, $filename);
@@ -95,7 +96,7 @@ class SanPhamController extends Controller
         if ($files = $request->file('hinhanhmota')) {
             foreach ($files as $file) {
                 $lsp = LoaiSanPham::find($request->loaisanpham_id);
-                File::isDirectory($lsp->tenloai_slug) or Storage::makeDirectory($lsp->tenloai_slug, 0775);
+                File::isDirectory($lsp->tenloai_slug) or File::makeDirectory($path, $mode = 0777, true, true);
 
                 //lay duoi tap tin
                 $ext = strtolower($file->getClientOriginalExtension());
@@ -106,10 +107,10 @@ class SanPhamController extends Controller
 
                 //lay ten loai san pham de upload vao dung thu muc do
                 $pathImage = $lsp->tenloai_slug;
-                $upload_path = 'storage/app/sanpham/' . $pathImage . '/';
+                $upload_path = public_path() . '/images/sanpham/' . $pathImage . '/';
 
                 //url day du = noi luu/(ten anh + duoi tap tin)
-                $image_url = $upload_path . $image_full_name;
+                $image_url = $pathImage . '/' . $image_full_name;
 
                 //luu tap tin vao thu muc
                 $file->move($upload_path, $image_full_name);

@@ -43,7 +43,7 @@
 					@foreach($sanpham as $value)
 						<tr>
 							<td>{{ $loop->index + $sanpham->firstItem() }}</td>
-							<td class="text-center"><img src="{{ env('APP_URL') . '/storage/app/sanpham/' . $value->hinhanh }}" width="80" class="img-thumbnail" /></td>
+							<td class="text-center"><img src="{{ env('APP_URL') . '/public/images/sanpham/' . $value->hinhanh }}" width="80" class="img-thumbnail" /></td>
 							<td>{{ $value->LoaiSanPham->tenloai }}</td>
 							<td>{{ $value->tensanpham }}</td>
 							<td>

@@ -35,7 +35,7 @@
                     <i class="fa-solid fa-eye" style="color: #db0000;"></i><a> {{$baiviet->luotxem}}</a>
                     <br><br>
                     <div class="rosw">
-                        <img src="{{ env('APP_URL') . '/storage/app/' . $baiviet->thumbnail }}" width="800px" alt="">
+                        <img src="{{ env('APP_URL') . '/images/' . $baiviet->thumbnail }}" width="800px" alt="">
                     </div>
                     <br>
                     <div class="row content">

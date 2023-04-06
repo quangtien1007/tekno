@@ -47,7 +47,7 @@
                                 {{-- {{dd(Cart::content())}} --}}
                                 @foreach(Cart::content() as $value)
                                     <tr>
-                                        <td class="product-thumbnail"><a href="#"><img width="100" src="{{ env('APP_URL') . '/storage/app/sanpham/' . $value->options->image }}" /></a></td>
+                                        <td class="product-thumbnail"><a href="#"><img width="100" src="{{ env('APP_URL') . '/images/sanpham/' . $value->options->image }}" /></a></td>
                                         <td class="product-name" data-title="Product"><a href="#">{{ $value->name }}</a></td>
                                         <td class="product-price" data-title="Price">{{ number_format($value->price) }}<sup>đ</sup></td>
                                         <td class="product-storage" data-title="Storage">
