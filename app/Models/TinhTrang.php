@@ -7,16 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class TinhTrang extends Model
 {
-	use HasFactory;
-	
-	protected $table = 'tinhtrang';
-	
-	protected $fillable = [
-		'tinhtrang',
-	];
-	
-	public function DonHang()
-	{
-		return $this->hasMany(DonHang::class, 'tinhtrang_id', 'id');
-	}
+    use HasFactory;
+
+    protected $table = 'tinhtrang';
+
+    protected $fillable = [
+        'tinhtrang',
+        'badge',
+    ];
+
+    public function DonHang()
+    {
+        return $this->hasMany(DonHang::class, 'tinhtrang_id', 'id');
+    }
 }

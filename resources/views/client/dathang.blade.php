@@ -103,7 +103,7 @@
 
                         <!-- Order notes -->
                         <div class="order-notes">
-                            <textarea class="input" placeholder="Order Notes"></textarea>
+                            <textarea class="input" placeholder="Ghi chú.."></textarea>
                         </div>
                         <!-- /Order notes -->
                     </div>
@@ -127,7 +127,7 @@
                                 @endforeach
                             </div>
                             <div class="order-col">
-                                <div>Shiping</div>
+                                <div>Tiền ship</div>
                                 <div><strong>FREE</strong></div>
                             </div>
                             <div class="order-col">
@@ -143,15 +143,18 @@
                                 <div><strong class="order-total">{{ number_format(Cart::total()) }}<sup>đ</sup></strong></div>
                             </div>
                         </div>
+                        <div class="order-col">
+                            <div><strong>PHƯƠNG THỨC THANH TOÁN</strong></div>
+                        </div>
                         <div class="payment-method">
                             <div class="input-radio">
-                                <input type="radio" name="payment_opt" id="payment-1" value="cod">
+                                <input checked type="radio" name="payment_opt" id="payment-1" value="cod">
                                 <label for="payment-1">
                                     <span></span>
                                     COD (Thanh toán khi nhận hàng)
                                 </label>
                                 <div class="caption">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <p>Thanh toán khi đơn hàng đến tay của bạn</p>
                                 </div>
                             </div>
                             <div class="input-radio">
@@ -161,7 +164,8 @@
                                     Ví điện tử VNPay
                                 </label>
                                 <div class="caption">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <p>Thanh toán online qua ví điện tử VNPay</p>
+                                    <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-VNPAY-QR.png" width="100" alt="">
                                 </div>
                             </div>
                             <div class="input-radio">
@@ -171,7 +175,7 @@
                                     Thanh toán bằng Paypal
                                 </label>
                                 <div class="caption">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                                    <p>Thanh toán online qua ngân hàng điện tử quốc tế - Paypal</p>
                                 </div>
                             </div>
                         </div>
@@ -179,7 +183,7 @@
                             <input type="checkbox" id="terms">
                             <label for="terms">
                                 <span></span>
-                                I've read and accept the <a href="#">terms & conditions</a>
+                                Tôi đã đọc và chấp nhận <a href="#"><strong>chính sách bảo mật</strong></a>
                             </label>
                         </div>
                         <input type="hidden" name="redirect" id="">

@@ -17,30 +17,35 @@ class UserController extends Controller
 
     public function getHome()
     {
+        $tenloai = 'Khách hàng';
         $donhang = DonHang::where('user_id', Auth::user()->id)->orderBy('created_at', 'asc')->get();
-        return view('user.index', compact('donhang'));
+        return view('user.index', compact('donhang', 'tenloai'));
     }
 
     public function getDonHang()
     {
         // Quản lý đơn hàng của khách hàng
         // "Đơn hàng của tôi"
+        $tenloai = 'Khách hàng';
         $donhang = DonHang::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
-        return view('user.donhang', compact('donhang'));
+        return view('user.donhang', compact('donhang', 'tenloai'));
     }
 
     public function getDonHang_ChiTiet($id)
     {
-        return view('user.donhang_chitiet');
+        $tenloai = 'Khách hàng';
+        return view('user.donhang_chitiet', compact('tenloai'));
     }
 
     public function getMatKhau()
     {
-        return view('user.doimatkhau');
+        $tenloai = 'Khách hàng';
+        return view('user.doimatkhau', compact('tenloai'));
     }
 
     public function getHoSo()
     {
+        $tenloai = 'Khách hàng';
         return view('user.hoso');
     }
 

@@ -47,7 +47,7 @@
                                     <td colspan="6" class="px-0">
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-lg-4 col-md-8 mb-3 t1">
-                                                <div class="coupon field_form input-group t">
+                                                <div class="coupon field_form input t">
                                                     <input type="text" class="form-control form-control-sm" placeholder="Mã giảm giá?" />
                                                 </div>
                                                     <input class="primary-btn order-submit" type="submit"></button>

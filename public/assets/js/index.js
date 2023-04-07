@@ -288,6 +288,7 @@ const addToWishlist = (product_id) => {
         url: url,
     };
 
+    // console.log(newItem);
     if (localStorage.getItem("wishlist") == null) {
         localStorage.setItem("wishlist", "[]");
     }
@@ -315,7 +316,7 @@ const addToWishlist = (product_id) => {
             el.setAttribute("id", "wishlist-qty");
             el.classList.add("qty");
 
-            document.getElementById("wishlist_list").append(el);
+            document.getElementById("wishlist_list").appendChild(el);
 
             $("#wishlist-qty").append(counter ? counter : "0");
             // table_wishlist

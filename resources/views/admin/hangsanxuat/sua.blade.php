@@ -18,7 +18,7 @@
 				<div class="mb-3">
 					<label class="form-label" for="hinhanh">Hình ảnh</label>
 					@if(!empty($hangsanxuat->hinhanh))
-						<img class="d-block rounded img-thumbnail" src="{{ env('APP_URL') . '/storage/app/' . $hangsanxuat->hinhanh }}" width="100" />
+						<img class="d-block rounded img-thumbnail" src="{{ env('APP_URL') . '/images/' . $hangsanxuat->hinhanh }}" width="100" />
 						<span class="d-block small text-danger">Bỏ trống nếu muốn giữ nguyên ảnh cũ.</span>
 					@endif
 					<input type="file" class="form-control @error('hinhanh') is-invalid @enderror" id="hinhanh" name="hinhanh" />

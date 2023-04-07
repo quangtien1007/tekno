@@ -50,12 +50,14 @@ class HomeController extends Controller
 
     public function getDangKy()
     {
-        return view('user.dangky');
+        $tenloai = 'Đăng ký';
+        return view('user.dangky', compact('tenloai'));
     }
 
     public function getDangNhap()
     {
-        return view('user.dangnhap');
+        $tenloai = 'Đăng nhập';
+        return view('user.dangnhap', compact('tenloai'));
     }
 
     public function getBaiViet()
@@ -319,8 +321,9 @@ class HomeController extends Controller
     {
         // $id_sp = SanPham::where('id', $id)->first();
         // Nếu đã đăng nhập thì chuyển sang thanh toán
+        $tenloai = 'Đặt hàng';
         if (Auth::check())
-            return view('client.dathang');
+            return view('client.dathang', compact('tenloai'));
         else // Nếu chưa đăng nhập thì chuyển sang đăng nhập
             return redirect()->route('user.dangnhap');
     }

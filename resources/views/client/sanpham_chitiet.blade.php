@@ -42,7 +42,7 @@
 							</div>
                             @foreach ($images as $item)
 							<div class="product-preview">
-								<img src="{{env('APP_URL') . 'images/sanpham/' .$item}}"/>
+								<img src="{{env('APP_URL') . '/images/sanpham/' .$item}}"/>
 							</div>
                             @endforeach
 						</div>
@@ -53,12 +53,12 @@
 					<div class="col-md-2  col-md-pull-5">
 						<div id="product-imgs">
 							<div class="product-preview">
-								<img src="{{ env('APP_URL') . 'images/sanpham/' . $sanpham->hinhanh}}"  alt="">
+								<img src="{{ env('APP_URL') . '/images/sanpham/' . $sanpham->hinhanh}}"  alt="">
 							</div>
 
                             @foreach ($images as $item)
 							<div class="product-preview">
-								<img src="{{env('APP_URL') . 'images/sanpham/' .$item}}"/>
+								<img src="{{env('APP_URL') . '/images/sanpham/' .$item}}"/>
 							</div>
                             @endforeach
 						</div>
@@ -164,11 +164,13 @@
 								<!-- tab1  -->
 								<div id="tab1" class="tab-pane fade in active">
 									<div class="row">
-										<div class="col-md-12">
-											@php
-                                                echo $sanpham->motasanpham;
-                                            @endphp
-										</div>
+                                        <div class="container">
+                                            <div class="col-md-12">
+                                                @php
+                                                    echo $sanpham->motasanpham;
+                                                @endphp
+                                            </div>
+                                        </div>
 									</div>
 								</div>
 								<!-- /tab1  -->
