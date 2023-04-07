@@ -69,7 +69,7 @@
                                     @foreach ($hsx as $item)
                                         <div class="input-checkbox">
                                                 <a href="{{route('client.sanpham.danhmucchitiet',['tenloai_slug'=> $lsp->tenloai_slug,'tenhang_slug'=>$item->tenhang_slug])}}">
-                                                    <img src="{{ env('APP_URL') . '/public/images/' . $item->hinhanh }}" width="100" class="img-thumbnail" />
+                                                    <img src="{{ env('APP_URL') . '/images/' . $item->hinhanh }}" width="100" class="img-thumbnail" />
                                                     </a>
                                                 <a>({{count(DB::table('sanpham')->where('hangsanxuat_id',$item->id)->where('loaisanpham_id',$lsp->id)->get())}})</a>
                                         </div>
