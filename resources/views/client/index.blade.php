@@ -132,6 +132,7 @@
                                             <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                                             <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
                                             <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
+                                            <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
                                             <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
                                              <!-- /input hidden de so sanh san pham -->
 										</div>
@@ -152,12 +153,13 @@
                   <div class="container">
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
-                      <div class="modal-dialog modal-lg">
+                      <div style="width:1200px" class="modal-dialog modal-lg">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h4 class="modal-title">So sánh sản phẩm (Tối đa 3 sản phẩm)</h4>
+                              <h4 class="modal-title">So sánh sản phẩm (Tối đa 2 sản phẩm)</h4>
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
                           </div>
                           <style>
                             td{
@@ -165,8 +167,8 @@
                                 vertical-align: middle;
                             }
                           </style>
-                          <div class="modal-body">
-                            <table class="table table-bordered" id="row_compare">
+                          <div class="row modal-body" id="row_compare">
+                            {{-- <table class="table table-bordered" id="row_compare">
                                 <thead>
                                     <tr>
                                         <th>Ảnh</th>
@@ -178,7 +180,7 @@
                                 <tbody>
 
                                 </tbody>
-                              </table>
+                              </table> --}}
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
@@ -312,6 +314,7 @@
                                          <!-- input hidden de so sanh san pham -->
                                          <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                                          <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
+                                         <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
                                          <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
                                           <!-- /input hidden de so sanh san pham -->
                                         @endforeach

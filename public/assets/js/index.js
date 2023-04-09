@@ -142,7 +142,6 @@ const handleChecked1 = () => {
         document.getElementById("igt1").disabled = true;
     }
 };
-window.onload = viewCompared;
 
 const addToCompare = (product_id) => {
     var id = product_id;
@@ -150,6 +149,7 @@ const addToCompare = (product_id) => {
     var price = document.getElementById("price" + id).value;
     var image = document.getElementById("image" + id).value;
     var url = document.getElementById("url" + id).href;
+    var tskt = document.getElementById("tskt" + id).value;
     // console.log(url);
 
     var newItem = {
@@ -158,6 +158,7 @@ const addToCompare = (product_id) => {
         price: price,
         image: image,
         url: url,
+        tskt: tskt,
     };
 
     if (localStorage.getItem("compare") == null) {
@@ -174,33 +175,28 @@ const addToCompare = (product_id) => {
     } else {
         if (oldData.length <= 2) {
             oldData.push(newItem);
-            $("#row_compare")
-                .find("tbody")
-                .append(
-                    `
-                <tr id="row_compare` +
-                        id +
-                        `">
-                <td><img width="100px" src="` +
-                        newItem.image +
-                        `"></td>
-                <td>` +
-                        newItem.name +
-                        `</td>
-                <td>` +
-                        new Intl.NumberFormat("it-IT", {
-                            style: "currency",
-                            currency: "VND",
-                        }).format(newItem.price) +
-                        `</td>
-                <td><a href="` +
-                        newItem.url +
-                        `">Xem sản phẩm</a></td>
-                <td><a style="cursor:pointer;" onclick="deleteCompare(` +
-                        id +
-                        `)">Xóa</a></td></tr>
+            $("#row_compare").append(
                 `
-                );
+                    <div class="col-sm-6" id="table_compare` +
+                    newItem.id +
+                    `">
+                    <table class="table table-hover table-bordered">
+                    <thead>
+                        <th>` +
+                    newItem.name +
+                    `<a style="cursor:pointer;" onClick="deleteCompare(` +
+                    newItem.id +
+                    `)">Xoa</a>` +
+                    `</th>
+                    </thead>
+                    <tbody>
+                    <td>` +
+                    newItem.tskt +
+                    `
+                    </tbody>
+                </table>
+                </div>`
+            );
         }
     }
     localStorage.setItem("compare", JSON.stringify(oldData));
@@ -217,33 +213,29 @@ function viewCompared() {
             var image = data[i].image;
             var price = data[i].price;
             var url = data[i].url;
-            $("#row_compare")
-                .find("tbody")
-                .append(
+            var tskt = data[i].tskt;
+            $("#row_compare").append(
+                `
+                    <div class="col-sm-6" id="table_compare` +
+                    id +
+                    `">
+                    <table class="table table-hover table-bordered">
+                    <thead>
+                        <th>` +
+                    name +
+                    `<a style="cursor:pointer;" onClick="deleteCompare(` +
+                    id +
+                    `)">Xoa</a>` +
+                    `</th>
+                    </thead>
+                    <tbody>
+                    <td>` +
+                    tskt +
                     `
-            <tr id="row_compare` +
-                        id +
-                        `">
-            <td><img width="100px" src="` +
-                        image +
-                        `"></td>
-            <td>` +
-                        name +
-                        `</td>
-            <td>` +
-                        new Intl.NumberFormat("it-IT", {
-                            style: "currency",
-                            currency: "VND",
-                        }).format(price) +
-                        `</td>
-            <td><a href="` +
-                        url +
-                        `">Xem sản phẩm</a></td>
-            <td onclick="deleteCompare(` +
-                        id +
-                        `)"><a style="cursor:pointer;" >Xóa</a></td></tr>
-            `
-                );
+                    </tbody>
+                </table>
+                </div>`
+            );
         }
     }
 }
@@ -268,7 +260,7 @@ const deleteCompare = (id) => {
 
         localStorage.setItem("compare", JSON.stringify(data));
         //remove
-        document.getElementById("row_compare" + id).remove();
+        document.getElementById("table_compare" + id).remove();
     }
 };
 

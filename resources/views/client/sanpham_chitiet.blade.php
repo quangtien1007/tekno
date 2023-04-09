@@ -88,11 +88,13 @@
                                 </h4>
 								<span class="product-available">In Stock</span>
 							</div>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+							<p><span style="font-size: 10pt;"><img src="https://cdn-icons-png.flaticon.com/512/181/181645.png" width="26" height="26"> Hư g&igrave; đổi nấy&nbsp;<strong>12 th&aacute;ng</strong> tại 3383 si&ecirc;u thị to&agrave;n quốc (miễn ph&iacute; th&aacute;ng đầu)</span></p>
+                            <p><span style="font-size: 10pt;"><img src="https://cdn-icons-png.flaticon.com/512/2438/2438078.png" width="22" height="22"> &nbsp;Bảo h&agrave;nh&nbsp;ch&iacute;nh h&atilde;ng điện thoại 1 năm&nbsp;tại c&aacute;c trung t&acirc;m bảo h&agrave;nh h&atilde;ng</span></p>
 							<div class="product-options">
                                 @if($sanpham->loaisanpham_id == 1 || $sanpham->loaisanpham_id == 2 || $sanpham->loaisanpham_id == 3 )
 								<label>
-									D.Lượng
+									{{-- <p>D.Lượng</p> --}}
+                                    D.Lượng
 									<select name="dlsp" class="input-select">
                                         @foreach ($dl->where('sanpham_id',$sanpham->id) as $item)
 										<option value="{{$item->dungluong}}">{{$item->dungluong}}</option>
