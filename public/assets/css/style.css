@@ -164,7 +164,7 @@ textarea.input {
     background-color: #fff;
     padding: 0px 35px 0px 15px;
 }
-
+/* input money */
 .input-number .qty-up,
 .input-number .qty-down {
     position: absolute;
@@ -195,6 +195,40 @@ textarea.input {
 
 .input-number .qty-up:hover,
 .input-number .qty-down:hover {
+    background-color: #e4e7ed;
+    color: #d10024;
+}
+
+/* input qty */
+.input-number .qty-ups,
+.input-number .qty-downs {
+    position: absolute;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #e4e7ed;
+    background-color: #fff;
+    text-align: center;
+    font-weight: 700;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.input-number .qty-ups {
+    right: 0;
+    top: 0;
+    border-bottom: 0px;
+}
+
+.input-number .qty-downs {
+    right: 0;
+    bottom: 0;
+}
+
+.input-number .qty-ups:hover,
+.input-number .qty-downs:hover {
     background-color: #e4e7ed;
     color: #d10024;
 }

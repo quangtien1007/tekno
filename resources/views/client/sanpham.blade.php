@@ -83,16 +83,30 @@
                     <!-- aside Widget -->
                     <div class="aside">
                         <h3 class="aside-title">Bán chạy</h3>
+                        @foreach (getSanPhamBanChay() as $item)
+                        @php
+                            $banchay = DB::table('sanpham')->where('id',$item->sanpham_id)->get();
+                        @endphp
+                        @foreach ($banchay as $value)
                         <div class="product-widget">
                             <div class="product-img">
-                                <img src="./img/product01.png" alt="">
+                                <img src="{{ env('APP_URL').'/images/sanpham/'. $value->hinhanh}}" alt="">
                             </div>
                             <div class="product-body">
-                                <p class="product-category">Category</p>
-                                <h3 class="product-name"><a href="#">product name goes here</a></h3>
-                                <h4 class="product-price">$980.00 <del class="product-old-price">$990.00</del></h4>
+                                <p class="product-category">{{DB::table('loaisanpham')->where('id',$value->loaisanpham_id)->first()->tenloai}}</p>
+                                <h3 class="product-name">
+                                    <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => DB::table('loaisanpham')->where('id',$value->loaisanpham_id)->first()->tenloai_slug, 'tensanpham_slug' => $value->tensanpham_slug]) }}">
+                                    {{$value->tensanpham}}
+                                    </a>
+                                </h3>
+                                <h4 class="product-price">
+                                    {{number_format($value->dongia)}}
+                                    <del class="product-old-price">{{number_format($value->dongia + ($value->dongia*0.1))}}<sup>đ</sup></del>
+                                </h4>
                             </div>
                         </div>
+                        @endforeach
+                        @endforeach
                     </div>
                     <!-- /aside Widget -->
                 </div>
@@ -140,9 +154,7 @@
                     <div class="row">
                         @foreach ($sanpham as $item)
                         @php
-                            if(!isset($lsp)){
-                                $lsp = DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first();
-                            }
+                            $lsp = DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first();
                         @endphp
                         <!-- product -->
                         <div class="col-md-4 col-xs-6">
@@ -188,6 +200,8 @@
 
                         <div class="clearfix visible-sm visible-xs"></div>
                          <!-- input hidden de so sanh san pham -->
+                         <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
+                         <input type="hidden" value="{{$item->loaisanpham}}" id="cate{{$item->id}}">
                          <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                          <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
                          <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
@@ -199,12 +213,13 @@
                    <div class="container">
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
-                      <div class="modal-dialog modal-lg">
+                      <div style="width: 1200px" class="modal-dialog modal-xl">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h4 class="modal-title">So sánh sản phẩm (Tối đa 3 sản phẩm)</h4>
+                            <h4 style="float: left;position:fixed;" class="modal-title">So sánh sản phẩm (Tối đa 2 sản phẩm)</h4>
+                              <button style="position: absolute;right:20px;" type="button" class="close" data-dismiss="modal"><i class="fa-solid fa-xmark fa-lg"></i></button>
                           </div>
                           <style>
                             td{
@@ -212,21 +227,7 @@
                                 vertical-align: middle;
                             }
                           </style>
-                          <div class="modal-body">
-                            <table class="table table-bordered" id="row_compare">
-                                <thead>
-                                    <tr>
-                                        <th>Ảnh</th>
-                                        <th>Sản phẩm</th>
-                                        <th>Giá</th>
-                                        <th>Thông số kỹ thuat</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                              </table>
-                          </div>
+                          <div class="row modal-body" id="row_compare"></div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                           </div>

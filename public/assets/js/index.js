@@ -150,6 +150,7 @@ const addToCompare = (product_id) => {
     var image = document.getElementById("image" + id).value;
     var url = document.getElementById("url" + id).href;
     var tskt = document.getElementById("tskt" + id).value;
+    var cate = document.getElementById("cate" + id).value;
     // console.log(url);
 
     var newItem = {
@@ -159,6 +160,7 @@ const addToCompare = (product_id) => {
         image: image,
         url: url,
         tskt: tskt,
+        cate: cate,
     };
 
     if (localStorage.getItem("compare") == null) {
@@ -171,22 +173,34 @@ const addToCompare = (product_id) => {
         return obj.id == id;
     });
 
+    var matchesCate = $.grep(oldData, function (obj) {
+        return obj.cate != cate;
+    });
+
     if (matches.length) {
+        $("#myModal").modal();
+    } else if (matchesCate.length) {
+        swal("Khum được đôu", "Hai sản phẩm so sánh phải cùng loại!", "error");
     } else {
-        if (oldData.length <= 2) {
+        if (oldData.length <= 1) {
             oldData.push(newItem);
             $("#row_compare").append(
                 `
                     <div class="col-sm-6" id="table_compare` +
                     newItem.id +
                     `">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-bordered table_comparee">
                     <thead>
-                        <th>` +
+                        <th style="display:flex;justify-content:space-around;">` +
                     newItem.name +
+                    ` - ` +
+                    new Intl.NumberFormat("it-IT", {
+                        style: "currency",
+                        currency: "VND",
+                    }).format(newItem.price) +
                     `<a style="cursor:pointer;" onClick="deleteCompare(` +
                     newItem.id +
-                    `)">Xoa</a>` +
+                    `)"><i class="fa-solid fa-xmark fa-lg"></i></a>` +
                     `</th>
                     </thead>
                     <tbody>
@@ -194,13 +208,18 @@ const addToCompare = (product_id) => {
                     newItem.tskt +
                     `
                     </tbody>
-                </table>
-                </div>`
+                    <tfoot>
+                    <td><a class="primary-btn" style="cursor:pointer;" href="` +
+                    newItem.url +
+                    `">Mua Ngay</a></td>
+                    </tfoot>
+                    </table>
+                    </div>`
             );
         }
+        localStorage.setItem("compare", JSON.stringify(oldData));
+        $("#myModal").modal();
     }
-    localStorage.setItem("compare", JSON.stringify(oldData));
-    $("#myModal").modal();
 };
 
 function viewCompared() {
@@ -219,13 +238,18 @@ function viewCompared() {
                     <div class="col-sm-6" id="table_compare` +
                     id +
                     `">
-                    <table class="table table-hover table-bordered">
+                    <table class="table table-bordered">
                     <thead>
-                        <th>` +
+                        <th style="display:flex;justify-content:space-around;">` +
                     name +
+                    ` - ` +
+                    new Intl.NumberFormat("it-IT", {
+                        style: "currency",
+                        currency: "VND",
+                    }).format(price) +
                     `<a style="cursor:pointer;" onClick="deleteCompare(` +
                     id +
-                    `)">Xoa</a>` +
+                    `)"><i class="fa-solid fa-xmark fa-lg"></i></a>` +
                     `</th>
                     </thead>
                     <tbody>
@@ -233,6 +257,11 @@ function viewCompared() {
                     tskt +
                     `
                     </tbody>
+                    <tfoot>
+                    <td><a class="primary-btn" style="cursor:pointer;" href="` +
+                    url +
+                    `">Mua Ngay</a></td>
+                    </tfoot>
                 </table>
                 </div>`
             );

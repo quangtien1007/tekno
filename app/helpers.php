@@ -1,11 +1,7 @@
 <?php
 
-use App\Http\Controllers\Controller;
-use App\Models\SanPham;
 use App\Models\User;
-use \App\Models\Message;
-use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\DB;
 
 if (!function_exists('isPhoto')) {
     function isPhoto($path)
@@ -44,5 +40,15 @@ if (!function_exists('getUserMessage')) {
         // Show just the users and not the admins as well
         $users = User::where('is_admin', false)->orderBy('id', 'DESC')->get();
         return $users;
+    }
+}
+
+if (!function_exists('getSanPhamBanChay')) {
+    function getSanPhamBanChay()
+    {
+        $banchay = DB::table('donhang_chitiet')
+            ->select('sanpham_id', DB::raw('SUM(soluongban) as total_sales'))->groupBy('sanpham_id')
+            ->get();
+        return $banchay;
     }
 }

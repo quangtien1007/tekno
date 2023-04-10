@@ -86,7 +86,7 @@
 								<h4 class="product-price">{{number_format($sanpham->dongia)}}<sup>đ</sup>
                                     <del class="product-old-price">{{number_format($sanpham->dongia + ($sanpham->dongia*0.1))}}<sup>đ</sup></del>
                                 </h4>
-								<span class="product-available">In Stock</span>
+								<span class="product-available">Còn hàng</span>
 							</div>
 							<p><span style="font-size: 10pt;"><img src="https://cdn-icons-png.flaticon.com/512/181/181645.png" width="26" height="26"> Hư g&igrave; đổi nấy&nbsp;<strong>12 th&aacute;ng</strong> tại 3383 si&ecirc;u thị to&agrave;n quốc (miễn ph&iacute; th&aacute;ng đầu)</span></p>
                             <p><span style="font-size: 10pt;"><img src="https://cdn-icons-png.flaticon.com/512/2438/2438078.png" width="22" height="22"> &nbsp;Bảo h&agrave;nh&nbsp;ch&iacute;nh h&atilde;ng điện thoại 1 năm&nbsp;tại c&aacute;c trung t&acirc;m bảo h&agrave;nh h&atilde;ng</span></p>
@@ -118,8 +118,8 @@
 									Số lượng
 									<div class="input-number">
 										<input name="qty" type="number" value="1" readonly>
-										<span class="qty-up">+</span>
-										<span class="qty-down">-</span>
+										<span class="qty-ups">+</span>
+										<span class="qty-downs">-</span>
 									</div>
 								</div>
 								<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>
@@ -127,8 +127,7 @@
 
                         </form>
 							<ul class="product-btns">
-								<li><a href="#"><i class="fa fa-heart-o"></i> yêu thích</a></li>
-
+								<li><a style="cursor: pointer" onclick="addToWishlist({{$sanpham->id}})"><i class="fa fa-heart-o"></i> yêu thích</a></li>
 							</ul>
 
 							<ul class="product-links">
@@ -385,6 +384,7 @@
 								<img src="{{ env('APP_URL') . '/images/sanpham/' . $value->hinhanh }}" alt="">
 								<div class="product-label">
 									<span class="sale">-10%</span>
+                                    <span class="new">MỚI</span>
 								</div>
 							</div>
 							<div class="product-body">
@@ -407,6 +407,8 @@
 								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>
 							</div>
                               <!-- input hidden de so sanh san pham -->
+                              <input type="hidden" value="{{$value->thongsokythuat}}" id="tskt{{$value->id}}">
+                              <input type="hidden" value="{{$value->loaisanpham_id}}" id="cate{{$value->id}}">
                               <input type="hidden" value="{{$value->tensanpham}}" id="name{{$value->id}}">
                               <input type="hidden" value="{{$value->dongia}}" id="price{{$value->id}}">
                               <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$value->hinhanh }}" id="image{{$value->id}}">
@@ -421,7 +423,7 @@
                   <div class="container">
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
-                      <div class="modal-dialog modal-lg">
+                      <div style="width: 1200px" class="modal-dialog modal-xl">
 
                         <!-- Modal content-->
                         <div class="modal-content">
@@ -429,26 +431,18 @@
                             {{-- <button type="button" class="close" data-dismiss="modal">&times;</button> --}}
                             <h4 class="modal-title">So sánh sản phẩm (Tối đa 3 sản phẩm)</h4>
                           </div>
-                          <div class="modal-body">
-                            <table class="table" id="row_compare">
-                                <thead>
-                                  <tr>
-                                      <th>Hỉnh ảnh</th>
-                                      <th>Sản phẩm</th>
-                                      <th>Giá</th>
-                                        <th>Thông số kỹ thuật</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                              </table>
+                          <div class="row modal-body" id="row_compare">
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                           </div>
                         </div>
-
+                        <style>
+                            #row_compare td{
+                                text-align: center;
+                                vertical-align: middle;
+                            }
+                          </style>
                       </div>
                     </div>
 

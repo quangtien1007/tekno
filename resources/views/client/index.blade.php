@@ -129,6 +129,7 @@
                                                 </form>
 											</div>
                                             <!-- input hidden de so sanh san pham -->
+                                            <input type="hidden" value="{{$item->loaisanpham_id}}" id="cate{{$item->id}}">
                                             <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                                             <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
                                             <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
@@ -153,13 +154,13 @@
                   <div class="container">
                     <!-- Modal -->
                     <div class="modal fade" id="myModal" role="dialog">
-                      <div style="width:1200px" class="modal-dialog modal-lg">
+                      <div style="width:1200px" class="modal-dialog modal-xl">
 
                         <!-- Modal content-->
                         <div class="modal-content">
                           <div class="modal-header">
-                              <h4 class="modal-title">So sánh sản phẩm (Tối đa 2 sản phẩm)</h4>
-                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 style="float: left;position:fixed;" class="modal-title">So sánh sản phẩm (Tối đa 2 sản phẩm)</h4>
+                              <button style="position: absolute;right:20px;" type="button" class="close" data-dismiss="modal"><i class="fa-solid fa-xmark fa-lg"></i></button>
                           </div>
                           <style>
                             td{
@@ -167,21 +168,7 @@
                                 vertical-align: middle;
                             }
                           </style>
-                          <div class="row modal-body" id="row_compare">
-                            {{-- <table class="table table-bordered" id="row_compare">
-                                <thead>
-                                    <tr>
-                                        <th>Ảnh</th>
-                                        <th>Sản phẩm</th>
-                                        <th>Giá</th>
-                                        <th>Thông số kỹ thuat</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                </tbody>
-                              </table> --}}
-                          </div>
+                          <div class="row modal-body" id="row_compare"></div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
                           </div>
@@ -312,6 +299,7 @@
 										</div>
 										<!-- /product -->
                                          <!-- input hidden de so sanh san pham -->
+                                         <input type="hidden" value="{{$item->loaisanpham_id}}" id="cate{{$item->id}}">
                                          <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                                          <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
                                          <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">

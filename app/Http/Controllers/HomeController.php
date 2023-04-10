@@ -92,12 +92,12 @@ class HomeController extends Controller
             $sanpham = SanPham::paginate(12);
             $hangsanxuat = HangSanXuat::all();
         }
-        $msp = DungluongSanPham::all();
+        $banchay = DB::table('donhang_chitiet')
+            ->select('sanpham_id', DB::raw('SUM(soluongban) as total_sales'))->groupBy('sanpham_id')
+            ->get();
         $lsp = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
 
-        // dd($lsp);
-
-        return view('client.sanpham', compact('sanpham', 'tenloai', 'msp', 'hangsanxuat', 'lsp'));
+        return view('client.sanpham', compact('sanpham', 'tenloai', 'hangsanxuat', 'lsp'));
     }
 
     public function getDanhMucChiTiet($tenloai_slug, $tenhang_slug)
@@ -110,14 +110,11 @@ class HomeController extends Controller
             $sanpham = SanPham::where('loaisanpham_id', $loaisanpham->id)->where('hangsanxuat_id', $hsx->id)->paginate(16);
             $hangsanxuat = SanPham::select('hangsanxuat_id')->where('loaisanpham_id', $loaisanpham->id)->distinct()->get();
         }
-        $msp = MauSanPham::all();
         $lsp = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
-        return view('client.sanpham', compact('sanpham', 'tenloai', 'msp', 'hangsanxuat', 'lsp'));
+        return view('client.sanpham', compact('sanpham', 'tenloai', 'hangsanxuat', 'lsp'));
     }
     public function postSanPham(Request $request)
     {
-        // $lsp = LoaiSanPham::where('tenloai_slug', $request->tenloai_slug)->first();
-        $msp = DungLuongSanPham::all();
         if (isset($request->price_min) && isset($request->price_max)) {
             $sanpham = SanPham::where('dongia', '>', $request->price_min)
                 ->where('dongia', '<', $request->price_max)
@@ -125,14 +122,14 @@ class HomeController extends Controller
             $tenloai = 'Tìm kiếm';
             $lsp = LoaiSanPham::where('id', $request->loaisanpham_id)->first();
             // dd($sanpham);
-            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp', 'msp'));
+            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp'));
         }
         if (isset($request->search)) {
             $sanpham = SanPham::where('tensanpham', 'LIKE', "%{$request->search}%")->paginate(15);
             $tenloai = 'Tìm kiếm';
             $lsp = LoaiSanPham::where('tenloai_slug', 'LIKE', "%{$request->search}%")->first();
 
-            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp', 'msp'));
+            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp'));
         }
         if (isset($request->tenloai_slug)) {
             $lsp = LoaiSanPham::where('tenloai_slug', $request->tenloai_slug)->first();
@@ -182,7 +179,7 @@ class HomeController extends Controller
                 session()->put('sapxep', 'default');
             }
 
-            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp', 'msp'));
+            return view('client.sanpham', compact('sanpham', 'tenloai', 'lsp'));
         } else {
             if ($request->sapxep == 'popularity') // Mua nhiều nhất
             {
@@ -220,7 +217,7 @@ class HomeController extends Controller
                 session()->put('sapxep', 'default');
             }
         }
-        return view('client.sanpham', compact('sanpham', 'lsp', 'msp'));
+        return view('client.sanpham', compact('sanpham', 'lsp'));
     }
 
     public function postTimSanPham(Request $request)
@@ -331,7 +328,7 @@ class HomeController extends Controller
 
     public function postDatHang(Request $request)
     {
-        // dd($request);
+        $tenloai = 'Đặt hàng thành công';
         $tinhtrang = 1;
         $status_dh = DB::select("SHOW TABLE STATUS LIKE 'donhang'"); //Câu lệnh xem trạng thái của bảng
         $id_dh = $status_dh[0]->Auto_increment;
@@ -379,7 +376,7 @@ class HomeController extends Controller
             //
             // $ct->save();
             Mail::to(Auth::user()->email)->send(new DatHangEmail($dh));
-            return redirect()->route('client.dathang.success');
+            return view('client.dathangthanhcong', compact('tenloai'));
             // //
         } elseif ($request->payment_opt == 'paypal') {
             //
