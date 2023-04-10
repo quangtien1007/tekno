@@ -164,6 +164,21 @@ textarea.input {
     background-color: #fff;
     padding: 0px 35px 0px 15px;
 }
+
+.input-number input[type="text"]::-webkit-inner-spin-button,
+.input-number input[type="text"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-number input[type="text"] {
+    -moz-appearance: textfield;
+    height: 40px;
+    width: 100%;
+    border: 1px solid #e4e7ed;
+    background-color: #fff;
+    padding: 0px 35px 0px 15px;
+}
 /* input money */
 .input-number .qty-up,
 .input-number .qty-down {

@@ -72,10 +72,8 @@
 													@foreach ($donhang as $item)
 													@php
 														$id_sp = DB::table('donhang_chitiet')->where('donhang_id',$item->id)->first();
-														// dd($id_sp->sanpham_id);
 													@endphp
 													<tr>
-														{{-- <td>{{DB::table('sanpham')->where('id',$id_sp->sanpham_id)->first()->tensanpham}}</td> --}}
 														<td>#{{ $item->id }}</td>
 														<td>{{ DB::table('sanpham')->where('id',$id_sp->sanpham_id)->first()->tensanpham}}</td>
 														<td>{{ $item->created_at }}</td>

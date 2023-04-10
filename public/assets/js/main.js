@@ -186,6 +186,13 @@
                 min: 1000000,
                 max: 70000000,
             },
+            ariaFormat: wNumb({
+                decimals: 3,
+            }),
+            format: wNumb({
+                decimals: 3,
+                thousand: ".",
+            }),
         });
 
         priceSlider.noUiSlider.on("update", function (values, handle) {

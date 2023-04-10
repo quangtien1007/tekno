@@ -91,6 +91,16 @@
 							<p><span style="font-size: 10pt;"><img src="https://cdn-icons-png.flaticon.com/512/181/181645.png" width="26" height="26"> Hư g&igrave; đổi nấy&nbsp;<strong>12 th&aacute;ng</strong> tại 3383 si&ecirc;u thị to&agrave;n quốc (miễn ph&iacute; th&aacute;ng đầu)</span></p>
                             <p><span style="font-size: 10pt;"><img src="https://cdn-icons-png.flaticon.com/512/2438/2438078.png" width="22" height="22"> &nbsp;Bảo h&agrave;nh&nbsp;ch&iacute;nh h&atilde;ng điện thoại 1 năm&nbsp;tại c&aacute;c trung t&acirc;m bảo h&agrave;nh h&atilde;ng</span></p>
 							<div class="product-options">
+                                <select class="form-control formselect required" placeholder="Select Category"
+                                    id="sub_category_name">
+                                    <option value="0" disabled selected>Select
+                                        Main Category*</option>
+                                        @foreach ($dl->where('sanpham_id',$sanpham->id) as $item)
+										<option value="{{$item->id}}">{{ucfirst($item->dungluong)}}</option>
+                                        @endforeach
+                                </select>
+                                <select class="form-control formselect required" placeholder="Select Sub Category" id="sub_category">
+                                </select>
                                 @if($sanpham->loaisanpham_id == 1 || $sanpham->loaisanpham_id == 2 || $sanpham->loaisanpham_id == 3 )
 								<label>
 									{{-- <p>D.Lượng</p> --}}
@@ -124,6 +134,29 @@
 								</div>
 								<button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>
 							</div>
+
+                            <script>
+                                $(document).ready(function () {
+                                $('#sub_category_name').on('change', function () {
+                                let id = $(this).val();
+                                $('#sub_category').empty();
+                                $('#sub_category').append(`<option value="0" disabled selected>Processing...</option>`);
+                                $.ajax({
+                                type: 'GET',
+                                url: 'getMauTheoDungLuong/' + id,
+                                success: function (response) {
+                                var response = JSON.parse(response);
+                                console.log(response);
+                                $('#sub_category').empty();
+                                $('#sub_category').append(`<option value="0" disabled selected>Select Sub Category*</option>`);
+                                response.forEach(element => {
+                                    $('#sub_category').append(`<option value="${element['id']}">${element['mau']}</option>`);
+                                    });
+                                }
+                            });
+                        });
+                    });
+                    </script>
 
                         </form>
 							<ul class="product-btns">

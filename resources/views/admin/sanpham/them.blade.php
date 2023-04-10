@@ -1,6 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
+<div class="container">
+    <div class="row">
+    {{-- <div class="col-md-8"></div> --}}
 	<div class="card">
 		<div class="card-header">Thêm sản phẩm</div>
 		<div class="card-body">
@@ -65,55 +68,58 @@
 					@enderror
 				</div>
 
-				<div class="mb-3">
-					<label class="form-label" for="mausanpham">Màu của sản phẩm:</label> &nbsp
-					Đen<input type="checkbox" value="Đen" name="mausanpham[]" id="chk_den" onclick="handleCheckedBlack()"> &nbsp
-					<span id="sl_den" style="display: none">Số lượng<input id="isl_den" class="form-control" name="mausanpham[]" type="number" disabled></span>
-					<span id="gt_den" style="display: none">Giá trị<input id="igt_den" class="form-control" name="mausanpham[]" type="number" disabled></span>
+                <div class="mb-3">
+					<label class="form-label" for="dungluong">Dung lượng:</label> &nbsp; <br>
+                    <div class="row" style="">
+                        <div class="col-sm-3">64GB<input type="checkbox" value="64GB" name="dungluong[]" id="dl64" onclick="handleChecked('mausanpham_64','dl64')"></div>
+                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_64','sl_do_64')" id="mausanpham_64" disabled type="checkbox">&nbsp;&nbsp;<input id="sl_do_64" disabled type="text"></div>
 
-					Đỏ<input type="checkbox" value="Đỏ" name="mausanpham[]" id="chk_do" onclick="handleCheckedRed()">
-					<span id="sl_do" style="display: none">Số lượng<input id="isl_do" class="form-control" name="mausanpham[]" type="number" disabled></span>
-					<span id="gt_do" style="display: none">Giá trị<input id="igt_do" class="form-control" name="mausanpham[]" type="number" disabled></span>
+                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_64','sl_xanh_64')" id="mausanpham_64" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_64" type="text"></div>
 
-					Vàng<input type="checkbox" value="Vàng" name="mausanpham[]" id="chk_vang" onclick="handleCheckedYellow()">&nbsp
-					<span id="sl_vang" style="display: none">Số lượng<input id="isl_vang" class="form-control" name="mausanpham[]" type="number" disabled></span>
-					<span id="gt_vang" style="display: none">Giá trị<input id="igt_vang" class="form-control" name="mausanpham[]" type="number" disabled></span>
+                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_64','sl_trang_64')" id="mausanpham_64" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_64" type="text"></div>
+                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_64','sl_vang_64')" id="mausanpham_64" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_64" type="text"></div>
 
-					Trắng<input type="checkbox" value="Trắng" name="mausanpham[]" id="chk_trang" onclick="handleCheckedWhite()">&nbsp
-					<span id="sl_trang" style="display: none">Số lượng<input id="isl_trang" class="form-control" name="mausanpham[]" type="number" disabled></span>
-					<span id="gt_trang" style="display: none">Giá trị<input id="igt_trang" class="form-control" name="mausanpham[]" type="number" disabled></span>
+                    </div>
+					<div class="row" id="">
+                        <div class="col-sm-3">128GB<input type="checkbox" value="128GB" name="dungluong[]" id="dl128" onclick="handleChecked('mausanpham_128','dl128')"></div>
+                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_128','sl_do_128')" id="mausanpham_128" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_do_128" type="text"></div>
 
-					Xanh<input type="checkbox" value="Xanh" name="mausanpham[]" id="chk_xanh" onclick="handleCheckedBlue()">&nbsp
-					<span id="sl_xanh" style="display: none">Số lượng<input id="isl_xanh" class="form-control" name="mausanpham[]" type="number" disabled></span>
-					<span id="gt_xanh" style="display: none">Giá trị<input id="igt_xanh" class="form-control" name="mausanpham[]" type="number" disabled></span>
+                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_128','sl_xanh_128')" id="mausanpham_128" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_128" type="text"></div>
 
-					Tím<input type="checkbox" value="Tím" name="mausanpham[]" id="chk_tim" onclick="handleCheckedPurple()"> &nbsp
-					<span id="sl_tim" style="display: none">Số lượng<input id="isl_tim" class="form-control" name="mausanpham[]" type="number" disabled></span>
-					<span id="gt_tim" style="display: none">Giá trị<input id="igt_tim" class="form-control" name="mausanpham[]" type="number" disabled></span>
-					<a href="" class="form-label">Mau khac</a>
+                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_128','sl_trang_128')" id="mausanpham_128" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_128" type="text"></div>
+                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_128','sl_vang_128')" id="mausanpham_128" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_128" type="text"></div>
+
+                    </div>
+
+					<div class="row" id="">
+                        <div class="col-sm-3">256GB<input type="checkbox" value="256GB" name="dungluong[]" id="dl256" onclick="handleChecked('mausanpham_256','dl256')"></div>
+                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_256','sl_do_256')" id="mausanpham_256" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_do_256" type="text"></div>
+
+                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_256','sl_xanh_256')" id="mausanpham_256" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_256" type="text"></div>
+                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_256','sl_trang_256')" id="mausanpham_256" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_256" type="text"></div>
+                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_256','sl_vang_256')" id="mausanpham_256" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_256" type="text"></div>
+                    </div>
+
+					<div class="row" id="">
+                        <div class="col-sm-3">512GB<input type="checkbox" value="512GB" name="dungluong[]" id="dl512" onclick="handleChecked('mausanpham_512','dl512')"></div>
+                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_512','sl_do_512')" id="mausanpham_512" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_do_512" type="text"></div>
+                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_512','sl_xanh_512')" id="mausanpham_512" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_512" type="text"></div>
+                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_512','sl_trang_512')" id="mausanpham_512" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_512" type="text"></div>
+                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_512','sl_vang_512')" id="mausanpham_512" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_512" type="text"></div>
+
+                    </div>
+
+					<div class="row" id="">
+                        <div class="col-sm-3">1TB<input type="checkbox" value="128GB" name="dungluong[]" id="dl1" onclick="handleChecked('mausanpham_1','dl1')"></div>
+                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_1','sl_do_1')" id="mausanpham_1" name="sl_do_1" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_do_1" type="text"></div>
+                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_1','sl_xanh_1')" id="mausanpham_1" name="sl_xanh_1" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_1" type="text"></div>
+                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_1','sl_trang_1')" id="mausanpham_1" name="sl_trang_1" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_1" type="text"></div>
+                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_1','sl_vang_1')" id="mausanpham_1" name="sl_vang_1" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_1" type="text"></div>
+                    </div>
 				</div>
 
 				<div class="mb-3">
-					<label class="form-label" for="dungluong">Dung lượng:</label> &nbsp
-					64GB<input type="checkbox" value="64GB" name="dungluong[]" id="dl64" onclick="handleChecked64()"> &nbsp
-					<span id="sl64" style="display: none">Số lượng<input id="isl64" class="form-control" name="dungluong[]" type="number" disabled></span>
-					<span id="gt64" style="display: none">Gia tri<input id="igt64" class="form-control" name="dungluong[]" type="number" disabled></span>
 
-					128GB<input type="checkbox" value="128GB" name="dungluong[]" id="dl128" onclick="handleChecked128()">&nbsp
-					<span id="sl128" style="display: none">Số lượng<input id="isl128" class="form-control" name="dungluong[]" type="number" disabled></span>
-					<span id="gt128" style="display: none">Gia tri<input id="igt128" class="form-control" name="dungluong[]" type="number" disabled></span>
-
-					256GB<input type="checkbox" value="256GB" name="dungluong[]" id="dl256" onclick="handleChecked256()">&nbsp
-					<span id="sl256" style="display: none">Số lượng<input id="isl256" class="form-control" name="dungluong[]" type="number" disabled></span>
-					<span id="gt256" style="display: none">Gia tri<input id="igt256" class="form-control" name="dungluong[]" type="number" disabled></span>
-
-					512GB<input type="checkbox" value="512GB" name="dungluong[]" id="dl512" onclick="handleChecked512()">&nbsp
-					<span id="sl512" style="display: none">Số lượng<input id="isl512" class="form-control" name="dungluong[]" type="number" disabled></span>
-					<span id="gt512" style="display: none">Gia tri<input id="igt512" class="form-control" name="dungluong[]" type="number" disabled></span>
-
-					1TB<input type="checkbox" value="1TB" name="dungluong[]" id="dl1" onclick="handleChecked1()"> &nbsp
-					<span id="sl1" style="display: none">Số lượng<input id="isl1" class="form-control" name="dungluong[]" type="number" disabled></span>
-					<span id="gt1" style="display: none">Gia tri<input id="igt1" class="form-control" name="dungluong[]" type="number" disabled></span>
 				</div>
 
 				<div class="mb-3">
@@ -130,6 +136,8 @@
 			</form>
 		</div>
 	</div>
+</div>
+</div>
 @endsection
 <?php
 function showCategories($categories, $parent_id = 0, $char = '')

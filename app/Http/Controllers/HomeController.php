@@ -24,6 +24,11 @@ use \App\Models\Message;
 
 class HomeController extends Controller
 {
+    public function getMauTheoDungLuong($id)
+    {
+        echo json_encode(DB::table('mausanpham')->where('dungluong_id', $id)->get());
+    }
+
     public function getHome()
     {
         //show tin nhan
@@ -115,9 +120,10 @@ class HomeController extends Controller
     }
     public function postSanPham(Request $request)
     {
+        // dd($request);
         if (isset($request->price_min) && isset($request->price_max)) {
-            $sanpham = SanPham::where('dongia', '>', $request->price_min)
-                ->where('dongia', '<', $request->price_max)
+            $sanpham = SanPham::where('dongia', '>', (float)$request->price_min * 1000000)
+                ->where('dongia', '<', (float)$request->price_max * 1000000)
                 ->paginate(15);
             $tenloai = 'Tìm kiếm';
             $lsp = LoaiSanPham::where('id', $request->loaisanpham_id)->first();

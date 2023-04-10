@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Auth;
 Auth::routes();
 // Route::head()
 // Trang chủ
+Route::get('/san-pham/dien-thoai/getMauTheoDungLuong/{id}', [HomeController::class, 'getMauTheoDungLuong']);
 Route::get('/', [HomeController::class, 'getHome'])->name('client');
 Route::any('/home', [HomeController::class, 'getHome'])->name('client');
 
