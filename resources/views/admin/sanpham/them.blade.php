@@ -67,54 +67,58 @@
 						<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 					@enderror
 				</div>
-
+                        @php
+                            $mau = DB::table('mausanpham')->get();
+                        @endphp
                 <div class="mb-3">
 					<label class="form-label" for="dungluong">Dung lượng:</label> &nbsp; <br>
                     <div class="row" style="">
-                        <div class="col-sm-3">64GB<input type="checkbox" value="64GB" name="dungluong[]" id="dl64" onclick="handleChecked('mausanpham_64','dl64')"></div>
-                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_64','sl_do_64')" id="mausanpham_64" disabled type="checkbox">&nbsp;&nbsp;<input id="sl_do_64" disabled type="text"></div>
-
-                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_64','sl_xanh_64')" id="mausanpham_64" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_64" type="text"></div>
-
-                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_64','sl_trang_64')" id="mausanpham_64" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_64" type="text"></div>
-                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_64','sl_vang_64')" id="mausanpham_64" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_64" type="text"></div>
-
+                        <div class="col-sm-3">64GB<input type="checkbox" value="1" name="dungluong_mau[]" id="dl_64" onclick="handleChecked('mau_64','dl_64')"></div>
+                        @foreach ($mau as $item)
+                        <div class="col-sm-2">{{$item->mau}}
+                            <input value="{{$item->id}}" name="dungluong_mau[]" onclick="handleCheckColor('mau_64','{{Str::slug($item->mau,'.')}}_64')" id="mau_64" disabled type="checkbox">&nbsp;&nbsp;
+                            <input name="dungluong_mau[]" id="{{Str::slug($item->mau,'.')}}_64" disabled type="text">
+                        </div>
+                        @endforeach
                     </div>
 					<div class="row" id="">
-                        <div class="col-sm-3">128GB<input type="checkbox" value="128GB" name="dungluong[]" id="dl128" onclick="handleChecked('mausanpham_128','dl128')"></div>
-                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_128','sl_do_128')" id="mausanpham_128" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_do_128" type="text"></div>
-
-                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_128','sl_xanh_128')" id="mausanpham_128" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_128" type="text"></div>
-
-                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_128','sl_trang_128')" id="mausanpham_128" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_128" type="text"></div>
-                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_128','sl_vang_128')" id="mausanpham_128" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_128" type="text"></div>
-
+                        <div class="col-sm-3">128GB<input type="checkbox" value="2" name="dungluong_mau[]" id="dl_128" onclick="handleChecked('mau_128','dl_128')"></div>
+                        @foreach ($mau as $item)
+                        <div class="col-sm-2">{{$item->mau}}
+                            <input value="{{$item->id}}" name="dungluong_mau[]" onclick="handleCheckColor('mau_128','{{Str::slug($item->mau,'.')}}_128')" id="mau_128" disabled type="checkbox">&nbsp;&nbsp;
+                            <input name="dungluong_mau[]" id="{{Str::slug($item->mau,'.')}}_128" disabled type="text">
+                        </div>
+                        @endforeach
                     </div>
 
 					<div class="row" id="">
-                        <div class="col-sm-3">256GB<input type="checkbox" value="256GB" name="dungluong[]" id="dl256" onclick="handleChecked('mausanpham_256','dl256')"></div>
-                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_256','sl_do_256')" id="mausanpham_256" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_do_256" type="text"></div>
-
-                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_256','sl_xanh_256')" id="mausanpham_256" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_256" type="text"></div>
-                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_256','sl_trang_256')" id="mausanpham_256" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_256" type="text"></div>
-                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_256','sl_vang_256')" id="mausanpham_256" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_256" type="text"></div>
+                        <div class="col-sm-3">256GB<input type="checkbox" value="3" name="dungluong_mau[]" id="dl_256" onclick="handleChecked('mau_256','dl_256')"></div>
+                        @foreach ($mau as $item)
+                        <div class="col-sm-2">{{$item->mau}}
+                            <input value="{{$item->id}}" name="dungluong_mau[]" onclick="handleCheckColor('mau_256','{{Str::slug($item->mau,'.')}}_256')" id="mau_256" disabled type="checkbox">&nbsp;&nbsp;
+                            <input name="dungluong_mau[]" id="{{Str::slug($item->mau,'.')}}_256" disabled type="text">
+                        </div>
+                        @endforeach
                     </div>
 
 					<div class="row" id="">
-                        <div class="col-sm-3">512GB<input type="checkbox" value="512GB" name="dungluong[]" id="dl512" onclick="handleChecked('mausanpham_512','dl512')"></div>
-                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_512','sl_do_512')" id="mausanpham_512" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_do_512" type="text"></div>
-                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_512','sl_xanh_512')" id="mausanpham_512" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_512" type="text"></div>
-                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_512','sl_trang_512')" id="mausanpham_512" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_512" type="text"></div>
-                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_512','sl_vang_512')" id="mausanpham_512" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_512" type="text"></div>
-
+                        <div class="col-sm-3">512GB<input type="checkbox" value="4" name="dungluong_mau[]" id="dl_512" onclick="handleChecked('mau_512','dl_512')"></div>
+                        @foreach ($mau as $item)
+                        <div class="col-sm-2">{{$item->mau}}
+                            <input value="{{$item->id}}" name="dungluong_mau[]" onclick="handleCheckColor('mau_512','{{Str::slug($item->mau,'.')}}_512')" id="mau_512" disabled type="checkbox">&nbsp;&nbsp;
+                            <input name="dungluong_mau[]" id="{{Str::slug($item->mau,'.')}}_512" disabled type="text">
+                        </div>
+                        @endforeach
                     </div>
 
 					<div class="row" id="">
-                        <div class="col-sm-3">1TB<input type="checkbox" value="128GB" name="dungluong[]" id="dl1" onclick="handleChecked('mausanpham_1','dl1')"></div>
-                        <div class="col-sm-2">Đỏ<input onclick="handleCheckColor('mausanpham_1','sl_do_1')" id="mausanpham_1" name="sl_do_1" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_do_1" type="text"></div>
-                        <div class="col-sm-2">Xanh<input onclick="handleCheckColor('mausanpham_1','sl_xanh_1')" id="mausanpham_1" name="sl_xanh_1" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_xanh_1" type="text"></div>
-                        <div class="col-sm-2">Trắng<input onclick="handleCheckColor('mausanpham_1','sl_trang_1')" id="mausanpham_1" name="sl_trang_1" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_trang_1" type="text"></div>
-                        <div class="col-sm-2">Vàng<input onclick="handleCheckColor('mausanpham_1','sl_vang_1')" id="mausanpham_1" name="sl_vang_1" disabled type="checkbox">&nbsp;&nbsp;<input disabled id="sl_vang_1" type="text"></div>
+                        <div class="col-sm-3">1TB<input type="checkbox" value="5" name="dungluong[]" id="dl_1" onclick="handleChecked('mau_1','dl_1')"></div>
+                        @foreach ($mau as $item)
+                        <div class="col-sm-2">{{$item->mau}}
+                            <input value="{{$item->id}}" name="dungluong_mau[]" onclick="handleCheckColor('mau_1','{{Str::slug($item->mau,'.')}}_1')" id="mau_1" disabled type="checkbox">&nbsp;&nbsp;
+                            <input name="dungluong_mau[]" id="{{Str::slug($item->mau,'.')}}_1" disabled type="text">
+                        </div>
+                        @endforeach
                     </div>
 				</div>
 

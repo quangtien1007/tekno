@@ -157,7 +157,6 @@ const handleChecked = (mid, dlid) => {
 };
 const handleCheckColor = (slel, slid) => {
     if (document.getElementById(slel).checked) {
-        // console.log(slel);
         document.getElementById(slid).disabled = false;
     } else {
         document.getElementById(slid).disabled = true;
