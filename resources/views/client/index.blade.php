@@ -124,7 +124,12 @@
 											<div class="add-to-cart">
                                                 <form action="{{route('client.giohang.add')}}" method="post">
                                                     @csrf
+                                                    @php
+                                                        $dungluong_mau = DB::table('dungluong_mau')->where('sanpham_id',$item->id)->first();
+                                                    @endphp
                                                     <input type="hidden" name="tensanpham_slug" value="{{$item->tensanpham_slug}}">
+                                                    <input type="hidden" name="dlsp" value="{{DB::table('dungluong')->where('id',$dungluong_mau->dungluong_id)->first()->dungluong}}">
+                                                    <input type="hidden" name="msp" value="{{DB::table('mau')->where('id',$dungluong_mau->mau_id)->first()->mau}}">
                                                     <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                 </form>
 											</div>

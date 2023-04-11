@@ -8,6 +8,7 @@ use App\Models\SanPham;
 use App\Models\User;
 use App\Models\MauSanPham;
 use App\Models\DungLuongSanPham;
+use App\Models\DungLuong_Mau;
 use App\Models\DonHang;
 use App\Models\DonHang_ChiTiet;
 use App\Models\LoaiSanPham;
@@ -24,9 +25,15 @@ use \App\Models\Message;
 
 class HomeController extends Controller
 {
-    public function getMauTheoDungLuong($id)
+    public function getMauTheoDungLuong($dungluong, $spid)
     {
-        echo json_encode(DB::table('mausanpham')->where('dungluong_id', $id)->get());
+        $dungluong_id = DB::table('dungluong')->where('dungluong', $dungluong)->first()->id;
+        $mau_id = DB::table('dungluong_mau')->where('dungluong_id', $dungluong_id)->where('sanpham_id', $spid)->get();
+        foreach ($mau_id as $item) {
+            $mau = DB::table('mau')->where('id', $item->mau_id)->first()->mau;
+            $item->mau = $mau;
+        }
+        echo json_encode($mau_id);
     }
 
     public function getHome()
@@ -240,12 +247,12 @@ class HomeController extends Controller
 
     public function getSanPham_ChiTiet($tenloai_slug, $tensanpham_slug)
     {
-        $msp = MauSanPham::all();
-        $dl = DungLuongSanPham::all();
+        $sp = SanPham::where('tensanpham_slug', $tensanpham_slug)->first();
+        $dl = DB::table('dungluong_mau')->distinct()->select('dungluong_id')->where('sanpham_id', '=', $sp->id)->get();
         $loaisanpham = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
         $sanpham = SanPham::where('tensanpham_slug', $tensanpham_slug)->first();
         $sanphamlienquan = SanPham::where('loaisanpham_id', $loaisanpham->id)->orderBy('created_at', 'desc')->take(4)->get();
-        return view('client.sanpham_chitiet', compact('loaisanpham', 'sanpham', 'sanphamlienquan', 'msp', 'dl'));
+        return view('client.sanpham_chitiet', compact('loaisanpham', 'sanpham', 'sanphamlienquan', 'dl'));
     }
 
     public function getLienHe()
@@ -310,9 +317,11 @@ class HomeController extends Controller
     public function getGioHang_Tang($row_id)
     {
         $row = Cart::get($row_id);
-        $msp = MauSanPham::where(['sanpham_id' => $row->id, 'mau' => $row->color])->first();
-        $dlsp = DungLuongSanPham::where(['sanpham_id' => $row->id, 'dungluong' => $row->storage])->first();
-        if ($row->qty < $msp->soluongton || $row->qty < $dlsp->soluongton) {
+        $color = MauSanPham::where('mau', $row->color)->first()->id;
+        $storage = DungLuongSanPham::where('dungluong', $row->storage)->first()->id;
+        $soluongton = DungLuong_Mau::where('dungluong_id', $storage)->where('mau_id', $color)->where('sanpham_id', $row->id)->first();
+
+        if ($row->qty < $soluongton->soluongton) {
             Cart::update($row_id, $row->qty + 1);
             return redirect()->route('client.giohang');
         } else {
@@ -519,19 +528,5 @@ class HomeController extends Controller
     {
         Cart::destroy();
         return view('client.dathangthanhcong');
-    }
-
-    public function postSoSanh(Request $request)
-    {
-        $sanpham = SanPham::where('id', $request->idsp)->first();
-        $addItems = "<script>
-                        console.log('started');
-                        var sosanh = ['{$sanpham->id}','asdads','{$sanpham->tensanpham}','{$sanpham->dongia}'];
-                        var items = JSON.stringify(sosanh)
-                        localStorage.setItem('sanpham{$sanpham->id}', items);
-                        const storedBlogs = JSON.parse(localStorage.getItem('sanpham{$sanpham->id}'));
-                    </script>";
-        // dd($sanpham);
-        // session()->push('sosanh', [$sanpham]);
     }
 }

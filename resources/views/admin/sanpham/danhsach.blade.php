@@ -47,8 +47,8 @@
 							<td>{{ $value->LoaiSanPham->tenloai }}</td>
 							<td>{{ $value->tensanpham }}</td>
 							<td>
-									@foreach (DB::table('mausanpham')->where('sanpham_id',$value->id)->get() as $item)
-                                        {{$item->mau}} -
+									@foreach (DB::table('dungluong_mau')->where('sanpham_id',$value->id)->get() as $item)
+                                        {{$item->mau_id}} -
 									@endforeach
 							</td>
 							<td>{{ $value->soluong }}</td>

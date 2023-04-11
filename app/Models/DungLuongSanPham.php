@@ -9,12 +9,9 @@ class DungLuongSanPham extends Model
 {
     use HasFactory;
 
-    protected $table = 'dungluongsanpham';
+    protected $table = 'dungluong';
 
     protected $fillable = [
-        'sanpham_id',
         'dungluong',
-        'soluongton',
-        'giatridungluong',
     ];
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DungLuong_Mau;
 use App\Models\SanPham;
 use App\Models\LoaiSanPham;
 use App\Models\HangSanXuat;
@@ -61,7 +62,9 @@ class SanPhamController extends Controller
 
     public function postThem(Request $request)
     {
-        dd($request);
+        // dd($request);
+        // $var = 'dungluong_mau' . '1';
+        // dd($request->dungluong_id, ($request->$var)[0]);
         $this->validate($request, [
             'loaisanpham_id' => ['required'],
             'hangsanxuat_id' => ['required'],
@@ -136,73 +139,27 @@ class SanPhamController extends Controller
         $sp = DB::select("SHOW TABLE STATUS LIKE 'sanpham'"); //Câu lệnh xem trạng thái của bảng
         $id_sp = $sp[0]->Auto_increment; //Lay id tiep theo
 
-        $msp = DB::select("SHOW TABLE STATUS LIKE 'mausanpham'"); //Câu lệnh xem trạng thái của bảng
-        $id_msp = $msp[0]->Auto_increment;
-
-        $dlsp = DB::select("SHOW TABLE STATUS LIKE 'dungluongsanpham'"); //Câu lệnh xem trạng thái của bảng
-        $id_dlsp = $dlsp[0]->Auto_increment;
-        // dd($id_msp);
-
-        if (isset($request->dungluong_mau_1))
-            for ($i = 0; $i < count($request->dungluong_mau_1); $i += count($request->dungluong_mau_1) - 1) {
-                DB::table('mau_dl')->insert([
-                    'duongluong_id' => $request->dungluong_mau_1[0],
-                    'mau_id' => $request->duongluong_mau_1[$i + 1],
-                    'soluongton' => $request->duongluong_mau_1[$i + 2],
-                ]);
-                DB::table('mau_dl')->insert([
-                    'duongluong_id' => $request->dungluong_mau_1[0],
-                    'mau_id' => $request->duongluong_mau_1[$i + 1],
-                    'soluongton' => $request->duongluong_mau_1[$i + 2],
-                ]);
+        if (isset($request->dungluong_id)) {
+            for ($i = 0; $i < count($request->dungluong_id); $i++) {
+                $var = 'dungluong_mau' . ($request->dungluong_id)[$i];
+                // dd($var);
+                for ($j = 0; $j <= count($request->$var) - 1; $j += 2) {
+                    $dlm = new DungLuong_Mau();
+                    $dlm->dungluong_id = ($request->dungluong_id)[$i];
+                    $dlm->mau_id = ($request->$var)[$j];
+                    $dlm->sanpham_id = $id_sp - 1;
+                    $dlm->soluongton = ($request->$var)[$j + 1];
+                    $dlm->save();
+                    // DB::table('dungluong_mau')->insert([
+                    //     'dungluong_id' => ($request->dungluong_id)[$i],
+                    //     'mau_id' => ($request->$var)[$j],
+                    //     'soluongton' => ($request->$var)[$j + 1],
+                    //     'sanpham_id' => $id_sp,
+                    // ]);
+                }
             }
+        }
 
-        // $msp = new MauSanPham();
-        // for ($i = 0; $i <= count($request->mausanpham) - 2; $i += 3) {
-        //     //chạy từ 0 tới tổng sl ptu trong mảng trừ đi 2, với bước nhảy là 3
-        //     if ($id_sp == 1) {
-        //         $idsp = $id_sp;
-        //     } else {
-        //         $idsp = $id_sp - 1;
-        //         //Lấy id tự động tăng tiếp theo và trừ 1 sẽ ra id hiện tại của sản phẩm vừa thêm
-        //     }
-        //     //                          0  1   2   3    4   5    6    7  8
-        //     //ví dụ về ptu trong mảng [do,200,0.4,vang,100,0.3,trang,10,0.2]
-        //     //count($request->mausanpham) sẽ bằng 8 - 2 = 6, khi đó ta sẽ thực hiện được 3 vòng lặp
-        //     // $i=0 là 1 vòng, $i=3 là 2 vòng, $i=6 là 3 vòng và khi $i=9 thì sẽ ngừng
-        //     //$i=0 sẽ lấy được mausanpham[0]='do',mausanpham[1]='200',mausanpham[3]='0.4' và tiếp tục
-        //     $msp->id = $id_msp;
-        //     $msp->sanpham_id = $idsp;
-        //     $msp->mau = $request->mausanpham[$i];
-        //     $msp->soluongton = $request->mausanpham[$i + 1];
-        //     $msp->giatrimau = $request->mausanpham[$i + 2];
-        //     // dd($msp);
-        //     $msp->save();
-        // }
-
-        // $dlsp = new DungLuongSanPham();
-        // for ($i = 0; $i <= count($request->dungluong) - 2; $i += 3) {
-        //     //chạy từ 0 tới tổng sl ptu trong mảng trừ đi 2, với bước nhảy là 3
-        //     if ($id_sp == 1) {
-        //         $idsp = $id_sp;
-        //     } else {
-        //         $idsp = $id_sp - 1;
-        //         //Lấy id tự động tăng tiếp theo và trừ 1 sẽ ra id hiện tại của sản phẩm vừa thêm
-        //     }
-        //     //                          0  1   2   3    4   5    6    7  8
-        //     //ví dụ về ptu trong mảng [do,200,0.4,vang,100,0.3,trang,10,0.2]
-        //     //count($request->dungluong) sẽ bằng 8 - 2 = 6, khi đó ta sẽ thực hiện được 3 vòng lặp
-        //     // $i=0 là 1 vòng, $i=3 là 2 vòng, $i=6 là 3 vòng và khi $i=9 thì sẽ ngừng
-        //     //$i=0 sẽ lấy được dungluong[0]='do',dungluong[1]='200',dungluong[3]='0.4' và tiếp tục
-        //     $dlsp->id = $id_dlsp;
-        //     $dlsp->sanpham_id = $idsp;
-        //     $dlsp->dungluong = $request->dungluong[$i];
-        //     $dlsp->soluongton = $request->dungluong[$i + 1];
-        //     $dlsp->giatridungluong = $request->dungluong[$i + 2];
-        //     // dd($msp);
-        //     $dlsp->save();
-        // }
-        // dd($msp);
 
         return redirect()->route('admin.sanpham')->with('success', 'Thêm sản phẩm thành công');
     }

@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\DungLuong_Mau;
 use App\Models\DungLuongSanPham;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
@@ -15,11 +16,11 @@ class DungLuongSanPhamImport implements ToModel, WithHeadingRow
      */
     public function model(array $row)
     {
-        return new DungLuongSanPham([
+        return new DungLuong_Mau([
             'sanpham_id' => $row['sanpham_id'],
-            'dungluong' => $row['dungluong'],
+            'dungluong_id' => $row['dungluong_id'],
+            'mau_id' => $row['mau_id'],
             'soluongton' => $row['soluongton'],
-            'giatridungluong' => $row['giatridungluong']
         ]);
     }
 }

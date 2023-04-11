@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\MauSanPham;
 
 return new class extends Migration
 {
@@ -14,17 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('mau', function (Blueprint $table) {
+        Schema::create('dungluong_mau', function (Blueprint $table) {
             $table->id();
-            $table->string('mau');
+            $table->foreignId('sanpham_id')->constrained('sanpham');
+            $table->foreignId('dungluong_id')->constrained('dungluong');
+            $table->foreignId('mau_id')->constrained('mau');
+            $table->integer('soluongton');
             $table->timestamps();
         });
-
-        MauSanPham::create(['mau' => 'Đen']);
-        MauSanPham::create(['mau' => 'Trắng']);
-        MauSanPham::create(['mau' => 'Xanh']);
-        MauSanPham::create(['mau' => 'Đỏ']);
-        MauSanPham::create(['mau' => 'Vàng']);
     }
 
     /**
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mau');
+        Schema::dropIfExists('mau_san_phams');
     }
 };

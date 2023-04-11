@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\DungLuongSanPham;
 
 return new class extends Migration
 {
@@ -13,14 +14,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('dungluongsanpham', function (Blueprint $table) {
+        Schema::create('dungluong', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('sanpham_id')->constrained('sanpham');
             $table->string('dungluong');
-            $table->integer('soluongton');
-            $table->double('giatridungluong');
             $table->timestamps();
         });
+
+        DungLuongSanPham::create(['dungluong' => '64GB']);
+        DungLuongSanPham::create(['dungluong' => '128GB']);
+        DungLuongSanPham::create(['dungluong' => '256GB']);
+        DungLuongSanPham::create(['dungluong' => '512GB']);
+        DungLuongSanPham::create(['dungluong' => '1TB']);
     }
 
     /**
@@ -30,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dung_luong_san_phams');
+        Schema::dropIfExists('dungluong');
     }
 };
