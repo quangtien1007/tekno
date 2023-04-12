@@ -11,7 +11,8 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="{{ asset('css/fontawesome.css') }}" />
 	<link rel="stylesheet" href="{{ asset('css/custom.css') }}" />
-	<link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
+    <script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E=" crossorigin="anonymous"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}" />
 
 	<!-- Scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -41,7 +42,7 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 						<li class="nav-item">
-							<a class="nav-link" href="#"><i class="fa-solid fa-chart-simple"></i></i> Thống kê bán hàng</a>
+							<a class="nav-link" href="{{route('admin')}}"><i class="fa-solid fa-chart-simple"></i></i> Thống kê bán hàng</a>
 						</li>
 					</ul>
 					<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -99,5 +100,7 @@
 		<footer>Bản quyền &copy; {{ date('Y') }} bởi {{ config('app.name', 'Laravel') }}.</footer>
 	</div>
 	<script src="{{asset('assets/js/index.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js" integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 </body>
 </html>

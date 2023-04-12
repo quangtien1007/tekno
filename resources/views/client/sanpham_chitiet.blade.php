@@ -91,19 +91,6 @@
 							<p><span style="font-size: 10pt;"><img src="https://cdn-icons-png.flaticon.com/512/181/181645.png" width="26" height="26"> Hư g&igrave; đổi nấy&nbsp;<strong>12 th&aacute;ng</strong> tại 3383 si&ecirc;u thị to&agrave;n quốc (miễn ph&iacute; th&aacute;ng đầu)</span></p>
                             <p><span style="font-size: 10pt;"><img src="https://cdn-icons-png.flaticon.com/512/2438/2438078.png" width="22" height="22"> &nbsp;Bảo h&agrave;nh&nbsp;ch&iacute;nh h&atilde;ng điện thoại 1 năm&nbsp;tại c&aacute;c trung t&acirc;m bảo h&agrave;nh h&atilde;ng</span></p>
 							<div class="product-options">
-                                {{-- {{dd($dl->where('sanpham_id',$sanpham->id)->groupBy('dungluong_id'))}} --}}
-                                {{-- <select class="form-control formselect required" placeholder="Select Category"
-                                    id="sub_category_name">
-                                    <option value="0" disabled selected>Select
-                                        Main Category*</option>
-                                        @foreach ($dl as $item)
-										<option value="{{$item->dungluong_id}}">
-                                            {{DB::table('dungluong')->where('id',$item->dungluong_id)->first()->dungluong}}
-                                        </option>
-                                        @endforeach
-                                </select> --}}
-                                {{-- <select class="form-control formselect required" placeholder="Select Sub Category" id="sub_category">
-                                </select> --}}
                                 @if($sanpham->loaisanpham_id == 1 || $sanpham->loaisanpham_id == 2 || $sanpham->loaisanpham_id == 3 )
 								<label>
 									{{-- <p>D.Lượng</p> --}}

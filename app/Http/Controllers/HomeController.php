@@ -380,6 +380,7 @@ class HomeController extends Controller
                 DB::table('dungluong_mau')
                     ->where('dungluong_id', $dungluong->id)
                     ->where('mau_id', $mau->id)
+                    ->where('sanpham_id', $value->id)
                     ->update(['soluongton' => $dungluong_mau->soluongton - $value->qty]);
             }
         }

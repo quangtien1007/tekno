@@ -12,10 +12,10 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use App\Imports\SanPhamImport;
 use App\Imports\MauSanPhamImport;
-use App\Imports\DungLuongSanPhamImport;
+use App\Imports\DungLuongMauImport;
 use App\Exports\SanPhamExport;
 use App\Models\MauSanPham;
-use App\Models\DungLuongSanPham;
+use App\Exports\DungLuongMauExport;
 use App\Models\FormMau;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
@@ -62,7 +62,7 @@ class SanPhamController extends Controller
 
     public function postThem(Request $request)
     {
-        dd($request);
+        // dd($request);
         // $var = 'dungluong_mau' . '1';
         // dd($request->dungluong_id, ($request->$var)[0]);
         $this->validate($request, [
@@ -153,9 +153,8 @@ class SanPhamController extends Controller
                 }
             }
         } else {
-            $dlm = new DungLuong_Mau();
+            return redirect()->route('admin.sanpham')->with('error', 'Thêm sản phẩm không thành công');
         }
-
 
         return redirect()->route('admin.sanpham')->with('success', 'Thêm sản phẩm thành công');
     }
@@ -299,10 +298,10 @@ class SanPhamController extends Controller
         return redirect()->route('admin.sanpham')->with('success', 'Xóa sản phẩm thành công');
     }
 
-    // public function getXuat()
-    // {
-    //     return Excel::download(new SanPhamExport, 'san-pham.xlsx');
-    // }
+    public function getXuat()
+    {
+        return Excel::download(new SanPhamExport, 'san-pham.xlsx');
+    }
 
     public function postNhapMau(Request $request)
     {
@@ -310,14 +309,14 @@ class SanPhamController extends Controller
         return redirect()->route('admin.sanpham')->with('success', 'Đã nhập màu thành công!!!');
     }
 
-    // public function getXuatMau()
-    // {
-    //     return Excel::download(new SanPhamExport, 'san-pham.xlsx');
-    // }
-
-    public function postNhapDungLuong(Request $request)
+    public function getXuatDungLuongMau()
     {
-        Excel::import(new DungLuongSanPhamImport(), $request->file('file_excel'));
+        return Excel::download(new DungLuongMauExport, 'dung-luong-mau.xlsx');
+    }
+
+    public function postNhapDungLuongMau(Request $request)
+    {
+        Excel::import(new DungLuongMauImport(), $request->file('file_excel'));
         return redirect()->route('admin.sanpham')->with('success', 'Đã nhập dung lượng thành công');
     }
 }

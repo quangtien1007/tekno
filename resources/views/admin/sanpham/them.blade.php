@@ -77,7 +77,7 @@
                         @foreach ($mau as $item)
                         <div style="@if($item->id==6) display:none @endif" class="col-sm-2">{{$item->mau}}
                             <input value="{{$item->id}}" name="dungluong_mau1[]" onclick="handleCheckColor('mau_64','{{Str::slug($item->mau,'.')}}_64')" id="mau_64" disabled type="checkbox">&nbsp;&nbsp;
-                            <input name="dungluong_mau1[]" id="{{Str::slug($item->mau,'.')}}_64" disabled type="text">
+                            <input type="number" placeholder="Số lượng" name="dungluong_mau1[]" id="{{Str::slug($item->mau,'.')}}_64" disabled type="text">
                         </div>
                         @endforeach
                     </div>
@@ -86,7 +86,7 @@
                         @foreach ($mau as $item)
                         <div style="@if($item->id==6) display:none @endif" class="col-sm-2">{{$item->mau}}
                             <input value="{{$item->id}}" name="dungluong_mau2[]" onclick="handleCheckColor('mau_128','{{Str::slug($item->mau,'.')}}_128')" id="mau_128" disabled type="checkbox">&nbsp;&nbsp;
-                            <input name="dungluong_mau2[]" id="{{Str::slug($item->mau,'.')}}_128" disabled type="text">
+                            <input type=number placeholder="Số lượng" name="dungluong_mau2[]" id="{{Str::slug($item->mau,'.')}}_128" disabled type="text">
                         </div>
                         @endforeach
                     </div>
@@ -96,7 +96,7 @@
                         @foreach ($mau as $item)
                         <div style="@if($item->id==6) display:none @endif" class="col-sm-2">{{$item->mau}}
                             <input value="{{$item->id}}" name="dungluong_mau3[]" onclick="handleCheckColor('mau_256','{{Str::slug($item->mau,'.')}}_256')" id="mau_256" disabled type="checkbox">&nbsp;&nbsp;
-                            <input name="dungluong_mau3[]" id="{{Str::slug($item->mau,'.')}}_256" disabled type="text">
+                            <input type="number" placeholder="Số lượng" name="dungluong_mau3[]" id="{{Str::slug($item->mau,'.')}}_256" disabled type="text">
                         </div>
                         @endforeach
                     </div>
@@ -106,7 +106,7 @@
                         @foreach ($mau as $item)
                         <div style="@if($item->id==6) display:none @endif" class="col-sm-2">{{$item->mau}}
                             <input value="{{$item->id}}" name="dungluong_mau4[]" onclick="handleCheckColor('mau_512','{{Str::slug($item->mau,'.')}}_512')" id="mau_512" disabled type="checkbox">&nbsp;&nbsp;
-                            <input name="dungluong_mau4[]" id="{{Str::slug($item->mau,'.')}}_512" disabled type="text">
+                            <input type="number" placeholder="Số lượng" name="dungluong_mau4[]" id="{{Str::slug($item->mau,'.')}}_512" disabled type="text">
                         </div>
                         @endforeach
                     </div>
@@ -116,7 +116,7 @@
                         @foreach ($mau as $item)
                         <div style="@if($item->id==6) display:none @endif" class="col-sm-2">{{$item->mau}}
                             <input value="{{$item->id}}" name="dungluong_mau5[]" onclick="handleCheckColor('mau_1','{{Str::slug($item->mau,'.')}}_1')" id="mau_1" disabled type="checkbox">&nbsp;&nbsp;
-                            <input name="dungluong_mau5[]" id="{{Str::slug($item->mau,'.')}}_1" disabled type="text">
+                            <input type="number" placeholder="Số lượng" name="dungluong_mau5[]" id="{{Str::slug($item->mau,'.')}}_1" disabled type="text">
                         </div>
                         @endforeach
                     </div>
@@ -125,7 +125,7 @@
                         <div class="col-sm-2">Không có<input type="checkbox" value="6" name="dungluong_id[]" id="dl_null" onclick="handleChecked('mau_null','dl_null')"></div>
                         <div class="col-sm-6">
                             <input type="hidden" name="dungluong_mau6[]" value="6">
-                            <input placeholder="Nhập số lượng" name="dungluong_mau6[]" id="mau_null" disabled type="text">
+                            <input type="number" placeholder="Nhập số lượng" name="dungluong_mau6[]" id="mau_null" disabled type="text">
                         </div>
                     </div>
 				</div>

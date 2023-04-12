@@ -154,15 +154,13 @@ const handleChecked = (mid, dlid) => {
             inputmsp[i].disabled = true;
         }
     }
-    if (mid == "mau_null") {
-        console.log("hello");
+    if (document.getElementById("dl_null").checked) {
         document.getElementById("dl_1").disabled = true;
         document.getElementById("dl_128").disabled = true;
         document.getElementById("dl_64").disabled = true;
         document.getElementById("dl_256").disabled = true;
         document.getElementById("dl_512").disabled = true;
-    } else if ((document.getElementById(mid).checked = false)) {
-        console.log("ho le");
+    } else {
         document.getElementById("dl_1").disabled = false;
         document.getElementById("dl_128").disabled = false;
         document.getElementById("dl_64").disabled = false;
@@ -509,3 +507,4 @@ updateCountdown();
 // inputFormat.addEventListener("change", function () {
 //     sliderFormat.noUiSlider.set(this.value);
 // });
+

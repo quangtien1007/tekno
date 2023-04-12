@@ -136,9 +136,9 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
     Route::post('/sanpham/sua/{id}', [SanPhamController::class, 'postSua'])->name('admin.sanpham.update');
     Route::get('/sanpham/xoa/{id}', [SanPhamController::class, 'getXoa'])->name('admin.sanpham.delete');
     Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap'])->name('admin.sanpham.import');
-    Route::post('/sanpham/nhapmau', [SanPhamController::class, 'postNhapMau'])->name('admin.mausanpham.import');
-    Route::post('/sanpham/nhapdl', [SanPhamController::class, 'postNhapDungLuong'])->name('admin.dlsanpham.import');
+    Route::post('/sanpham/nhapdlmau', [SanPhamController::class, 'postNhapDungLuongMau'])->name('admin.dlmau.import');
     Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat'])->name('admin.sanpham.export');
+    Route::get('/sanpham/xuatdlmau', [SanPhamController::class, 'getXuatDungLuongMau'])->name('admin.dungluongmau.export');
 
     // Quản lý Đơn hàng
     Route::get('/donhang', [DonHangController::class, 'getDanhSach'])->name('admin.donhang');
