@@ -169,12 +169,6 @@
             priceSlider.noUiSlider.set([null, value]);
         }
     }
-    function currencyFormat(num) {
-        return Number.parseFloat(num)
-            .toFixed(0)
-            .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
-    }
-    // console.log(currencyFormat(2665000));
     // Price Slider
     var priceSlider = document.getElementById("price-slider");
     if (priceSlider) {
@@ -197,8 +191,6 @@
 
         priceSlider.noUiSlider.on("update", function (values, handle) {
             var value = values[handle];
-            // var value = currencyFormat(values[handle]);
-            // console.log(value);
             handle
                 ? (priceInputMax.value = value)
                 : (priceInputMin.value = value);

@@ -25,6 +25,7 @@ return new class extends Migration
         DungLuongSanPham::create(['dungluong' => '256GB']);
         DungLuongSanPham::create(['dungluong' => '512GB']);
         DungLuongSanPham::create(['dungluong' => '1TB']);
+        DungLuongSanPham::create(['dungluong' => 'null']);
     }
 
     /**

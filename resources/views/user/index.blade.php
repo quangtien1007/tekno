@@ -86,9 +86,9 @@
                                                             {{ number_format(DB::table('donhang_chitiet')->where('donhang_id',$item->id)->first()->dongiaban) }}đ
                                                         </td>
 														<td>
-															<button style="padding: 10px" type="button" class="btn badge bg-secondary" >
+															<a href="{{route('client.donhang.chitiet',['donhang_id'=>$item->id])}}" style="padding: 10px" type="button" class="btn badge bg-secondary" >
 																Chi tiết
-															</button>
+                                                            </a>
 														</td>
 													</tr>
 													@endforeach

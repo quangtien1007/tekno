@@ -43,3 +43,8 @@ tekno-agu-107.mysql.database.azure.com
 ----------------
 thay doi mau thanh dung luong - mau :
 option vi du: 128GB - Trang - So luong : 200
+-------------------
+neu la chuot ban phim, tai nghe... thi
+tich chon khong co mau va nhap so luong
+mac dinh mau_id = 6 va dungluong_id = 6
+so luong nhap tuy thich

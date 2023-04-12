@@ -433,13 +433,22 @@
 								<div class="product-rating">
 								</div>
 								<div class="product-btns">
-									<button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">yêu thích</span></button>
+									<button onclick="addToWishlist({{$value->id}})" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">yêu thích</span></button>
 									<button onclick="addToCompare({{$value->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
 									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
 								</div>
 							</div>
 							<div class="add-to-cart">
-								<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>
+								<form action="{{route('client.giohang.add')}}" method="post">
+                                    @csrf
+                                    @php
+                                        $dungluong_mau = DB::table('dungluong_mau')->where('sanpham_id',$value->id)->first();
+                                    @endphp
+                                    <input type="hidden" name="tensanpham_slug" value="{{$value->tensanpham_slug}}">
+                                    <input type="hidden" name="dlsp" value="{{DB::table('dungluong')->where('id',$dungluong_mau->dungluong_id)->first()->dungluong}}">
+                                    <input type="hidden" name="msp" value="{{DB::table('mau')->where('id',$dungluong_mau->mau_id)->first()->mau}}">
+                                    <button type="submit" class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                </form>
 							</div>
                               <!-- input hidden de so sanh san pham -->
                               <input type="hidden" value="{{$value->thongsokythuat}}" id="tskt{{$value->id}}">

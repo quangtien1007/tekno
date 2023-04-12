@@ -154,6 +154,21 @@ const handleChecked = (mid, dlid) => {
             inputmsp[i].disabled = true;
         }
     }
+    if (mid == "mau_null") {
+        console.log("hello");
+        document.getElementById("dl_1").disabled = true;
+        document.getElementById("dl_128").disabled = true;
+        document.getElementById("dl_64").disabled = true;
+        document.getElementById("dl_256").disabled = true;
+        document.getElementById("dl_512").disabled = true;
+    } else if ((document.getElementById(mid).checked = false)) {
+        console.log("ho le");
+        document.getElementById("dl_1").disabled = false;
+        document.getElementById("dl_128").disabled = false;
+        document.getElementById("dl_64").disabled = false;
+        document.getElementById("dl_256").disabled = false;
+        document.getElementById("dl_512").disabled = false;
+    }
 };
 const handleCheckColor = (slel, slid) => {
     if (document.getElementById(slel).checked) {
@@ -463,34 +478,34 @@ function updateCountdown() {
 }
 
 updateCountdown();
-var sliderFormat = document.getElementById("slider-formatr");
+// var sliderFormat = document.getElementById("slider-formatr");
 
-noUiSlider.create(sliderFormat, {
-    start: [20000],
-    step: 500,
-    connect: [true, false],
-    range: {
-        min: [1000],
-        max: [550000],
-    },
-    ariaFormat: wNumb({
-        decimals: 3,
-    }),
-    format: wNumb({
-        decimals: 3,
-        thousand: ".",
-        suffix: " $",
-    }),
-});
+// noUiSlider.create(sliderFormat, {
+//     start: [20000],
+//     step: 500,
+//     connect: [true, false],
+//     range: {
+//         min: [1000],
+//         max: [550000],
+//     },
+//     ariaFormat: wNumb({
+//         decimals: 3,
+//     }),
+//     format: wNumb({
+//         decimals: 3,
+//         thousand: ".",
+//         suffix: " $",
+//     }),
+// });
 
-// INPUT SUPPORT
+// // INPUT SUPPORT
 
-var inputFormat = document.getElementById("input-formatr");
+// var inputFormat = document.getElementById("input-formatr");
 
-sliderFormat.noUiSlider.on("update", function (values, handle) {
-    inputFormat.value = values[handle];
-});
+// sliderFormat.noUiSlider.on("update", function (values, handle) {
+//     inputFormat.value = values[handle];
+// });
 
-inputFormat.addEventListener("change", function () {
-    sliderFormat.noUiSlider.set(this.value);
-});
+// inputFormat.addEventListener("change", function () {
+//     sliderFormat.noUiSlider.set(this.value);
+// });

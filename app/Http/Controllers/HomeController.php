@@ -361,24 +361,26 @@ class HomeController extends Controller
         // Lưu vào đơn hàng chi tiết
         foreach (Cart::content() as $value) {
             $ct = new DonHang_ChiTiet();
-            $mau = MauSanPham::where(['sanpham_id' => $value->id, 'mau' => $value->color])->first();
-            $dungluong = DungLuongSanPham::where(['sanpham_id' => $value->id, 'dungluong' => $value->storage])->first();
-
+            $mau = MauSanPham::where(['mau' => $value->color])->first();
+            $dungluong = DungLuongSanPham::where(['dungluong' => $value->storage])->first();
+            // dd($mau);
             $ct->donhang_id = $dh->id;
             $ct->sanpham_id = $value->id;
-            $ct->mau_id = isset($mau->id) ? $mau->id : 'null';
-            $ct->dungluong_id = isset($dungluong->id) ? $dungluong->id : 'null';
+            $ct->mau_id = isset($mau->id) ? $mau->id : 6;
+            $ct->dungluong_id = isset($dungluong->id) ? $dungluong->id : 6;
             $ct->soluongban = $value->qty;
             $ct->dongiaban = $value->price;
             $ct->save();
 
 
+            $dungluong_mau = DungLuong_Mau::where('sanpham_id', $value->id)->where('dungluong_id', $dungluong->id)->where('mau_id', $mau->id)->first();
+            // dd($dungluong_mau);
             //cập nhật số lượng tồn của màu và dung lượng sản phẩm
-            if (isset($mau->id)) {
-                DB::table('mausanpham')->where('id', $mau->id)->update(['soluongton' => $mau->soluongton - $value->qty]);
-            }
-            if (isset($dungluong->id)) {
-                DB::table('dungluongsanpham')->where('id', $dungluong->id)->update(['soluongton' => $dungluong->soluongton - $value->qty]);
+            if (isset($mau->id) || isset($dungluong->id)) {
+                DB::table('dungluong_mau')
+                    ->where('dungluong_id', $dungluong->id)
+                    ->where('mau_id', $mau->id)
+                    ->update(['soluongton' => $dungluong_mau->soluongton - $value->qty]);
             }
         }
 
@@ -391,7 +393,7 @@ class HomeController extends Controller
             //
             // $ct->save();
             Mail::to(Auth::user()->email)->send(new DatHangEmail($dh));
-            return view('client.dathangthanhcong', compact('tenloai'));
+            return redirect()->route('client.dathang.success');
             // //
         } elseif ($request->payment_opt == 'paypal') {
             //
@@ -521,7 +523,8 @@ class HomeController extends Controller
 		vnp_TransactionNo=13966660
 		vnp_TransactionStatus=00&vnp_TxnRef=80
 		vnp_SecureHash=416c6bbda833c4a6e2738eff6896e68da7e9b52a829f0b67d8fa0061bec4847e8f901980d4adbdb544fcbb2af010b12f63ae0b790bb47eaceba7dbe9e0b24a76*/
-        return view('client.dathangthanhcong');
+        $tenloai = 'Đặt hàng';
+        return view('client.dathangthanhcong', compact('tenloai'));
     }
 
     public function getDatHangKhongThanhCong()

@@ -25,6 +25,7 @@ return new class extends Migration
         MauSanPham::create(['mau' => 'Xanh']);
         MauSanPham::create(['mau' => 'Đỏ']);
         MauSanPham::create(['mau' => 'Vàng']);
+        MauSanPham::create(['mau' => 'null']);
     }
 
     /**

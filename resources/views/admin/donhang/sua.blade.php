@@ -3,17 +3,19 @@
 @section('content')
 <div class="container">
     <div class="row">
-         <div class="card col-md-6">
+         <div class="card col-md-8">
             <div class="card-header">Chi tiết đơn hàng</div>
             <div class="card-body">
                 <table class="table table-bordered table-hover table-sm mb-0">
                     <thead>
                         <tr>
                             <th width="5%">#</th>
-                            <th width="25%">Sản phẩm</th>
-                            <th width="5%">SL</th>
+                            <th width="20%">Sản phẩm</th>
+                            <th width="10%">Dung lượng</th>
+                            <th width="5%">Màu</th>
+                            <th width="2%">SL</th>
                             <th width="10%">Đơn giá</th>
-                            <th width="15%">Thành tiền</th>
+                            <th width="10%">Thành tiền</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,6 +27,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ DB::table('sanpham')->where('id',$chitiet->id)->first()->tensanpham}}</td>
+                                <td>{{ DB::table('dungluong')->where('id',$chitiet->dungluong_id)->first()->dungluong}}</td>
+                                <td>{{ DB::table('mau')->where('id',$chitiet->mau_id)->first()->mau}}</td>
                                 <td>{{ $chitiet->soluongban }}</td>
                                 <td class="text-end">{{ number_format($chitiet->dongiaban) }}<sup><u>đ</u></sup></td>
                                 <td class="text-end">{{ number_format($chitiet->soluongban * $chitiet->dongiaban) }}<sup><u>đ</u></sup></td>
@@ -32,6 +36,8 @@
                             @php $tongtien += $chitiet->soluongban * $chitiet->dongiaban; @endphp
                         @endforeach
                         <tr>
+                            <td></td>
+                            <td></td>
                             <td colspan="4">Tổng tiền sản phẩm:</td>
                             <td class="text-end"><strong>{{ number_format($tongtien) }}</strong><sup><u>đ</u></sup></td>
                         </tr>
@@ -39,8 +45,8 @@
                 </table>
             </div>
         </div>
-        <div class="card col-md-6">
-            <div class="card-header">Chỉnh sửa đơn hàng</div>
+        <div class="card col-md-4">
+            <div class="card-header">Cập nhật đơn hàng</div>
             <div class="card-body">
                 <form action="{{ route('admin.donhang.update', ['id' => $donhang->id]) }}" method="post">
                     @csrf

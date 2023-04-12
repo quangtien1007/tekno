@@ -62,7 +62,7 @@ class SanPhamController extends Controller
 
     public function postThem(Request $request)
     {
-        // dd($request);
+        dd($request);
         // $var = 'dungluong_mau' . '1';
         // dd($request->dungluong_id, ($request->$var)[0]);
         $this->validate($request, [
@@ -150,14 +150,10 @@ class SanPhamController extends Controller
                     $dlm->sanpham_id = $id_sp - 1;
                     $dlm->soluongton = ($request->$var)[$j + 1];
                     $dlm->save();
-                    // DB::table('dungluong_mau')->insert([
-                    //     'dungluong_id' => ($request->dungluong_id)[$i],
-                    //     'mau_id' => ($request->$var)[$j],
-                    //     'soluongton' => ($request->$var)[$j + 1],
-                    //     'sanpham_id' => $id_sp,
-                    // ]);
                 }
             }
+        } else {
+            $dlm = new DungLuong_Mau();
         }
 
 
