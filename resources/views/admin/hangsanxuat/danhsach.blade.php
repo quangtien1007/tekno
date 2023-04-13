@@ -11,26 +11,26 @@
                         <a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fal fa-upload"></i> Nhập từ Excel</a>
                         <a href="{{ route('admin.hangsanxuat.export') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất ra Excel</a>
                     </p>
-                    <table class="table table-bordered table-hover table-sm mb-0">
+                    <table class="table table-stried table-hover table-sm mb-0">
                         <thead>
                             <tr>
                                 <th width="5%">#</th>
-                                <th width="10%">Hình ảnh</th>
-                                <th width="45%">Tên hãng</th>
+                                <th width="20%">Hình ảnh</th>
+                                <th width="35%">Tên hãng</th>
                                 <th width="30%">Tên hãng không dấu</th>
-                                <th width="5%">Sửa</th>
-                                <th width="5%">Xóa</th>
+                                <th class="text-center" width="5%">Sửa</th>
+                                <th class="text-center" width="5%">Xóa</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($hangsanxuat as $value)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td class="text-center"><img src="{{ env('APP_URL') . '/images/' . $value->hinhanh }}" width="100" class="img-thumbnail" /></td>
+                                    <td><img src="{{ env('APP_URL') . '/images/' . $value->hinhanh }}" width="100" class="img-thumbnail" /></td>
                                     <td>{{ $value->tenhang }}</td>
                                     <td>{{ $value->tenhang_slug }}</td>
-                                    <td class="text-center"><a href="{{ route('admin.hangsanxuat.edit', ['id' => $value->id]) }}"><i class="fal fa-edit"></i></a></td>
-                                    <td class="text-center"><a href="{{ route('admin.hangsanxuat.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa hãng sản xuất {{ $value->tenhang }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
+                                    <td class="text-center"><a href="{{ route('admin.hangsanxuat.edit', ['id' => $value->id]) }}"><i class="fa-regular fal fa-edit text-success"></i></a></td>
+                                    <td class="text-center"><a href="{{ route('admin.hangsanxuat.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa hãng sản xuất {{ $value->tenhang }} không?')"><i class=" fa-regular fal fa-trash-alt text-danger"></i></a></td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -13,7 +13,7 @@
                     <h3 class="breadcrumb-header">Sản phẩm yêu thích</h3>
                     <ul class="breadcrumb-tree">
                         <li><a href="{{route('client')}}">Trang chủ</a></li>
-                        <li class="active">Giỏ hàng</li>
+                        <li class="active">Yêu thích</li>
                     </ul>
                 </div>
             </div>

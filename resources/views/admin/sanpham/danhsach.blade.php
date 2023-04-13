@@ -26,25 +26,25 @@
                     </div>
                 {{ $sanpham->links() }} <br>
 
-                <table class="table table-bordered table-hover table-sm mt-3 mb-3">
+                <table class="table table-hover table-sm mt-3 mb-3">
                     <thead>
                         <tr>
                             <th width="5%">#</th>
                             <th width="10%">Hình ảnh</th>
-                            <th width="10%">Loại sản phẩm</th>
+                            <th width="13%">Loại sản phẩm</th>
                             <th width="20%">Tên sản phẩm</th>
-                            <th width="20%">Màu sản phẩm</th>
+                            <th width="15%">Màu sản phẩm</th>
                             <th width="5%">SL</th>
                             <th width="10%">Đơn giá</th>
-                            <th width="5%">Sửa</th>
-                            <th width="5%">Xóa</th>
+                            <th class="text-center" width="5%">Sửa</th>
+                            <th class="text-center" width="5%">Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($sanpham as $value)
                             <tr>
                                 <td>{{ $loop->index + $sanpham->firstItem() }}</td>
-                                <td class="text-center"><img src="{{ env('APP_URL') . '/images/sanpham/' . $value->hinhanh }}" width="80" class="img-thumbnail" /></td>
+                                <td><img src="{{ env('APP_URL') . '/images/sanpham/' . $value->hinhanh }}" width="80" class="img-thumbnail" /></td>
                                 <td>{{ $value->LoaiSanPham->tenloai }}</td>
                                 <td>{{ $value->tensanpham }}</td>
                                 <td>
@@ -57,8 +57,8 @@
                                     ->groupBy('soluongton')
                                     ->first()->soluongton }}</td>
                                 <td>{{ number_format($value->dongia) }}đ</td>
-                                <td><a href="{{ route('admin.sanpham.edit', ['id' => $value->id]) }}"><i class="fal fa-edit"></i></a></td>
-                                <td><a href="{{ route('admin.sanpham.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->tensanpham }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
+                                <td class="text-center"><a href="{{ route('admin.sanpham.edit', ['id' => $value->id]) }}"><i class="fa-regular fal fa-edit text-success"></i></a></td>
+                                <td class="text-center"><a href="{{ route('admin.sanpham.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->tensanpham }} không?')"><i class="fa-regular fal fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>

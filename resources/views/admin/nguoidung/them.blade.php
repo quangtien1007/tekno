@@ -27,10 +27,10 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="role">Quyền hạn</label>
-                        <select class="form-select @error('role') is-invalid @enderror" id="role" name="role" required>
+                        <select class="form-select @error('role') is-invalid @enderror" id="role" name="is_admin" required>
                             <option value="">-- Chọn --</option>
-                            <option value="admin">Quản trị viên</option>
-                            <option value="user" selected>Khách hàng</option>
+                            <option value="1">Quản trị viên</option>
+                            <option value="0" selected>Khách hàng</option>
                         </select>
                         @error('role')
                             <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="password">Mật khẩu mới</label>
+                        <label class="form-label" for="password">Mật khẩu</label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required />
                         @error('password')
                             <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
@@ -46,7 +46,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label" for="password_confirmation">Xác nhận mật khẩu mới</label>
+                        <label class="form-label" for="password_confirmation">Xác nhận mật khẩu</label>
                         <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation" required />
                         @error('password_confirmation')
                             <div class="invalid-feedback"><strong>{{ $message }}</strong></div>

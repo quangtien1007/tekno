@@ -27,44 +27,45 @@ class NguoiDungController extends Controller
 
     public function postThem(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'role' => ['required'],
+            'is_admin' => ['required'],
             'password' => ['required', 'min:4', 'confirmed'],
         ]);
 
         $orm = new User();
         $orm->name = $request->name;
-        $orm->username = Str::before($request->email, '@');
         $orm->email = $request->email;
         $orm->password = Hash::make($request->password);
-        $orm->role = $request->role;
+        $orm->is_admin = $request->is_admin;
         $orm->save();
 
-        return redirect()->route('admin.nguoidung');
+        return redirect()->route('admin.nguoidung')->with('success', 'Đã thêm tài khoản thành công');;
     }
 
     public function getSua($id)
     {
         $nguoidung = User::find($id);
-        return view('admin.nguoidung.sua', compact('nguoidung'))->with('success', 'Đã thêm tài khoản thành công');
+        return view('admin.nguoidung.sua', compact('nguoidung'));
     }
 
     public function postSua(Request $request)
     {
+        // dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $request->id],
-            'role' => ['required'],
+            'is_admin' => ['required'],
             'password' => ['confirmed'],
         ]);
 
         $orm = User::find($request->id);
         $orm->name = $request->name;
-        $orm->username = Str::before($request->email, '@');
+        // $orm->username = Str::before($request->email, '@');
         $orm->email = $request->email;
-        $orm->role = $request->role;
+        $orm->is_admin = $request->is_admin;
         if (!empty($request->password)) $orm->password = Hash::make($request->password);
         $orm->save();
 

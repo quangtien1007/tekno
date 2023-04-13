@@ -5,7 +5,7 @@
 		<div class="card-header">Tất cả đơn hàng</div>
 		<div class="card-body table-responsive">
 			{{-- <p><a href="{{ route('admin') }}" class="btn btn-success"><i class="fal fa-plus"></i> Thêm mới</a></p> --}}
-			<table class="table table-bordered table-hover table-sm mb-0">
+			<table class="table table-stried table-hover table-sm mb-0">
 				<thead>
 					<tr>
 						<th width="5%">#</th>
@@ -15,8 +15,8 @@
 						<th width="8%">Tình trạng</th>
 						<th width="8%">Thanh toán</th>
 						<th width="10%">Phương thức thanh toán</th>
-						<th width="3%">Chi tiết</th>
-						<th width="3%">Xóa</th>
+						<th class="text-center" width="3%">Chi tiết</th>
+						<th class="text-center" width="3%">Xóa</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -56,7 +56,7 @@
 					@endforeach
                     <style>
                         td{
-                            text-align: center;
+                            text-align: left;
                         }
                     </style>
 				</tbody>

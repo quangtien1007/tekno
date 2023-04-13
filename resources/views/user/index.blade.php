@@ -4,6 +4,25 @@
 
 @section('content')
 	<div class="main_content">
+         <!-- BREADCRUMB -->
+    <div id="breadcrumb" class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="breadcrumb-header">Tài khoản</h3>
+                    <ul class="breadcrumb-tree">
+                        <li class="active"><a href="{{route('client')}}">Trang chủ</a></li>
+                        <li class="active"><a href="#">Tài khoản</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>
+    <!-- /BREADCRUMB -->
 		<div class="section">
 			<div class="container">
 				<div class="row">

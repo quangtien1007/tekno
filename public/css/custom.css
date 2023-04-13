@@ -64,10 +64,10 @@ hr {
     margin-bottom: 0.5rem !important;
 }
 th {
-    text-align: center;
+    /* text-align: center; */
 }
 .table > tbody > tr > td {
-    text-align: center;
+    /* text-align: center; */
     vertical-align: middle;
 }
 
