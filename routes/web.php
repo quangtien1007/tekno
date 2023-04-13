@@ -147,6 +147,7 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
     Route::get('/donhang/sua/{id}', [DonHangController::class, 'getSua'])->name('admin.donhang.edit');
     Route::post('/donhang/sua/{id}', [DonHangController::class, 'postSua'])->name('admin.donhang.update');
     Route::get('/donhang/xoa/{id}', [DonHangController::class, 'getXoa'])->name('admin.donhang.delete');
+    Route::get('/donhang/hoadon/{donhang_id}', [DonHangController::class, 'getInDonHang'])->name('admin.donhang.hoadon');
 
     // Quản lý Đơn hàng chi tiết
     Route::get('/donhang/chitiet', [DonHangChiTietController::class, 'getDanhSach'])->name('admin.donhang.chitiet');

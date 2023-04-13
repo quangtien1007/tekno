@@ -44,6 +44,15 @@
                     </tbody>
                 </table>
             </div>
+            <a
+            href="{{route('admin.donhang.hoadon',['donhang_id'=>$donhang->id])}}"
+            class="btn btn-warning"
+                    style="width: 200px;
+                           left: 650px;
+                           position: relative;
+                           margin-bottom: 15px;">
+            <i class="fa-solid fa-file-pdf"></i>  In hóa đơn
+            </a>
         </div>
         <div class="card col-md-4">
             <div class="card-header">Cập nhật đơn hàng</div>

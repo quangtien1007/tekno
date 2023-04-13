@@ -92,6 +92,7 @@
                            </td>
                            <tr></tr>
                         </tbody>
+
                     </table>
                 </div>
             </div>
@@ -103,6 +104,9 @@
                 }
             </style>
             <!-- /row -->
+            <div style="float: right;font-style:italic">
+                <h6>*Để yêu cầu hủy đơn hàng vui lòng nhắn tin với shop</h6>
+            </div>
         </div>
         <!-- /container -->
     </div>

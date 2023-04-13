@@ -7,6 +7,8 @@ use App\Models\DonHang_ChiTiet;
 use App\Models\TinhTrang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\DB;
 
 class DonHangController extends Controller
 {
@@ -29,6 +31,24 @@ class DonHangController extends Controller
     public function postThem(Request $request)
     {
         // Xử lý đặt hàng bên Front-end
+    }
+
+    public function getInDonHang($donhang_id)
+    {
+        $dh = DB::table('donhang')->where('id', $donhang_id)->first();
+        // dd($dh);
+        $dhct = DonHang_ChiTiet::where('donhang_id', $donhang_id)->get();
+
+        $data = [
+            'title' => 'Thông tin hóa đơn',
+            'date' => date('m/d/Y'),
+            'dhct' => $dhct,
+            'dh' => $dh
+        ];
+
+        $pdf = PDF::loadView('admin.donhang.hoadon', $data);
+
+        return $pdf->download('hoadon.pdf');
     }
 
     public function getSua($id)
