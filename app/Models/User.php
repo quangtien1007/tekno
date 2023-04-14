@@ -10,10 +10,11 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     protected $table = 'users';
 
@@ -37,13 +38,20 @@ class User extends Authenticatable
     {
         return $this->hasMany(DonHang::class, 'user_id', 'id');
     }
+
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new CustomResetPasswordNotification($token));
     }
+
     public function message()
     {
         return $this->hasMany("App\Models\Message");
+    }
+
+    public function assignRoles(array | int $roles): array
+    {
+        return $this->roles()->sync($roles);
     }
 }
 

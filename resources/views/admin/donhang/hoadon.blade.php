@@ -2,18 +2,23 @@
 <html>
 
 <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tekno - Thông tin hóa đơn</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <style>
     body {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family:'Times New Roman', Times, serif;
+    }
+    h1{
+        font-family:'Courier New', Courier, monospace;
     }
 </style>
 <body>
-    <h1>Tekno - Thong tin hoa don</h1>
-    <p>13/4/2023</p>
+    <h1>Tekno</h1>
+    <p>{{$date}}</p>
     <p>Khach hang: <strong>{{Auth::user()->name}}</strong></p>
         <!-- row -->
         <div class="row">

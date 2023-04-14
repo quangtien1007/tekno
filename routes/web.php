@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoaiSanPhamController;
@@ -20,7 +21,6 @@ use Illuminate\Support\Facades\Auth;
 // Đăng ký, đăng nhập, Quên mật khẩu
 Auth::routes();
 // Route::head() Route::prefix('admin')->middleware('admin-check')->group(function () {
-
 // Trang chủ
 Route::get('/', [HomeController::class, 'getHome'])->name('client');
 Route::get('/home', [HomeController::class, 'getHome'])->name('client');
@@ -97,27 +97,40 @@ Route::group(['middleware' => 'user'], function () {
 
 // Trang tài khoản quản lý
 Route::prefix('admin')->middleware('admin-check')->group(function () {
+
     // Trang chủ tài khoản quản lý
     Route::get('/', [AdminController::class, 'getHome'])->name('admin');
-    // Route::get('/home', [AdminController::class, 'getHome'])->name('admin');
+
+    Route::prefix('quyen')->controller(RoleController::class)->middleware('role:admin')->name('admin.quyen.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index');
+        Route::get('/them', 'getThem')->name('create');
+        Route::post('/them', 'postThem')->name('add');
+        Route::get('/sua/{id}', 'getSua')->name('edit');
+        Route::post('/sua/{id}', 'postSua')->name('update');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete');
+    });
 
     // Quản lý Loại sản phẩm
-    Route::get('/loaisanpham', [LoaiSanPhamController::class, 'getDanhSach'])->name('admin.loaisanpham');
-    Route::get('/loaisanpham/them', [LoaiSanPhamController::class, 'getThem'])->name('admin.loaisanpham.create');
-    Route::post('/loaisanpham/them', [LoaiSanPhamController::class, 'postThem'])->name('admin.loaisanpham.add');
-    Route::get('/loaisanpham/sua/{id}', [LoaiSanPhamController::class, 'getSua'])->name('admin.loaisanpham.edit');
-    Route::post('/loaisanpham/sua/{id}', [LoaiSanPhamController::class, 'postSua'])->name('admin.loaisanpham.update');
-    Route::get('/loaisanpham/xoa/{id}', [LoaiSanPhamController::class, 'getXoa'])->name('admin.loaisanpham.delete');
+    Route::prefix('loaisanpham')->controller(LoaiSanPhamController::class)->name('admin.loaisanpham.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index')->middleware('permission:xem-lsp');
+        Route::get('/them', 'getThem')->name('create')->middleware('permission:them-lsp');
+        Route::post('/them', 'postThem')->name('add')->middleware('permission:xem-lsp');
+        Route::get('/sua/{id}', 'getSua')->name('edit')->middleware('permission:sua-lsp');
+        Route::post('/sua/{id}', 'postSua')->name('update')->middleware('permission:sua-lsp');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete')->middleware('permission:xoa-lsp');
+    });
 
     // Quản lý Hãng sản xuất
-    Route::get('/hangsanxuat', [HangSanXuatController::class, 'getDanhSach'])->name('admin.hangsanxuat');
-    Route::get('/hangsanxuat/them', [HangSanXuatController::class, 'getThem'])->name('admin.hangsanxuat.create');
-    Route::post('/hangsanxuat/them', [HangSanXuatController::class, 'postThem'])->name('admin.hangsanxuat.add');
-    Route::get('/hangsanxuat/sua/{id}', [HangSanXuatController::class, 'getSua'])->name('admin.hangsanxuat.edit');
-    Route::post('/hangsanxuat/sua/{id}', [HangSanXuatController::class, 'postSua'])->name('admin.hangsanxuat.update');
-    Route::get('/hangsanxuat/xoa/{id}', [HangSanXuatController::class, 'getXoa'])->name('admin.hangsanxuat.delete');
-    Route::post('/hangsanxuat/nhap', [HangSanXuatController::class, 'postNhap'])->name('admin.hangsanxuat.import');
-    Route::get('/hangsanxuat/xuat', [HangSanXuatController::class, 'getXuat'])->name('admin.hangsanxuat.export');
+    Route::prefix('hangsanxuat')->controller(HangSanXuatController::class)->name('admin.hangsanxuat.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index')->middleware('role:admin');
+        Route::get('/them', 'getThem')->name('create');
+        Route::post('/them', 'postThem')->name('add');
+        Route::get('/sua/{id}', 'getSua')->name('edit');
+        Route::post('/sua/{id}', 'postSua')->name('update');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete');
+        Route::post('/nhap', 'postNhap')->name('import');
+        Route::get('/xuat', 'getXuat')->name('export');
+    });
 
     // Quản lý Tình trạng
     Route::get('/tinhtrang', [TinhTrangController::class, 'getDanhSach'])->name('admin.tinhtrang');

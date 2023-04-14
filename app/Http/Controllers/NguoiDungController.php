@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,25 +23,36 @@ class NguoiDungController extends Controller
 
     public function getThem()
     {
-        return view('admin.nguoidung.them');
+        $roles = Role::all()->groupBy('group');
+        return view('admin.nguoidung.them', compact('roles'));
     }
 
     public function postThem(Request $request)
     {
         // dd($request);
+        $is_admin = 0;
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'is_admin' => ['required'],
             'password' => ['required', 'min:4', 'confirmed'],
+            'role_ids' => ['required'],
         ]);
-
+        for ($i = 0; $i < count($request->role_ids); $i++) {
+            if ($request->role_ids[$i] == 5) {
+                $is_admin = 1;
+            } else {
+                $is_admin = 0;
+            }
+        }
         $orm = new User();
         $orm->name = $request->name;
         $orm->email = $request->email;
         $orm->password = Hash::make($request->password);
-        $orm->is_admin = $request->is_admin;
+        $orm->is_admin = $is_admin;
         $orm->save();
+
+        $user = User::whereEmail($request->email)->first();
+        $user->assignRoles($request->role_ids);
 
         return redirect()->route('admin.nguoidung')->with('success', 'Đã thêm tài khoản thành công');;
     }
@@ -53,7 +65,6 @@ class NguoiDungController extends Controller
 
     public function postSua(Request $request)
     {
-        // dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $request->id],
@@ -63,7 +74,6 @@ class NguoiDungController extends Controller
 
         $orm = User::find($request->id);
         $orm->name = $request->name;
-        // $orm->username = Str::before($request->email, '@');
         $orm->email = $request->email;
         $orm->is_admin = $request->is_admin;
         if (!empty($request->password)) $orm->password = Hash::make($request->password);

@@ -63,14 +63,17 @@
 									<i class="fa-solid fa-gear"></i> Quản lý
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="{{ route('admin.loaisanpham') }}"><i class="fa-solid fa-list"></i> Loại sản phẩm</a></li>
-									<li><a class="dropdown-item" href="{{ route('admin.hangsanxuat') }}"><i class="fa-solid fa-copyright"></i> Hãng sản xuất</a></li>
-									<li><a class="dropdown-item" href="{{ route('admin.baiviet') }}"><i class="fa-solid fa-newspaper"></i> Bài viết</a></li>
+                                   @role('admin')
+                                    <li><a class="dropdown-item" href="{{ route('admin.quyen.index') }}"><i class="fa-solid fa-list"></i> Quyền</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.loaisanpham.index') }}"><i class="fa-solid fa-list"></i> Loại sản phẩm</a></li>
+									<li><a class="dropdown-item" href="{{ route('admin.hangsanxuat.index') }}"><i class="fa-solid fa-copyright"></i> Hãng sản xuất</a></li>
+									<li><a class="dropdown-item" href="{{ route('admin.nguoidung') }}"><i class="fa-solid fa-users"></i> Tài khoản người dùng</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.tinhtrang') }}"><i class="fa-regular fa-rectangle-list"></i></i> Tình trạng</a></li>
+                                    @endrole
+									<li><a class="dropdown-item" href="{{ route('admin.baiviet') }}"><i class="fa-solid fa-newspaper"></i> Bài viết</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.sanpham') }}"><i class="fa-solid fa-cubes"></i> Sản phẩm</a></li>
                                     <li><a class="dropdown-item" href="{{ route('inbox.index') }}"><i class="fa-brands fa-rocketchat"></i> Chat</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.donhang') }}"><i class="fa-solid fa-cart-arrow-down"></i> Đơn hàng</a></li>
-									<li><a class="dropdown-item" href="{{ route('admin.nguoidung') }}"><i class="fa-solid fa-users"></i> Tài khoản người dùng</a></li>
 								</ul>
 							</li>
 							<li class="nav-item dropdown">
