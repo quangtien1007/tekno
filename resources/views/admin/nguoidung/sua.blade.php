@@ -37,9 +37,34 @@
                         @enderror
                     </div>
 
+
+                    <div class="form-group">
+                        <label for="">Quyền</label>
+                        <div class="row">
+                            @foreach ($roles as $groupName => $role)
+                                <div class="col-5">
+                                    <div>
+                                        @foreach ($role as $item)
+                                        <div class="form-check">
+                                                <input id="role_ids{{$loop->iteration}}" class="form-check-input @error('role_ids') is-invalid @enderror" name="role_ids[]" type="checkbox"
+                                                    value="{{ $item->id }}">
+                                                <label class="custom-control-label"
+                                                    for="role_ids{{$loop->iteration}}">{{ $item->display_name }}</label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                        @error('role_ids')
+                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                        @enderror
+                    </div>
+
+                    <label class="form-label" for="role">Đổi mật khẩu</label>
                     <div class="mb-3 form-check">
+                        <label class="form-label" for="change_password_checkbox">Đổi mật khẩu</label>
                         <input class="form-check-input" type="checkbox" id="change_password_checkbox" name="change_password_checkbox" />
-                        <label class="form-check-label" for="change_password_checkbox">Đổi mật khẩu</label>
                     </div>
 
                     <div id="change_password_group">

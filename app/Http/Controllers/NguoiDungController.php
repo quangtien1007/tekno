@@ -29,7 +29,6 @@ class NguoiDungController extends Controller
 
     public function postThem(Request $request)
     {
-        // dd($request);
         $is_admin = 0;
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
@@ -39,11 +38,12 @@ class NguoiDungController extends Controller
         ]);
         for ($i = 0; $i < count($request->role_ids); $i++) {
             if ($request->role_ids[$i] == 5) {
-                $is_admin = 1;
-            } else {
                 $is_admin = 0;
+            } else {
+                $is_admin = 1;
             }
         }
+        // dd($is_admin);
         $orm = new User();
         $orm->name = $request->name;
         $orm->email = $request->email;
@@ -54,32 +54,43 @@ class NguoiDungController extends Controller
         $user = User::whereEmail($request->email)->first();
         $user->assignRoles($request->role_ids);
 
-        return redirect()->route('admin.nguoidung')->with('success', 'Đã thêm tài khoản thành công');;
+        return redirect()->route('admin.nguoidung.index')->with('success', 'Đã thêm tài khoản thành công');;
     }
 
     public function getSua($id)
     {
+        $roles = Role::all()->groupBy('group');
         $nguoidung = User::find($id);
-        return view('admin.nguoidung.sua', compact('nguoidung'));
+        return view('admin.nguoidung.sua', compact('nguoidung', 'roles'));
     }
 
     public function postSua(Request $request)
     {
+        $is_admin = 0;
         $request->validate([
             'name' => ['required', 'string', 'max:100'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $request->id],
-            'is_admin' => ['required'],
             'password' => ['confirmed'],
         ]);
+        for ($i = 0; $i < count($request->role_ids); $i++) {
+            if ($request->role_ids[$i] == 5) {
+                $is_admin = 0;
+            } else {
+                $is_admin = 1;
+            }
+        }
 
         $orm = User::find($request->id);
         $orm->name = $request->name;
         $orm->email = $request->email;
-        $orm->is_admin = $request->is_admin;
+        $orm->is_admin = $is_admin;
         if (!empty($request->password)) $orm->password = Hash::make($request->password);
         $orm->save();
 
-        return redirect()->route('admin.nguoidung')->with('success', 'Đã cập nhật tài khoản thành công');
+        $user = User::whereEmail($request->email)->first();
+        $user->assignRoles($request->role_ids);
+
+        return redirect()->route('admin.nguoidung.index')->with('success', 'Đã cập nhật tài khoản thành công');
     }
 
     public function getXoa($id)
@@ -87,6 +98,6 @@ class NguoiDungController extends Controller
         $orm = User::find($id);
         $orm->delete();
 
-        return redirect()->route('admin.nguoidung')->with('success', 'Đã xóa tài khoản thành công');
+        return redirect()->route('admin.nguoidung.index')->with('success', 'Đã xóa tài khoản thành công');
     }
 }

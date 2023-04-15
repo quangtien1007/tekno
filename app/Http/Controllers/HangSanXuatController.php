@@ -90,7 +90,7 @@ class HangSanXuatController extends Controller
         $orm->save();
 
         // Quay về danh sách
-        return redirect()->route('admin.hangsanxuat')->with('success', 'Sửa hãng sản xuất thành công');
+        return redirect()->route('admin.hangsanxuat.index')->with('success', 'Sửa hãng sản xuất thành công');
     }
 
     public function getXoa($id)
@@ -103,17 +103,17 @@ class HangSanXuatController extends Controller
         Storage::delete($orm->hinhanh);
 
         // Quay về danh sách
-        return redirect()->route('admin.hangsanxuat')->with('success', 'Xóa hãng sản xuất thành công');
+        return redirect()->route('admin.hangsanxuat.index')->with('success', 'Xóa hãng sản xuất thành công');
     }
 
     public function postNhap(Request $request)
     {
         Excel::import(new HangSanXuatImport, $request->file('file_excel'));
-        return redirect()->route('admin.hangsanxuat');
+        return redirect()->route('admin.hangsanxuat.index');
     }
 
-    // public function getXuat()
-    // {
-    //     return Excel::download(new HangSanXuatExport, 'hang-san-xuat.xlsx');
-    // }
+    public function getXuat()
+    {
+        return Excel::download(new HangSanXuatExport, 'hang-san-xuat.xlsx');
+    }
 }

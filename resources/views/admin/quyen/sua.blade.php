@@ -11,7 +11,6 @@
                     @csrf
                     @method('PUT')
 
-
                     <div class="mb-3">
                         <label>Name</label>
                         <input type="text" value="{{ old('name') ?? $role->name }}" name="name" class="form-control">
@@ -55,7 +54,7 @@
                                         @foreach ($permission as $item)
                                             <div class="form-check">
                                                 <input class="form-check-input" name="permission_ids[]" type="checkbox"
-                                                    {{-- {{ $role->permissions->contains('name', $item->name) ? 'checked' : '' }} --}}
+                                                    {{ $role->permissions->contains('name', $item->name) ? 'checked' : '' }}
                                                     style="margin-left:10px"
                                                     value="{{ $item->id }}">
                                                 <label style="margin-left:5px" class="custom-control-label"

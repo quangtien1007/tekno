@@ -106,23 +106,23 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
         Route::get('/them', 'getThem')->name('create');
         Route::post('/them', 'postThem')->name('add');
         Route::get('/sua/{id}', 'getSua')->name('edit');
-        Route::post('/sua/{id}', 'postSua')->name('update');
+        Route::put('/sua/{id}', 'postSua')->name('update');
         Route::get('/xoa/{id}', 'getXoa')->name('delete');
     });
 
     // Quản lý Loại sản phẩm
-    Route::prefix('loaisanpham')->controller(LoaiSanPhamController::class)->name('admin.loaisanpham.')->group(function () {
-        Route::get('/', 'getDanhSach')->name('index')->middleware('permission:xem-lsp');
-        Route::get('/them', 'getThem')->name('create')->middleware('permission:them-lsp');
-        Route::post('/them', 'postThem')->name('add')->middleware('permission:xem-lsp');
-        Route::get('/sua/{id}', 'getSua')->name('edit')->middleware('permission:sua-lsp');
-        Route::post('/sua/{id}', 'postSua')->name('update')->middleware('permission:sua-lsp');
-        Route::get('/xoa/{id}', 'getXoa')->name('delete')->middleware('permission:xoa-lsp');
+    Route::prefix('loaisanpham')->controller(LoaiSanPhamController::class)->middleware('role:admin')->name('admin.loaisanpham.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index');
+        Route::get('/them', 'getThem')->name('create');
+        Route::post('/them', 'postThem')->name('add');
+        Route::get('/sua/{id}', 'getSua')->name('edit');
+        Route::post('/sua/{id}', 'postSua')->name('update');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete');
     });
 
     // Quản lý Hãng sản xuất
     Route::prefix('hangsanxuat')->controller(HangSanXuatController::class)->name('admin.hangsanxuat.')->group(function () {
-        Route::get('/', 'getDanhSach')->name('index')->middleware('role:admin');
+        Route::get('/', 'getDanhSach')->name('index');
         Route::get('/them', 'getThem')->name('create');
         Route::post('/them', 'postThem')->name('add');
         Route::get('/sua/{id}', 'getSua')->name('edit');
@@ -133,54 +133,65 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
     });
 
     // Quản lý Tình trạng
-    Route::get('/tinhtrang', [TinhTrangController::class, 'getDanhSach'])->name('admin.tinhtrang');
-    Route::get('/tinhtrang/them', [TinhTrangController::class, 'getThem'])->name('admin.tinhtrang.create');
-    Route::post('/tinhtrang/them', [TinhTrangController::class, 'postThem'])->name('admin.tinhtrang.add');
-    Route::get('/tinhtrang/sua/{id}', [TinhTrangController::class, 'getSua'])->name('admin.tinhtrang.edit');
-    Route::post('/tinhtrang/sua/{id}', [TinhTrangController::class, 'postSua'])->name('admin.tinhtrang.update');
-    Route::get('/tinhtrang/xoa/{id}', [TinhTrangController::class, 'getXoa'])->name('admin.tinhtrang.delete');
+    Route::prefix('tinhtrang')->controller(TinhTrangController::class)->name('admin.tinhtrang.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index')->middleware('role:admin');
+        Route::get('/them', 'getThem')->name('create');
+        Route::post('/them', 'postThem')->name('add');
+        Route::get('/sua/{id}', 'getSua')->name('edit');
+        Route::post('/sua/{id}', 'postSua')->name('update');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete');
+    });
 
     // Quản lý Sản phẩm
-    Route::get('/sanpham', [SanPhamController::class, 'getDanhSach'])->name('admin.sanpham');
-    Route::post('/sanpham', [SanPhamController::class, 'postSanPham'])->name('admin.sanpham.sort');
-    Route::get('/sanpham/them', [SanPhamController::class, 'getThem'])->name('admin.sanpham.create');
-    Route::post('/sanpham/them', [SanPhamController::class, 'postThem'])->name('admin.sanpham.add');
-    Route::get('/sanpham/sua/{id}', [SanPhamController::class, 'getSua'])->name('admin.sanpham.edit');
-    Route::post('/sanpham/sua/{id}', [SanPhamController::class, 'postSua'])->name('admin.sanpham.update');
-    Route::get('/sanpham/xoa/{id}', [SanPhamController::class, 'getXoa'])->name('admin.sanpham.delete');
-    Route::post('/sanpham/nhap', [SanPhamController::class, 'postNhap'])->name('admin.sanpham.import');
-    Route::post('/sanpham/nhapdlmau', [SanPhamController::class, 'postNhapDungLuongMau'])->name('admin.dlmau.import');
-    Route::get('/sanpham/xuat', [SanPhamController::class, 'getXuat'])->name('admin.sanpham.export');
-    Route::get('/sanpham/xuatdlmau', [SanPhamController::class, 'getXuatDungLuongMau'])->name('admin.dungluongmau.export');
+    Route::prefix('sanpham')->controller(SanPhamController::class)->name('admin.sanpham.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index');
+        Route::post('/sapxep',  'postSanPham')->name('sort');
+        Route::get('/them',  'getThem')->name('create');
+        Route::post('/them',  'postThem')->name('add');
+        Route::get('/sua/{id}',  'getSua')->name('edit');
+        Route::post('/sua/{id}',  'postSua')->name('update');
+        Route::get('/xoa/{id}',  'getXoa')->name('delete');
+        Route::post('/nhap',  'postNhap')->name('import');
+        Route::post('/nhapdlmau',  'postNhapDungLuongMau')->name('importdlmau');
+        Route::get('/xuat',  'getXuat')->name('export');
+        Route::get('/xuatdlmau',  'getXuatDungLuongMau')->name('exportdlmau');
+    });
 
     // Quản lý Đơn hàng
-    Route::get('/donhang', [DonHangController::class, 'getDanhSach'])->name('admin.donhang');
-    Route::get('/donhang/them', [DonHangController::class, 'getThem'])->name('admin.donhang.create');
-    Route::post('/donhang/them', [DonHangController::class, 'postThem'])->name('admin.donhang.add');
-    Route::get('/donhang/sua/{id}', [DonHangController::class, 'getSua'])->name('admin.donhang.edit');
-    Route::post('/donhang/sua/{id}', [DonHangController::class, 'postSua'])->name('admin.donhang.update');
-    Route::get('/donhang/xoa/{id}', [DonHangController::class, 'getXoa'])->name('admin.donhang.delete');
-    Route::get('/donhang/hoadon/{donhang_id}', [DonHangController::class, 'getInDonHang'])->name('admin.donhang.hoadon');
+    Route::prefix('donhang')->controller(DonHangController::class)->name('admin.donhang.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index');
+        Route::get('/them', 'getThem')->name('create');
+        Route::post('/them', 'postThem')->name('add');
+        Route::get('/sua/{id}', 'getSua')->name('edit');
+        Route::post('/sua/{id}', 'postSua')->name('update');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete');
+        Route::get('/hoadon/{donhang_id}', 'getInDonHang')->name('hoadon');
+    });
 
     // Quản lý Đơn hàng chi tiết
-    Route::get('/donhang/chitiet', [DonHangChiTietController::class, 'getDanhSach'])->name('admin.donhang.chitiet');
-    Route::get('/donhang/chitiet/sua/{id}', [DonHangChiTietController::class, 'getSua'])->name('admin.donhang.chitiet.edit');
-    Route::post('/donhang/chitiet/sua/{id}', [DonHangChiTietController::class, 'postSua'])->name('admin.donhang.chitiet.update');
-    Route::get('/donhang/chitiet/xoa/{id}', [DonHangChiTietController::class, 'getXoa'])->name('admin.donhang.chitiet.delete');
-
+    Route::prefix('donhang/chitiet')->controller(DonHangChiTietController::class)->name('admin.donhang.chitiet.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index');
+        Route::get('/sua/{id}', 'getSua')->name('edit');
+        Route::post('/sua/{id}', 'postSua')->name('update');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete');
+    });
     // Quản lý Tài khoản người dùng
-    Route::get('/nguoidung', [NguoiDungController::class, 'getDanhSach'])->name('admin.nguoidung');
-    Route::get('/nguoidung/them', [NguoiDungController::class, 'getThem'])->name('admin.nguoidung.create');
-    Route::post('/nguoidung/them', [NguoiDungController::class, 'postThem'])->name('admin.nguoidung.add');
-    Route::get('/nguoidung/sua/{id}', [NguoiDungController::class, 'getSua'])->name('admin.nguoidung.edit');
-    Route::post('/nguoidung/sua/{id}', [NguoiDungController::class, 'postSua'])->name('admin.nguoidung.update');
-    Route::get('/nguoidung/xoa/{id}', [NguoiDungController::class, 'getXoa'])->name('admin.nguoidung.delete');
+    Route::prefix('nguoidung')->controller(NguoiDungController::class)->name('admin.nguoidung.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index');
+        Route::get('/them', 'getThem')->name('create');
+        Route::post('/them', 'postThem')->name('add');
+        Route::get('/sua/{id}', 'getSua')->name('edit');
+        Route::post('/sua/{id}',  'postSua')->name('update');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete');
+    });
 
     //Quản lý bài viết
-    Route::get('/baiviet', [BaiVietController::class, 'getDanhSach'])->name('admin.baiviet');
-    Route::get('/baiviet/them', [BaiVietController::class, 'getThem'])->name('admin.baiviet.create');
-    Route::post('/baiviet/them', [BaiVietController::class, 'postThem'])->name('admin.baiviet.add');
-    Route::get('/baiviet/sua/{id}', [BaiVietController::class, 'getSua'])->name('admin.baiviet.edit');
-    Route::post('/baiviet/sua/{id}', [BaiVietController::class, 'postSua'])->name('admin.baiviet.update');
-    Route::get('/baiviet/xoa/{id}', [BaiVietController::class, 'getXoa'])->name('admin.baiviet.delete');
+    Route::prefix('baiviet')->controller(BaiVietController::class)->name('admin.baiviet.')->group(function () {
+        Route::get('/', 'getDanhSach')->name('index');
+        Route::get('/them', 'getThem')->name('create');
+        Route::post('/them', 'postThem')->name('add');
+        Route::get('/sua/{id}', 'getSua')->name('edit');
+        Route::post('/sua/{id}', 'postSua')->name('update');
+        Route::get('/xoa/{id}', 'getXoa')->name('delete');
+    });
 });

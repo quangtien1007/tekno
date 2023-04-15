@@ -32,7 +32,7 @@
                                     @endif
                                 </td>
                                 <td class="text-center"><a  href="{{ route('admin.nguoidung.edit', ['id' => $value->id]) }}"><i class="fa-regular fal fa-edit text-success"></i></a></td>
-                                <td class="text-center"><a href="{{ route('admin.nguoidung.delete', ['id' => $value->id]) }}"><i class="fa-regular fal fa-trash-alt text-danger"></i></a></td>
+                                <td class="text-center"><a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $value->email }} không?')" href="{{ route('admin.nguoidung.delete', ['id' => $value->id]) }}"><i class="fa-regular fal fa-trash-alt text-danger"></i></a></td>
                             </tr>
                         @endforeach
                     </tbody>

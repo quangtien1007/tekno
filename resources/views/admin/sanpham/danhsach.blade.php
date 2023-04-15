@@ -7,11 +7,11 @@
             <div class="card-header">Sản phẩm</div>
             <div class="card-body table-responsive">
                 <p>
-                    <a href="{{ route('admin.sanpham.create') }}" class="btn btn-info"><i class="fal fa-plus"></i> Thêm mới</a>
-                    <a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fal fa-upload"></i>Nhập sản phẩm từ Excel</a>
-                    <a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importDL"><i class="fal fa-upload"></i>Nhập dung lượng và màu từ Excel</a>
+                    <a href="{{ route('admin.sanpham.create') }}" class="btn btn-primary"><i class="fal fa-plus"></i> Thêm mới</a>
+                    <a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importModal"><i class="fal fa-upload"></i> Nhập sản phẩm từ Excel</a>
+                    <a href="#nhap" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#importDL"><i class="fal fa-upload"></i> Nhập dung lượng và màu từ Excel</a>
                     <a href="{{ route('admin.sanpham.export') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất sản phẩm ra Excel</a>
-                    <a href="{{ route('admin.dungluongmau.export') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất dung lượng và màu ra Excel</a>
+                    <a href="{{ route('admin.sanpham.exportdlmau') }}" class="btn btn-success"><i class="fal fa-download"></i> Xuất dung lượng và màu ra Excel</a>
                 </p>
                     <div class="custom_select">
                         <form action="{{ route('admin.sanpham.sort') }}" method="post">
@@ -37,7 +37,9 @@
                             <th width="5%">SL</th>
                             <th width="10%">Đơn giá</th>
                             <th class="text-center" width="5%">Sửa</th>
+                            @role('admin')
                             <th class="text-center" width="5%">Xóa</th>
+                            @endrole
                         </tr>
                     </thead>
                     <tbody>
@@ -52,13 +54,17 @@
                                             {{DB::table('mau')->where('id',$item->mau_id)->first()->mau}}
                                         @endforeach
                                 </td>
-                                <td>{{ DB::table('dungluong_mau')
+                                <td>@if(isset(DB::table('dungluong_mau')->first()->soluongton))
+                                    {{ DB::table('dungluong_mau')
                                     ->select('soluongton',DB::raw('SUM(soluongton)'))->where('sanpham_id',$value->id)
                                     ->groupBy('soluongton')
-                                    ->first()->soluongton }}</td>
+                                    ->first()->soluongton }}
+                                    @endif</td>
                                 <td>{{ number_format($value->dongia) }}đ</td>
                                 <td class="text-center"><a href="{{ route('admin.sanpham.edit', ['id' => $value->id]) }}"><i class="fa-regular fal fa-edit text-success"></i></a></td>
+                                @role('admin')
                                 <td class="text-center"><a href="{{ route('admin.sanpham.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa sản phẩm {{ $value->tensanpham }} không?')"><i class="fa-regular fal fa-trash-alt text-danger"></i></a></td>
+                                @endrole
                             </tr>
                         @endforeach
                     </tbody>
@@ -91,7 +97,7 @@
 			</div>
 		</div>
 	</form>
-	<form action="{{ route('admin.dlmau.import') }}" method="post" enctype="multipart/form-data">
+	<form action="{{ route('admin.sanpham.importdlmau') }}" method="post" enctype="multipart/form-data">
 		@csrf
 		<div class="modal fade" id="importDL" tabindex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
 			<div class="modal-dialog">

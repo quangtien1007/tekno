@@ -7,9 +7,17 @@ use App\Models\Permission;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Services\RoleService;
 
 class RoleController extends Controller
 {
+    protected RoleService $roleService;
+
+    public function __construct(RoleService $roleService)
+    {
+        $this->roleService = $roleService;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +36,6 @@ class RoleController extends Controller
      */
     public function getThem()
     {
-        // $role = Role::find($id);
         $permissions = Permission::all()->groupBy('group');
         return view('admin.quyen.them', compact('permissions'));
     }
@@ -41,11 +48,8 @@ class RoleController extends Controller
      */
     public function postThem(Request $request)
     {
-        $dataCreate = $request->all();
-        $dataCreate['guard_name'] = 'web';
-        $role = Role::latest('id')->paginate(5);
-        $role->permissions()->attach($request->permission_ids);
-        return redirect()->route('admin.quyen.index', with('success', 'Them thanh cong'));
+        $this->roleService->create($request);
+        return redirect()->route('admin.quyen.index')->with('success', 'Thêm quyền thành công');
     }
 
     /**
@@ -80,9 +84,11 @@ class RoleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function postSua(Request $request, $id)
     {
-        //
+        // dd($request);
+        $this->roleService->update($request, $id);
+        return redirect()->route('admin.quyen.index')->with('success', 'Sửa quyền thành công');
     }
 
     /**
@@ -93,8 +99,7 @@ class RoleController extends Controller
      */
     public function getXoa($id)
     {
-        $orm = Role::find($id);
-        $orm->delete();
+        $this->roleService->delete($id);
 
         return redirect()->route('admin.quyen.index')->with('success', 'Đã xóa quyền thành công');
     }

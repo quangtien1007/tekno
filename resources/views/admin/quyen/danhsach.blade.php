@@ -10,7 +10,6 @@
                 <table class="table table-hover table-sm mb-0">
                     <thead>
                         <tr>
-                            <th width="5%">#</th>
                             <th width="20%">Quyền</th>
                             <th width="20%">Tên</th>
                             <th width="15%">Nhóm quyền</th>
@@ -22,7 +21,6 @@
                         @foreach($roles as $role)
                             @foreach ($role as $value)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $value->display_name }}</td>
                                     <td>{{ $value->name }}</td>
                                     <td>{{ $value->group }}</td>

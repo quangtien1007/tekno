@@ -153,10 +153,10 @@ class SanPhamController extends Controller
                 }
             }
         } else {
-            return redirect()->route('admin.sanpham')->with('error', 'Thêm sản phẩm không thành công');
+            return redirect()->route('admin.sanpham.index')->with('error', 'Thêm sản phẩm không thành công');
         }
 
-        return redirect()->route('admin.sanpham')->with('success', 'Thêm sản phẩm thành công');
+        return redirect()->route('admin.sanpham.index')->with('success', 'Thêm sản phẩm thành công');
     }
 
     public function getSua($id)
@@ -278,7 +278,7 @@ class SanPhamController extends Controller
         // }
         // dd($msp);
 
-        return redirect()->route('admin.sanpham')->with('success', 'Cập nhật sản phẩm thành công');
+        return redirect()->route('admin.sanpham.index')->with('success', 'Cập nhật sản phẩm thành công');
     }
 
     public function getXoa($id)
@@ -289,13 +289,13 @@ class SanPhamController extends Controller
         // Xóa tập tin khi xóa sản phẩm
         Storage::delete($orm->hinhanh);
 
-        return redirect()->route('admin.sanpham');
+        return redirect()->route('admin.sanpham.index');
     }
 
     public function postNhap(Request $request)
     {
         Excel::import(new SanPhamImport, $request->file('file_excel'));
-        return redirect()->route('admin.sanpham')->with('success', 'Xóa sản phẩm thành công');
+        return redirect()->route('admin.sanpham.index')->with('success', 'Xóa sản phẩm thành công');
     }
 
     public function getXuat()
@@ -303,11 +303,6 @@ class SanPhamController extends Controller
         return Excel::download(new SanPhamExport, 'san-pham.xlsx');
     }
 
-    public function postNhapMau(Request $request)
-    {
-        Excel::import(new MauSanPhamImport, $request->file('file_excel'));
-        return redirect()->route('admin.sanpham')->with('success', 'Đã nhập màu thành công!!!');
-    }
 
     public function getXuatDungLuongMau()
     {
@@ -317,6 +312,6 @@ class SanPhamController extends Controller
     public function postNhapDungLuongMau(Request $request)
     {
         Excel::import(new DungLuongMauImport(), $request->file('file_excel'));
-        return redirect()->route('admin.sanpham')->with('success', 'Đã nhập dung lượng thành công');
+        return redirect()->route('admin.sanpham.index')->with('success', 'Đã nhập dung lượng thành công');
     }
 }

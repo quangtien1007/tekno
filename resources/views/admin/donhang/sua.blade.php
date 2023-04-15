@@ -82,6 +82,18 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label" for="is_thanhtoan">Tình trạng thanh toán</label>
+                        <select class="form-select @error('is_thanhtoan') is-invalid @enderror" id="is_thanhtoan" name="is_thanhtoan" required>
+                            <option value="">-- Chọn loại --</option>
+                            <option value="0" {{ ($donhang->is_thanhtoan == 0) ? 'selected' : '' }} name="is_thanhtoan">Chưa thanh toán</option>
+                            <option value="1" {{ ($donhang->is_thanhtoan == 1) ? 'selected' : '' }} name="is_thanhtoan">Đã thanh toán</option>
+                        </select>
+                        @error('is_thanhtoan')
+                            <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label" for="tinhtrang_id">Tình trạng đơn hàng</label>
                         <select class="form-select @error('tinhtrang_id') is-invalid @enderror" id="tinhtrang_id" name="tinhtrang_id" required>
                             <option value="">-- Chọn loại --</option>

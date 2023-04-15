@@ -16,7 +16,9 @@
 						<th width="8%">Thanh toán</th>
 						<th width="10%">Phương thức thanh toán</th>
 						<th class="text-center" width="3%">Chi tiết</th>
+                        @role('admin')
 						<th class="text-center" width="3%">Xóa</th>
+                        @endrole
 					</tr>
 				</thead>
 				<tbody>
@@ -51,7 +53,9 @@
 								@endif
 							</td>
 							<td class="text-center"><a href="{{ route('admin.donhang.edit', ['id' => $value->id]) }}"><i class="fa-regular fa-circle-info fa-lg"></i></a></td>
+                            @role('admin')
 							<td class="text-center"><a href="{{ route('admin.donhang.delete', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa đơn hàng của khách {{ $value->User->name }} không?')"><i class="fal fa-trash-alt text-danger"></i></a></td>
+                            @endrole
 						</tr>
 					@endforeach
                     <style>

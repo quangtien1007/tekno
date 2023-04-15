@@ -53,10 +53,10 @@
                      <td><strong> Tong tien: </strong></td>
                      <td>
                          <strong>
-                             {{number_format(DB::table('donhang_chitiet')
-                             ->select('dongiaban',DB::raw('SUM(dongiaban)'))
+                             {{(number_format(DB::table('donhang_chitiet')
+                             ->select('dongiaban',DB::raw('SUM(dongiaban) as tong'))
                              ->groupBy('dongiaban')
-                             ->first()->dongiaban)}}VND
+                             ->first()->tong))}}VND
                          </strong>
                      </td>
                     </tfoot>

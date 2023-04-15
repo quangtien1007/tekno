@@ -70,9 +70,10 @@ class DonHangController extends Controller
         $orm->tinhtrang_id = $request->tinhtrang_id;
         $orm->dienthoaigiaohang = $request->dienthoaigiaohang;
         $orm->diachigiaohang = $request->diachigiaohang;
+        $orm->is_thanhtoan = $request->is_thanhtoan;
         $orm->save();
 
-        return redirect()->route('admin.donhang');
+        return redirect()->route('admin.donhang.index');
     }
 
     public function getXoa($id)
@@ -83,6 +84,6 @@ class DonHangController extends Controller
         $chitiet = DonHang_ChiTiet::where('donhang_id', $orm->id)->first();
         $chitiet->delete();
 
-        return redirect()->route('admin.donhang');
+        return redirect()->route('admin.donhang.index');
     }
 }
