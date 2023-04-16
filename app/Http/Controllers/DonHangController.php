@@ -9,6 +9,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
+use App\Models\SanPham;
+use App\Models\MauSanPham;
+use App\Models\DungLuongSanPham;
+use App\Models\DungLuong_Mau;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class DonHangController extends Controller
 {
@@ -23,14 +28,71 @@ class DonHangController extends Controller
         return view('admin.donhang.danhsach', compact('donhang'));
     }
 
+    public function getDungLuongTheoSanPham($idsp)
+    {
+        $dl_id = DB::table('dungluong_mau')->distinct()->select('dungluong_id')->where('sanpham_id', '=', $idsp)->get();
+        $mau_id = DB::table('dungluong_mau')->distinct()->select('mau_id')->where('sanpham_id', '=', $idsp)->get();
+        foreach ($dl_id as $item) {
+            $dl = DB::table('dungluong')->where('id', $item->dungluong_id)->first()->dungluong;
+            $mau = DB::table('mau')->where('id', $item->mau_id)->first()->mau;
+            $item->dungluong = $dl;
+        }
+        foreach ($mau_id as $item) {
+            $item->mau = $mau;
+        }
+        return json_encode($dl_id);
+    }
+
     public function getThem()
     {
-        // Đặt hàng bên Front-end
+        $donhang = Donhang::all();
+        $sanpham = SanPham::all();
+        $dungluong = DungLuongSanPham::all();
+        $mau = MauSanPham::all();
+        return view('admin.donhang.them', compact('donhang', 'sanpham', 'dungluong', 'mau'));
     }
 
     public function postThem(Request $request)
     {
-        // Xử lý đặt hàng bên Front-end
+        // $tenloai = 'Đặt hàng thành công';
+        // $tinhtrang = 1;
+        // $status_dh = DB::select("SHOW TABLE STATUS LIKE 'donhang'"); //Câu lệnh xem trạng thái của bảng
+        // $id_dh = $status_dh[0]->Auto_increment;
+
+        // // Lưu vào đơn hàng
+        // $dh = new DonHang();
+        // $dh->user_id = Auth::user()->id;
+        // $dh->tinhtrang_id = $tinhtrang; // Đơn hàng mới
+        // $dh->diachigiaohang = $request->diachigiaohang;
+        // $dh->dienthoaigiaohang = $request->dienthoaigiaohang;
+        // $dh->is_thanhtoan = 1;
+        // $dh->pt_thanhtoan = 'Tại quầy';
+        // $dh->save();
+
+        // // Lưu vào đơn hàng chi tiết
+        // $ct = new DonHang_ChiTiet();
+        // $mau = MauSanPham::where(['mau' => $value->color])->first();
+        // $dungluong = DungLuongSanPham::where(['dungluong' => $value->storage])->first();
+        // // dd($mau);
+        // $ct->donhang_id = $dh->id;
+        // $ct->sanpham_id = $request->id;
+        // $ct->mau_id = isset($mau->id) ? $mau->id : 6;
+        // $ct->dungluong_id = isset($dungluong->id) ? $dungluong->id : 6;
+        // $ct->soluongban = $value->qty;
+        // $ct->dongiaban = $value->price;
+        // $ct->save();
+
+
+        // $dungluong_mau = DungLuong_Mau::where('sanpham_id', $value->id)->where('dungluong_id', $dungluong->id)->where('mau_id', $mau->id)->first();
+        // // dd($dungluong_mau);
+        // //cập nhật số lượng tồn của màu và dung lượng sản phẩm
+        // if (isset($mau->id) || isset($dungluong->id)) {
+        //     DB::table('dungluong_mau')
+        //         ->where('dungluong_id', $dungluong->id)
+        //         ->where('mau_id', $mau->id)
+        //         ->where('sanpham_id', $value->id)
+        //         ->update(['soluongton' => $dungluong_mau->soluongton - $value->qty]);
+        // }
     }
 
     public function getInDonHang($donhang_id)

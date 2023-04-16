@@ -26,6 +26,7 @@ Route::get('/', [HomeController::class, 'getHome'])->name('client');
 Route::get('/home', [HomeController::class, 'getHome'])->name('client');
 
 Route::get('/getMauTheoDungLuong/{id}/{spid}', [HomeController::class, 'getMauTheoDungLuong']);
+Route::get('/getDungLuongTheoSanPham/{id}', [DonHangController::class, 'getDungLuongTheoSanPham']);
 // Trang sản phẩm
 Route::get('san-pham', [HomeController::class, 'getSanPham'])->name('client.sanpham');
 Route::post('/san-pham', [HomeController::class, 'postSanPham'])->name('client.sanpham.search');

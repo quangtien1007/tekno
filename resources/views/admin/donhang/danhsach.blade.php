@@ -4,7 +4,7 @@
 	<div class="card">
 		<div class="card-header">Tất cả đơn hàng</div>
 		<div class="card-body table-responsive">
-			{{-- <p><a href="{{ route('admin') }}" class="btn btn-success"><i class="fal fa-plus"></i> Thêm mới</a></p> --}}
+			<p><a href="{{ route('admin.donhang.create') }}" class="btn btn-success"><i class="fal fa-plus"></i> Tạo đơn hàng</a></p>
 			<table class="table table-stried table-hover table-sm mb-0">
 				<thead>
 					<tr>

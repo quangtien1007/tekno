@@ -93,7 +93,6 @@
 							<div class="product-options">
                                 @if($sanpham->loaisanpham_id == 1 || $sanpham->loaisanpham_id == 2 || $sanpham->loaisanpham_id == 3 )
 								<label>
-									{{-- <p>D.Lượng</p> --}}
                                     D.Lượng
 									<select name="dlsp" class="input-select" id="sub_category_name">
                                         @foreach ($dl as $item)

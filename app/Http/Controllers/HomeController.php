@@ -245,6 +245,7 @@ class HomeController extends Controller
         dd($sanpham);
     }
 
+
     public function getSanPham_ChiTiet($tenloai_slug, $tensanpham_slug)
     {
         $sp = SanPham::where('tensanpham_slug', $tensanpham_slug)->first();
