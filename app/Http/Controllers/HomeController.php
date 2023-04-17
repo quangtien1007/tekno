@@ -27,8 +27,8 @@ class HomeController extends Controller
 {
     public function getMauTheoDungLuong($dungluong, $spid)
     {
-        $dungluong_id = DB::table('dungluong')->where('dungluong', $dungluong)->first()->id;
-        $mau_id = DB::table('dungluong_mau')->where('dungluong_id', $dungluong_id)->where('sanpham_id', $spid)->get();
+        // $dungluong_id = DB::table('dungluong')->where('id', $dungluong)->first()->id;
+        $mau_id = DB::table('dungluong_mau')->where('dungluong_id', $dungluong)->where('sanpham_id', $spid)->get();
         foreach ($mau_id as $item) {
             $mau = DB::table('mau')->where('id', $item->mau_id)->first()->mau;
             $item->mau = $mau;

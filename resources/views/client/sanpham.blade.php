@@ -87,7 +87,7 @@
                         <h3 class="aside-title">Bán chạy</h3>
                         @foreach (getSanPhamBanChay() as $item)
                         @php
-                            $banchay = DB::table('sanpham')->where('id',$item->sanpham_id)->get();
+                            $banchay = DB::table('sanpham')->where('id',$item->sanpham_id)->limit(5)->get();
                         @endphp
                         @foreach ($banchay as $value)
                         <div class="product-widget">
@@ -135,14 +135,6 @@
 									<option value="price-desc" {{ session('sapxep') == 'price-desc' ? 'selected' : '' }}>Xếp theo giá: cao xuống thấp</option>
                                 </select>
                                 </form>
-                            </label>
-
-                            <label>
-                                Hiển thị:
-                                <select class="input-select">
-                                    <option value="0">20</option>
-                                    <option value="1">50</option>
-                                </select>
                             </label>
                         </div>
                         <ul class="store-grid">

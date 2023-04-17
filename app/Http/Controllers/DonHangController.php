@@ -31,17 +31,13 @@ class DonHangController extends Controller
     public function getDungLuongTheoSanPham($idsp)
     {
         $dl_id = DB::table('dungluong_mau')->distinct()->select('dungluong_id')->where('sanpham_id', '=', $idsp)->get();
-        $mau_id = DB::table('dungluong_mau')->distinct()->select('mau_id')->where('sanpham_id', '=', $idsp)->get();
         foreach ($dl_id as $item) {
             $dl = DB::table('dungluong')->where('id', $item->dungluong_id)->first()->dungluong;
-            $mau = DB::table('mau')->where('id', $item->mau_id)->first()->mau;
             $item->dungluong = $dl;
-        }
-        foreach ($mau_id as $item) {
-            $item->mau = $mau;
         }
         return json_encode($dl_id);
     }
+
 
     public function getThem()
     {
@@ -54,45 +50,59 @@ class DonHangController extends Controller
 
     public function postThem(Request $request)
     {
-        // $tenloai = 'Đặt hàng thành công';
-        // $tinhtrang = 1;
-        // $status_dh = DB::select("SHOW TABLE STATUS LIKE 'donhang'"); //Câu lệnh xem trạng thái của bảng
-        // $id_dh = $status_dh[0]->Auto_increment;
+        $tenloai = 'Đặt hàng thành công';
+        $tinhtrang = 8;
+        $status_dh = DB::select("SHOW TABLE STATUS LIKE 'donhang'"); //Câu lệnh xem trạng thái của bảng
+        $id_dh = $status_dh[0]->Auto_increment;
 
-        // // Lưu vào đơn hàng
-        // $dh = new DonHang();
-        // $dh->user_id = Auth::user()->id;
-        // $dh->tinhtrang_id = $tinhtrang; // Đơn hàng mới
-        // $dh->diachigiaohang = $request->diachigiaohang;
-        // $dh->dienthoaigiaohang = $request->dienthoaigiaohang;
-        // $dh->is_thanhtoan = 1;
-        // $dh->pt_thanhtoan = 'Tại quầy';
-        // $dh->save();
+        // Lưu vào đơn hàng
+        $dh = new DonHang();
+        $dh->user_id = Auth::user()->id;
+        $dh->tinhtrang_id = $tinhtrang; // Đơn hàng mới
+        $dh->diachigiaohang = 'Tại quầy';
+        $dh->dienthoaigiaohang = $request->dienthoaigiaohang;
+        $dh->is_thanhtoan = 1;
+        $dh->pt_thanhtoan = 'Tại quầy';
+        $dh->save();
 
-        // // Lưu vào đơn hàng chi tiết
-        // $ct = new DonHang_ChiTiet();
-        // $mau = MauSanPham::where(['mau' => $value->color])->first();
-        // $dungluong = DungLuongSanPham::where(['dungluong' => $value->storage])->first();
-        // // dd($mau);
-        // $ct->donhang_id = $dh->id;
-        // $ct->sanpham_id = $request->id;
-        // $ct->mau_id = isset($mau->id) ? $mau->id : 6;
-        // $ct->dungluong_id = isset($dungluong->id) ? $dungluong->id : 6;
-        // $ct->soluongban = $value->qty;
-        // $ct->dongiaban = $value->price;
-        // $ct->save();
+        // Lưu vào đơn hàng chi tiết
+        $ct = new DonHang_ChiTiet();
+        $ct->donhang_id = $dh->id;
+        $ct->sanpham_id = $request->sanpham_id;
+        $ct->mau_id = isset($request->msp) ? $request->msp : 6;
+        $ct->dungluong_id = isset($request->dlsp) ? $request->dlsp : 6;
+        $ct->soluongban = $request->soluong;
+        $ct->dongiaban = SanPham::where('id', $request->sanpham_id)->first()->dongia;
+        $ct->save();
 
 
-        // $dungluong_mau = DungLuong_Mau::where('sanpham_id', $value->id)->where('dungluong_id', $dungluong->id)->where('mau_id', $mau->id)->first();
-        // // dd($dungluong_mau);
-        // //cập nhật số lượng tồn của màu và dung lượng sản phẩm
-        // if (isset($mau->id) || isset($dungluong->id)) {
-        //     DB::table('dungluong_mau')
-        //         ->where('dungluong_id', $dungluong->id)
-        //         ->where('mau_id', $mau->id)
-        //         ->where('sanpham_id', $value->id)
-        //         ->update(['soluongton' => $dungluong_mau->soluongton - $value->qty]);
-        // }
+        $dungluong_mau = DungLuong_Mau::where('sanpham_id', $request->sanpham_id)->where('dungluong_id', $request->dlsp)->where('mau_id', $request->msp)->first();
+        //cập nhật số lượng tồn của màu và dung lượng sản phẩm
+        if (isset($request->msp) || isset($request->dlsp)) {
+            DB::table('dungluong_mau')
+                ->where('dungluong_id', $request->dlsp)
+                ->where('mau_id', $request->msp)
+                ->where('sanpham_id', $request->sanpham_id)
+                ->update(['soluongton' => $dungluong_mau->soluongton - $request->soluong]);
+        }
+
+
+        $dh = DB::table('donhang')->where('id', $id_dh)->first();
+        $dhct = DonHang_ChiTiet::where('donhang_id', $id_dh)->get();
+
+        $data = [
+            'title' => 'Thông tin hóa đơn',
+            'date' => date('m/d/Y'),
+            'dhct' => $dhct,
+            'dh' => $dh,
+            'tenkh' => $request->tenkh,
+        ];
+
+        $pdf = PDF::loadView('admin.donhang.hoadon', $data);
+
+        $pdf->download('hoadon.pdf');
+
+        return $pdf->download('hoadon.pdf');
     }
 
     public function getInDonHang($donhang_id)
@@ -135,17 +145,17 @@ class DonHangController extends Controller
         $orm->is_thanhtoan = $request->is_thanhtoan;
         $orm->save();
 
-        return redirect()->route('admin.donhang.index');
+        return redirect()->route('admin.donhang.index')->with('success', 'Cập nhật đơn hàng thành công');
     }
 
     public function getXoa($id)
     {
         $orm = DonHang::find($id);
-        $orm->delete();
 
         $chitiet = DonHang_ChiTiet::where('donhang_id', $orm->id)->first();
         $chitiet->delete();
+        $orm->delete();
 
-        return redirect()->route('admin.donhang.index');
+        return redirect()->route('admin.donhang.index')->with('success', 'Xóa đơn hàng thành công');
     }
 }

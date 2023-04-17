@@ -19,6 +19,7 @@ class UserController extends Controller
     {
         $tenloai = 'Khách hàng';
         $donhang = DonHang::where('user_id', Auth::user()->id)->orderBy('created_at', 'asc')->get();
+        // dd($donhang);
         return view('user.index', compact('donhang', 'tenloai'));
     }
 

@@ -357,7 +357,7 @@
                                             <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                         </h3>
                                         <h4 class="product-price">{{number_format($item->dongia)}}<sup>đ</sup>
-                                            <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del><sup>đ</sup>
+                                            <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}<sup>đ</sup></del>
                                         </h4>
 									</div>
 								</div>
@@ -376,8 +376,8 @@
                                         <h3 class="product-name">
                                             <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                         </h3>
-                                        <h4 class="product-price">{{number_format($item->dongia)}}
-                                            <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
+                                        <h4 class="product-price">{{number_format($item->dongia)}}<sup>đ</sup>
+                                            <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}<sup>đ</sup></del>
                                         </h4>
 									</div>
 								</div>
@@ -407,8 +407,8 @@
                                          <h3 class="product-name">
                                             <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                         </h3>
-                                         <h4 class="product-price">{{number_format($item->dongia)}}
-                                             <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
+                                         <h4 class="product-price">{{number_format($item->dongia)}}<sup>đ</sup>
+                                             <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}<sup>đ</sup></del>
                                          </h4>
                                      </div>
                                  </div>
@@ -420,15 +420,15 @@
                                  @foreach ($laptop as $item)
                                  <div class="product-widget">
                                      <div class="product-img">
-                                         <img src="{{env('APP_URL') . '/images/sanpham/'.$item->hinhanh}}" alt="">
+                                        <img src="{{env('APP_URL') . '/images/sanpham/'.$item->hinhanh}}" alt="">
                                      </div>
                                      <div class="product-body">
                                          <p class="product-category">{{DB::table('loaisanpham')->where('id',$item->loaisanpham_id)->first()->tenloai}}</p>
                                          <h3 class="product-name">
                                             <a href="{{ route('client.sanpham.chitiet', ['tenloai_slug' => $tenloai->tenloai_slug, 'tensanpham_slug' => $item->tensanpham_slug]) }}">{{ $item->tensanpham }}</a>
                                         </h3>
-                                         <h4 class="product-price">{{number_format($item->dongia)}}
-                                             <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}</del>
+                                         <h4 class="product-price">{{number_format($item->dongia)}}<sup>đ</sup>
+                                             <del class="product-old-price">{{number_format($item->dongia + ($item->dongia*0.1))}}<sup>đ</sup></del>
                                          </h4>
                                      </div>
                                  </div>

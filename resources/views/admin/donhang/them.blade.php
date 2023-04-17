@@ -9,7 +9,7 @@
         <div class="card col-md-8">
             <div class="card-header">Tạo đơn hàng</div>
             <div class="card-body">
-                <form action="" method="post">
+                <form action="{{route('admin.donhang.add')}}" method="post">
                     @csrf
 
                     <div class="mb-3">
@@ -24,7 +24,7 @@
                         <label class="form-label" for="sub_sanpham">Sản phẩm</label>
                         <select class="form-select js-example-tags" name="sanpham_id" id="sub_sanpham" required>
                             @foreach ($sanpham as $item)
-                            <option name="sanpham_id" value="{{$item->id}}" selected="selected">{{$item->tensanpham}}</option>
+                            <option name="sanpham_id" value="{{$item->id}}">{{$item->tensanpham}}</option>
                             @endforeach
                         </select>
                         @error('sub_sanpham')
@@ -34,7 +34,7 @@
 
                     <div class="mb-3">
                         <label class="form-label" for="dungluong_id">Dung lượng</label>
-                            <select id="sub_dungluong" name="msp" class="form-select">
+                            <select id="sub_dungluong" name="dlsp" class="form-select">
                             </select>
                     </div>
 
@@ -61,7 +61,7 @@
                     </div>
 
 
-                    <button type="submit" style="float:right;" class="btn btn-primary"><i class="fal fa-save"></i> Cập nhật</button>
+                    <button type="submit" style="float:right;" class="btn btn-primary"><i class="fal fa-save"></i> Tạo đơn</button>
                     <script>
                         $(document).ready(function () {
                             $(".js-example-tags").select2({
@@ -78,16 +78,16 @@
                                 var response = JSON.parse(response);
                                 console.log(response);
                                 $('#sub_dungluong').empty();
+                                $('#sub_mau').empty();
                                 response.forEach(element => {
-                                        $('#sub_dungluong').append(`<option value="${element['dungluong']}">${element['dungluong']}</option>`);
-                                        $('#sub_mau').append(`<option value="${element['mau']}">${element['mau']}</option>`);
+                                        $('#sub_dungluong').append(`<option value="${element['dungluong_id']}">${element['dungluong']}</option>`);
                                         });
                                     }
                                 });
                             });
                             $('#sub_dungluong').on('change', function () {
                                 let id = $(this).val();
-                                let spid = $('#sp_id').val();
+                                let spid = $('#sub_sanpham').val();
                                 $('#sub_mau').empty();
                                 $('#sub_mau').append(`<option value="0" disabled selected>Processing...</option>`);
                                 $.ajax({
@@ -98,13 +98,13 @@
                                 console.log(response);
                                 $('#sub_mau').empty();
                                 response.forEach(element => {
-                                        $('#sub_mau').append(`<option value="${element['mau']}">${element['mau']}</option>`);
+                                        $('#sub_mau').append(`<option value="${element['mau_id']}">${element['mau']}</option>`);
                                         });
                                     }
                                 });
                             });
                         });
-            </script>
+                    </script>
                 </form>
             </div>
         </div>

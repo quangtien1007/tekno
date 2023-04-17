@@ -40,6 +40,9 @@
                             <th>Giá</th>
                         </thead>
                         <tbody class="table-bordered" id>
+                            @php
+                                $tongtien = 0;
+                            @endphp
                             @foreach ($dhct as $item)
                             @php
                                 $sanpham = DB::table('sanpham')->where('id',$item->sanpham_id)->first();
@@ -58,6 +61,7 @@
                             <td>{{DB::table('tinhtrang')->where('id',$dh->tinhtrang_id)->first()->tinhtrang}}</td>
                             <td>{{$item->created_at}}</td>
                             <td>{{number_format($item->dongiaban)}}đ</td>
+                            @php $tongtien += $item->soluongban * $item->dongiaban; @endphp
                             @endforeach
                         </tbody>
                         <tfoot>
@@ -70,10 +74,7 @@
                          <td><strong> Tổng tiền: </strong></td>
                          <td>
                              <strong>
-                                 {{number_format(DB::table('donhang_chitiet')
-                                 ->select('dongiaban',DB::raw('SUM(dongiaban)'))
-                                 ->groupBy('dongiaban')
-                                 ->first()->dongiaban)}}đ
+                                 {{number_format($tongtien)}}đ
                              </strong>
                          </td>
                         </tfoot>

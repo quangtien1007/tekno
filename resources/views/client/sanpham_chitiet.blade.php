@@ -96,7 +96,7 @@
                                     D.Lượng
 									<select name="dlsp" class="input-select" id="sub_category_name">
                                         @foreach ($dl as $item)
-										<option value="{{DB::table('dungluong')->where('id',$item->dungluong_id)->first()->dungluong}}">
+										<option value="{{DB::table('dungluong')->where('id',$item->dungluong_id)->first()->id}}">
                                             {{DB::table('dungluong')->where('id',$item->dungluong_id)->first()->dungluong}}
                                         </option>
                                         @endforeach

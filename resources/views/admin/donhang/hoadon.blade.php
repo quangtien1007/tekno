@@ -19,7 +19,9 @@
 <body>
     <h1>Tekno</h1>
     <p>{{$date}}</p>
-    <p>Khach hang: <strong>{{Auth::user()->name}}</strong></p>
+    <p>Khach hang: <strong>
+         @if(isset($tenkh)) {{$tenkh}}  @else {{ Auth::user()->name }}@endif
+    </strong></p>
         <!-- row -->
         <div class="row">
             <div class="col-md-9">

@@ -43,7 +43,7 @@ class NguoiDungController extends Controller
                 $is_admin = 1;
             }
         }
-        // dd($is_admin);
+
         $orm = new User();
         $orm->name = $request->name;
         $orm->email = $request->email;

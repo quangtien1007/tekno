@@ -153,9 +153,8 @@ class SanPhamController extends Controller
                 }
             }
         } else {
-            return redirect()->route('admin.sanpham.index')->with('error', 'Thêm sản phẩm không thành công');
+            return redirect()->route('admin.sanpham.index')->with('error', 'Có lỗi khi thêm sản phẩm');
         }
-
         return redirect()->route('admin.sanpham.index')->with('success', 'Thêm sản phẩm thành công');
     }
 
