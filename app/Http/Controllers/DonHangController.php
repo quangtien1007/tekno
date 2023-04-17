@@ -50,6 +50,7 @@ class DonHangController extends Controller
 
     public function postThem(Request $request)
     {
+        // dd($request);
         $tenloai = 'Đặt hàng thành công';
         $tinhtrang = 8;
         $status_dh = DB::select("SHOW TABLE STATUS LIKE 'donhang'"); //Câu lệnh xem trạng thái của bảng

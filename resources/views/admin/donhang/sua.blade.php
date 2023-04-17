@@ -26,7 +26,7 @@
                         @foreach($ctdh as $chitiet)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ DB::table('sanpham')->where('id',$chitiet->id)->first()->tensanpham}}</td>
+                                <td>{{ DB::table('sanpham')->where('id',$chitiet->sanpham_id)->first()->tensanpham}}</td>
                                 <td>{{ DB::table('dungluong')->where('id',$chitiet->dungluong_id)->first()->dungluong}}</td>
                                 <td>{{ DB::table('mau')->where('id',$chitiet->mau_id)->first()->mau}}</td>
                                 <td>{{ $chitiet->soluongban }}</td>
