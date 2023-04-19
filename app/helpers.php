@@ -48,6 +48,7 @@ if (!function_exists('getSanPhamBanChay')) {
     {
         $banchay = DB::table('donhang_chitiet')
             ->select('sanpham_id', DB::raw('SUM(soluongban) as total_sales'))->groupBy('sanpham_id')
+            ->limit(5)
             ->get();
         return $banchay;
     }

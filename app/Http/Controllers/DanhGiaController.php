@@ -42,7 +42,7 @@ class DanhGiaController extends Controller
         $rating->noidung = $request->noidung;
         $rating->save();
 
-        return route('client');
+        return redirect()->route('client')->with('success', 'Đã đánh giá sản phẩm thành công');
     }
 
     /**

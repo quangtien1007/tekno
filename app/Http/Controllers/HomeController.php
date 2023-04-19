@@ -114,7 +114,6 @@ class HomeController extends Controller
 
     public function getDanhMucChiTiet($tenloai_slug, $tenhang_slug)
     {
-        $tenloai = '';
         $hangsanxuat = array();
         if (!empty($tenhang_slug) && !empty($tenloai_slug)) {
             $loaisanpham = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
@@ -123,6 +122,7 @@ class HomeController extends Controller
             $hangsanxuat = SanPham::select('hangsanxuat_id')->where('loaisanpham_id', $loaisanpham->id)->distinct()->get();
         }
         $lsp = LoaiSanPham::where('tenloai_slug', $tenloai_slug)->first();
+        $tenloai = $lsp->tenloai;
         return view('client.sanpham', compact('sanpham', 'tenloai', 'hangsanxuat', 'lsp'));
     }
     public function postSanPham(Request $request)
