@@ -94,7 +94,7 @@
                                 @if($sanpham->loaisanpham_id == 1 || $sanpham->loaisanpham_id == 2 || $sanpham->loaisanpham_id == 3 )
 								<label>
                                     D.Lượng
-									<select name="dlsp" class="input-select" id="sub_category_name">
+									<select name="dlsp1" class="input-select" id="sub_category_name">
                                         @foreach ($dl as $item)
 										<option value="{{DB::table('dungluong')->where('id',$item->dungluong_id)->first()->id}}">
                                             {{DB::table('dungluong')->where('id',$item->dungluong_id)->first()->dungluong}}
@@ -425,7 +425,7 @@
 								</div>
 							</div>
 							<div class="add-to-cart">
-								<form action="{{route('client.giohang.add')}}" method="post">
+                                <form action="{{route('client.giohang.add')}}" method="post">
                                     @csrf
                                     @php
                                         $dungluong_mau = DB::table('dungluong_mau')->where('sanpham_id',$value->id)->first();

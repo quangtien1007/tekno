@@ -26,7 +26,7 @@
                     </div>
                 {{ $sanpham->links() }} <br>
 
-                <table class="table table-hover table-sm mt-3 mb-3">
+                <table class="table table-hover mt-3 mb-3">
                     <thead>
                         <tr>
                             <th width="5%">#</th>

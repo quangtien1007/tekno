@@ -275,7 +275,9 @@ class HomeController extends Controller
 
     public function postGioHang_Them(Request $request)
     {
-        // dd($request);
+        if (isset($request->dlsp1)) {
+            $request->dlsp = DungLuongSanPham::where('id', $request->dlsp1)->first()->dungluong;
+        }
         $sanpham = SanPham::where('tensanpham_slug', $request->tensanpham_slug)->first();
 
         Cart::add([
