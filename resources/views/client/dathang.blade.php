@@ -176,6 +176,7 @@
                                 </label>
                                 <div class="caption">
                                     <p>Thanh toán online qua ngân hàng điện tử quốc tế - Paypal</p>
+                                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/PayPal_logo.svg/1200px-PayPal_logo.svg.png" width="100" alt="">
                                 </div>
                             </div>
                         </div>

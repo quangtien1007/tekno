@@ -402,6 +402,7 @@ class HomeController extends Controller
         } elseif ($request->payment_opt == 'paypal') {
             //
             $price = round(Cart::total() / 235900, 2); //chuyen doi tien te
+            // dd($price);
             $data = [];
             $data['items'] = [
                 [

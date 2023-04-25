@@ -72,7 +72,6 @@ class RoleController extends Controller
     public function getSua($id)
     {
         $role = Role::find($id);
-        // dd($role);
         $permissions = Permission::all()->groupBy('group');
         return view('admin.quyen.sua', compact('permissions', 'role'));
     }

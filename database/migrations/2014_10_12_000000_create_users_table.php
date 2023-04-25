@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('password');
             $table->integer('is_admin')->default(0);
             $table->integer('is_online')->default(0);
+            $table->string('diachi')->nullable();
+            $table->string('sodienthoai')->nullable();
             $table->rememberToken();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();

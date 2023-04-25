@@ -24,19 +24,6 @@
                             <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                         @enderror
                     </div>
-                    {{-- {{dd($nguoidung->is_admin)}} --}}
-                    <div class="mb-3">
-                        <label class="form-label" for="role">Quyền hạn</label>
-                        <select class="form-select @error('role') is-invalid @enderror" id="role" name="is_admin" required>
-                            <option value="">-- Chọn --</option>
-                            <option value="1" {{ ($nguoidung->is_admin == 1) ? 'selected' : '' }}>Quản trị viên</option>
-                            <option value="0" {{ ($nguoidung->is_admin == 0) ? 'selected' : '' }}>Khách hàng</option>
-                        </select>
-                        @error('role')
-                            <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
-                        @enderror
-                    </div>
-
 
                     <div class="form-group">
                         <label for="">Quyền</label>
@@ -46,8 +33,10 @@
                                     <div>
                                         @foreach ($role as $item)
                                         <div class="form-check">
-                                                <input id="role_ids{{$loop->iteration}}" class="form-check-input @error('role_ids') is-invalid @enderror" name="role_ids[]" type="checkbox"
-                                                    value="{{ $item->id }}">
+                                                <input id="role_ids{{$loop->iteration}}" class="form-check-input @error('role_ids') is-invalid @enderror"
+                                                {{ $nguoidung->roles->contains('name', $item->name) ? 'checked' : '' }}
+                                                name="role_ids[]" type="checkbox"
+                                                value="{{ $item->id }}">
                                                 <label class="custom-control-label"
                                                     for="role_ids{{$loop->iteration}}">{{ $item->display_name }}</label>
                                             </div>

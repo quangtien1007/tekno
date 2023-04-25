@@ -25,8 +25,11 @@
                                 <td>{{ $value->name }}</td>
                                 <td>{{ $value->email }}</td>
                                 <td>
+                                    @php
+                                        $role_id = DB::table('model_has_roles')->where('model_id',$value->id)->first();
+                                    @endphp
                                     @if($value->is_admin == 1)
-                                    Quản trị viên
+                                    {{DB::table('roles')->where('id',$role_id->role_id)->first()->display_name}}
                                     @else
                                     Khách hàng
                                     @endif

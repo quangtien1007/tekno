@@ -63,6 +63,11 @@
 									<i class="fa-solid fa-gear"></i> Quản lý
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{ route('admin.donhang.index') }}"><i class="fa-solid fa-cart-arrow-down"></i> Đơn hàng</a></li>
+									<li><a class="dropdown-item" href="{{ route('admin.sanpham.index') }}"><i class="fa-solid fa-cubes"></i> Sản phẩm</a></li>
+									<li><a class="dropdown-item" href="{{ route('admin.baiviet.index') }}"><i class="fa-solid fa-newspaper"></i> Bài viết</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('inbox.index') }}"><i class="fa-brands fa-rocketchat"></i> Chat</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('admin.thongke.index') }}"><i class="fa-brands fa-rocketchat"></i> Thống kê</a></li>
                                     @role('admin')
                                     <li><a class="dropdown-item" href="{{ route('admin.quyen.index') }}"><i class="fa-solid fa-shield-check"></i> Quyền</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.loaisanpham.index') }}"><i class="fa-solid fa-list"></i> Loại sản phẩm</a></li>
@@ -70,10 +75,6 @@
 									<li><a class="dropdown-item" href="{{ route('admin.nguoidung.index') }}"><i class="fa-solid fa-users"></i> Tài khoản </a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.tinhtrang.index') }}"><i class="fa-regular fa-rectangle-list"></i></i> Tình trạng</a></li>
                                     @endrole
-									<li><a class="dropdown-item" href="{{ route('admin.baiviet.index') }}"><i class="fa-solid fa-newspaper"></i> Bài viết</a></li>
-									<li><a class="dropdown-item" href="{{ route('admin.sanpham.index') }}"><i class="fa-solid fa-cubes"></i> Sản phẩm</a></li>
-                                    <li><a class="dropdown-item" href="{{ route('inbox.index') }}"><i class="fa-brands fa-rocketchat"></i> Chat</a></li>
-									<li><a class="dropdown-item" href="{{ route('admin.donhang.index') }}"><i class="fa-solid fa-cart-arrow-down"></i> Đơn hàng</a></li>
 								</ul>
 							</li>
 							<li class="nav-item dropdown">
@@ -104,6 +105,5 @@
 	</div>
 	<script src="{{asset('assets/js/index.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.umd.js" integrity="sha512-vCUbejtS+HcWYtDHRF2T5B0BKwVG/CLeuew5uT2AiX4SJ2Wff52+kfgONvtdATqkqQMC9Ye5K+Td0OTaz+P7cw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
 </body>
 </html>

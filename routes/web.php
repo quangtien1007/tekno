@@ -195,4 +195,12 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
         Route::post('/sua/{id}', 'postSua')->name('update');
         Route::get('/xoa/{id}', 'getXoa')->name('delete');
     });
+
+    Route::get('thongke', [DonHangController::class, 'getThongKe'])->name('admin.thongke.index');
+
+    // Route::prefix('thongke')->controller(HomeController::class)->name('admin.thongke.')->group(function () {
+    //     Route::get('/', function () {
+    //         return 'hello world';
+    //     })->name('index');
+    // });
 });

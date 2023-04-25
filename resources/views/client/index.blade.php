@@ -72,8 +72,6 @@
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
 									<li class="active"><a data-toggle="tab" href="#tab1">Điện thoại</a></li>
-									<li><a data-toggle="tab" href="#tab1">Laptop</a></li>
-									<li><a data-toggle="tab" href="#tab1">Tai nghe</a></li>
 								</ul>
 							</div>
 						</div>
@@ -118,7 +116,6 @@
                                                     <div class="product-btns">
                                                         <button onclick="addToWishlist({{$item->id}})" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">thêm vào yêu thích</span></button>
                                                         <button onclick="addToCompare({{$item->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
-													    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
 												</div>
 											</div>
 											<div class="add-to-cart">
@@ -249,8 +246,6 @@
 							<div class="section-nav">
 								<ul class="section-tab-nav tab-nav">
 									<li class="active"><a data-toggle="tab" href="#tab2">Laptop</a></li>
-									<li><a data-toggle="tab" href="#tab1">Điện thoại</a></li>
-									<li><a data-toggle="tab" href="#tab1">Tai nghe</a></li>
 								</ul>
 							</div>
 						</div>
@@ -295,7 +290,6 @@
 												<div class="product-btns">
 													<button onclick="addToWishlist({{$item->id}})" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">yêu thích</span></button>
 													<button onclick="addToCompare({{$item->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
-													<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
 												</div>
 											</div>
 											<div class="add-to-cart">

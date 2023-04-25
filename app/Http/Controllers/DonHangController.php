@@ -14,6 +14,7 @@ use App\Models\MauSanPham;
 use App\Models\DungLuongSanPham;
 use App\Models\DungLuong_Mau;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Models\LoaiSanPham;
 
 class DonHangController extends Controller
 {
@@ -158,5 +159,19 @@ class DonHangController extends Controller
         $orm->delete();
 
         return redirect()->route('admin.donhang.index')->with('success', 'Xóa đơn hàng thành công');
+    }
+
+    public function getThongKe()
+    {
+        $dhct = DB::table('DonHang_ChiTiet')->select('sanpham_id')->distinct()->get();
+        $tongDonHang = count($dhct);
+        $data = [];
+        // dd($dhct);
+        for ($i = 0; $i < $tongDonHang; $i++) {
+            $loaiSP = SanPham::select('loaisanpham_id')->distinct()->where('id', $dhct[$i]->sanpham_id)->first();
+            $tenloai = LoaiSanPham::select('tenloai')->where('id', $loaiSP->loaisanpham_id)->first()->tenloai;
+            array_unshift($data, $tenloai);
+        }
+        return view('admin.thongke.thongke', compact('tongDonHang', 'data'));
     }
 }

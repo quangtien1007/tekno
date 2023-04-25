@@ -170,7 +170,6 @@
 					<!-- NAV -->
 					<ul class="navbar navbar-light main-nav nav navbar-nav">
 						<li class="{{ request()->routeIs('client') ? 'active' : 'no' }}"><a href="{{route('client')}}">Trang chủ</a></li>
-						<li><a href="#">Hot Deals</a></li>
 						@foreach ($navdata as $item)
                         <li class="{{ $tenloai == $item->tenloai ? 'active' : 'no' }}">
                             <a

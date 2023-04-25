@@ -340,6 +340,7 @@
                                             $is_danhgia = DB::table('danhgia')->where('user_id',Auth::user()->id)->where('sanpham_id',$sanpham->id)->first();
                                             $donhang = DB::table('donhang')->where('user_id',Auth::user()->id)->where('tinhtrang_id',8)->first();//Đơn hàng thành công
                                         ?>
+                                        {{-- {{dd($danhgia)}} --}}
                                         @if ($donhang && !$is_danhgia)
 										<!-- Review Form -->
 										<div class="col-md-3">
@@ -421,7 +422,6 @@
 								<div class="product-btns">
 									<button onclick="addToWishlist({{$value->id}})" class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">yêu thích</span></button>
 									<button onclick="addToCompare({{$value->id}})" class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">thêm vào so sánh</span></button>
-									<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">xem nhanh</span></button>
 								</div>
 							</div>
 							<div class="add-to-cart">
