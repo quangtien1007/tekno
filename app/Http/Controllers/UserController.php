@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\User;
+use App\Models\User;
 use App\Models\DonHang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,7 +20,6 @@ class UserController extends Controller
     {
         $tenloai = 'Khách hàng';
         $donhang = DonHang::where('user_id', Auth::user()->id)->orderBy('created_at', 'asc')->get();
-        // dd($donhang);
         return view('user.index', compact('donhang', 'tenloai'));
     }
 
@@ -60,13 +60,11 @@ class UserController extends Controller
             'password' => ['confirmed'],
         ]);
 
-        $orm = User::find($id);
-        $orm->name = $request->name;
-        $orm->username = Str::before($request->email, '@');
-        $orm->email = $request->email;
-        if (!empty($request->password)) $orm->password = Hash::make($request->password);
-        $orm->save();
+        // $usr = User::find($id);
+        // $usr->name = $request->name;
+        // $usr->email = $request->email;
+        // $usr->password = Hash::make($request->password);
 
-        return redirect()->route('khachhang');
+        return response()->json(['success' => 'Laravel ajax example is being processed.']);
     }
 }

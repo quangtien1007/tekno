@@ -30,11 +30,11 @@
                 labels: ["2023/03/17", "2023/03/20", "2023/03/23", "2023/03/26", "2023/03/29", "2023/04/03"],
                 datasets: [
                 {
-                    type: "line",
+                    type: "bar",
                     label: "Sản phẩm bán được",
                     data: [25, 13, 30, 35, 25, 40],
                     lineTension: 0,
-                    fill: true
+                    fill: false
                 }
                 ]
             }

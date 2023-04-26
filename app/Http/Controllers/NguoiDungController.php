@@ -93,6 +93,10 @@ class NguoiDungController extends Controller
         return redirect()->route('admin.nguoidung.index')->with('success', 'Đã cập nhật tài khoản thành công');
     }
 
+    public function getChangePassword(){
+        
+    }
+
     public function getXoa($id)
     {
         $orm = User::find($id);

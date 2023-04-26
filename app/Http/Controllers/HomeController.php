@@ -535,6 +535,6 @@ class HomeController extends Controller
     public function getDatHangKhongThanhCong()
     {
         Cart::destroy();
-        return view('client.dathangthanhcong');
+        return view('client.dathangerror');
     }
 }

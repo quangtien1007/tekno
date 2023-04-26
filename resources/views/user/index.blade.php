@@ -168,25 +168,26 @@
 										<h3>Thông tin tài khoản</h3>
 									</div>
 									<div class="card-body">
-										<form action="{{ route('user.capnhathoso') }}" method="post">
+                                        <form>
+										{{-- <form id="edit-user-form" data-action="{{ route('user.CapNhatHoSo') }}" method="post"> --}}
 											@csrf
 											<div class="form-group">
 												<label>Họ và tên <span class="required">*</span></label>
-												<input class="form-control @error('name') is-invalid @enderror" name="name" type="text" value="{{ Auth::user()->name }}" required />
+												<input id="name" class="form-control @error('name') is-invalid @enderror" name="name" type="text" value="{{ Auth::user()->name }}" required />
 												@error('name')
 													<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 												@enderror
 											</div>
 											<div class="form-group">
 												<label>Địa chỉ Email <span class="required">*</span></label>
-												<input class="form-control @error('email') is-invalid @enderror" name="email" type="email" value="{{ Auth::user()->email }}" required />
+												<input id="email" class="form-control @error('email') is-invalid @enderror" name="email" type="email" value="{{ Auth::user()->email }}" required />
 												@error('email')
 													<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 												@enderror
 											</div>
 											<div class="form-group">
 												<label>Mật khẩu mới</label>
-												<input class="form-control @error('password') is-invalid @enderror" name="password" type="password" placeholder="Bỏ trống nếu muốn giữ nguyên mật khẩu cũ." />
+												<input id="password" class="form-control @error('password') is-invalid @enderror" name="password" type="password" placeholder="Bỏ trống nếu muốn giữ nguyên mật khẩu cũ." />
 												@error('password')
 													<div class="invalid-feedback"><strong>{{ $message }}</strong></div>
 												@enderror
@@ -199,10 +200,51 @@
 												@enderror
 											</div>
 
-											<button type="submit" class="primary-btn order-submit">Cập nhật thông tin</button>
+											<button id="btn-submit" class="primary-btn order-submit">Cập nhật thông tin</button>
 										</form>
 									</div>
 								</div>
+                                <script type="text/javascript">
+                                $(document).ready(function(){
+                                    $.ajaxSetup({
+                                        headers: {
+                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                        }
+                                    });
+
+                                var form = '#edit-user-form';
+                                var name = $("#name").val();
+                                var email = $("#email").val();
+                                var password = $("#password").val();
+                                var data = {
+                                    name: name,
+                                    email: email,
+                                    password: password
+                                }
+
+                                $("#btn-submit").click(function(event){
+                                    event.preventDefault();
+                                    console.log(data);
+                                    $.ajax({
+                                        type: 'POST',
+                                        url: '{{ route('user.capNhatHoSo') }}',
+                                        data: {
+                                            name: name,
+                                            email: email,
+                                            password: password
+                                        },
+                                        success:function(data)
+                                        {
+                                            swal("Thành công", "Đã sửa thông tin thành công!", "success")
+                                            location.reload();
+                                        },
+                                        error: function(response) {
+                                        }
+                                    });
+                                });
+
+                                });
+                                </script>
 							</div>
 						</div>
 					</div>

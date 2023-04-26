@@ -307,7 +307,7 @@
 													<li>
 														<div class="review-heading">
 															<h5 class="name">{{DB::table('users')->where('id',$item->user_id)->first()->name}}</h5>
-															<p class="date">27 DEC 2018, 8:0 PM</p>
+															<p class="date">{{$item->created_at}}</p>
 															<div class="review-rating">
                                                                 @if(isset($item->sao))
                                                                     @for ($i = 0; $i < $item->sao; $i++)
@@ -340,7 +340,6 @@
                                             $is_danhgia = DB::table('danhgia')->where('user_id',Auth::user()->id)->where('sanpham_id',$sanpham->id)->first();
                                             $donhang = DB::table('donhang')->where('user_id',Auth::user()->id)->where('tinhtrang_id',8)->first();//Đơn hàng thành công
                                         ?>
-                                        {{-- {{dd($danhgia)}} --}}
                                         @if ($donhang && !$is_danhgia)
 										<!-- Review Form -->
 										<div class="col-md-3">

@@ -13,6 +13,7 @@ use App\Models\SanPham;
 use App\Models\MauSanPham;
 use App\Models\DungLuongSanPham;
 use App\Models\DungLuong_Mau;
+use App\Models\HangSanXuat;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Models\LoaiSanPham;
 
@@ -163,15 +164,41 @@ class DonHangController extends Controller
 
     public function getThongKe()
     {
-        $dhct = DB::table('DonHang_ChiTiet')->select('sanpham_id')->distinct()->get();
+        $dhct = DB::table('donhang')->get();
         $tongDonHang = count($dhct);
         $data = [];
-        // dd($dhct);
-        for ($i = 0; $i < $tongDonHang; $i++) {
-            $loaiSP = SanPham::select('loaisanpham_id')->distinct()->where('id', $dhct[$i]->sanpham_id)->first();
-            $tenloai = LoaiSanPham::select('tenloai')->where('id', $loaiSP->loaisanpham_id)->first()->tenloai;
-            array_unshift($data, $tenloai);
+        $tongSanPham = DB::table('DonHang_ChiTiet')
+            ->select(DB::raw('SUM(soluongban) AS tongSoluong'))
+            ->first()->tongSoluong;
+        $tongDoanhThu = DB::table('donhang_chitiet')->select(DB::raw('SUM(soluongban*dongiaban) AS tongDoanhThu'))->first()->tongDoanhThu;
+        $tongDienThoai = DB::select(DB::raw('SELECT SUM(soluongban) AS tongDT FROM donhang_chitiet,sanpham WHERE donhang_chitiet.sanpham_id = sanpham.id AND sanpham.loaisanpham_id = 1'))[0]->tongDT;
+        $tongLaptop = DB::select(DB::raw('SELECT SUM(soluongban) AS tongLaptop FROM donhang_chitiet,sanpham WHERE donhang_chitiet.sanpham_id = sanpham.id AND sanpham.loaisanpham_id = 3'))[0]->tongLaptop;
+        $tongTablet = DB::select(DB::raw('SELECT SUM(soluongban) AS tongTablet FROM donhang_chitiet,sanpham WHERE donhang_chitiet.sanpham_id = sanpham.id AND sanpham.loaisanpham_id = 2'))[0]->tongTablet;
+        $tongChuotBanPhim = DB::select(DB::raw('SELECT SUM(soluongban) AS tongChuotBanPhim FROM donhang_chitiet,sanpham WHERE donhang_chitiet.sanpham_id = sanpham.id AND sanpham.loaisanpham_id = 4'))[0]->tongChuotBanPhim;
+        $lspId = DB::select(DB::raw('
+        SELECT DISTINCT loaisanpham_id from sanpham,donhang_chitiet where donhang_chitiet.sanpham_id = sanpham.id
+        '));
+
+        $hsx = HangSanXuat::all();
+        foreach ($hsx as $h) {
+            foreach ($lspId as $lsp) {
+                $tongLoaiSanPham = DB::select(DB::raw('
+                SELECT DISTINCT COUNT(soluongban) AS
+                    test from donhang_chitiet,sanpham WHERE donhang_chitiet.sanpham_id = sanpham.id AND sanpham.hangsanxuat_id = ' . $h->id . ' AND sanpham.loaisanpham_id = ' . $lsp->loaisanpham_id . '
+                '))[0];
+                // array_unshift($data, $tongLoaiSanPham);
+            }
         }
-        return view('admin.thongke.thongke', compact('tongDonHang', 'data'));
+        // dd($data);
+        $thongke = [
+            'tongdonhang' => $tongDonHang,
+            'tongsanpham' => $tongSanPham,
+            'doanhthu' => $tongDoanhThu,
+            'dienthoai' => $tongDienThoai,
+            'laptop' => $tongLaptop,
+            'tablet' => $tongTablet,
+            'chuotbanphim' => $tongChuotBanPhim,
+        ];
+        return view('admin.thongke.thongke', compact('thongke', 'data'));
     }
 }
