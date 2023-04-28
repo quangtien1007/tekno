@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\DonHang;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -54,17 +55,42 @@ class UserController extends Controller
     {
         $id = Auth::user()->id;
 
-        $request->validate([
-            'name' => ['required', 'string', 'max:100'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:email,' . $id],
+        $validation = Validator::make($request->all(), [
+            'name' => ['required'],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'password' => ['confirmed'],
         ]);
+        if ($validation->passes()) {
+            $usr = User::find($id);
+            $usr->name = $request->name;
+            $usr->email = $request->email;
+            $usr->password = Hash::make($request->password);
+            $usr->save();
+            return response()->json([
+                'title' => 'Thành công',
+                'info' => 'Đã sửa thông tin thành công!',
+                'status' => 'success',
+            ]);
+        } else {
+            return response()->json([
+                'title' => 'Lỗi',
+                'info' => 'Có lỗi vui lòng kiểm tra lại thông tin',
+                'status' => 'error',
+            ]);
+        }
+    }
 
-        // $usr = User::find($id);
-        // $usr->name = $request->name;
-        // $usr->email = $request->email;
-        // $usr->password = Hash::make($request->password);
-
-        return response()->json(['success' => 'Laravel ajax example is being processed.']);
+    public function postDiaChi(Request $request)
+    {
+        $id = Auth::user()->id;
+        $usr = User::find($id);
+        $usr->diachi = $request->diachi;
+        $usr->sodienthoai = $request->sodienthoai;
+        $usr->save();
+        return response()->json([
+            'title' => 'Thành công',
+            'info' => 'Đã sửa thông tin thành công!',
+            'status' => 'success',
+        ]);
     }
 }

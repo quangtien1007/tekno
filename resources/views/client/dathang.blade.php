@@ -49,10 +49,10 @@
                                 <input type="text" class="input" name="email" placeholder="Địa chỉ Email *" value="{{ Auth::user()->email ?? '' }}" required />
                             </div>
                             <div class="form-group">
-                                <input type="text" class="input" name="diachigiaohang" placeholder="Địa chỉ giao hàng *" required />
+                                <input type="text" class="input" name="diachigiaohang" placeholder="Địa chỉ giao hàng *" value="{{ Auth::user()->diachi ?? ''}}"  required />
                             </div>
                             <div class="form-group">
-                                <input type="text" class="input" name="dienthoaigiaohang" placeholder="Điện thoại *" required />
+                                <input type="text" class="input" name="dienthoaigiaohang" placeholder="Điện thoại *" value="{{ Auth::user()->sodienthoai ?? ''}}" required />
                             </div>
                             @guest
                             <div class="form-group">
@@ -91,10 +91,10 @@
                                         <input type="text" class="input" name="email2" placeholder="Địa chỉ Email *" value="{{ Auth::user()->email ?? '' }}"  />
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="input" name="diachigiaohang2" placeholder="Địa chỉ giao hàng *"  />
+                                        <input type="text" class="input" name="diachigiaohang2" placeholder="Địa chỉ giao hàng *" />
                                     </div>
                                     <div class="form-group">
-                                        <input type="text" class="input" name="dienthoaigiaohang2" placeholder="Điện thoại *"  />
+                                        <input type="text" class="input" name="dienthoaigiaohang2" placeholder="Điện thoại *" />
                                     </div>
                                 </div>
                             </div>

@@ -1,6 +1,12 @@
 @extends('layouts.client')
-
 @section('title', $sanpham->tensanpham)
+@section('meta-tag')
+<meta property="og:url"           content="{{url()->current()}}" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="{{$sanpham->tensanpham ? $sanpham->tensanpham :''}}" />
+<meta property="og:description"   content="{{$sanpham->tensanpham ? $sanpham->tensanpham : ''}}" />
+<meta property="og:image"         content="{{ env('APP_URL') . '/images/sanpham/'. $sanpham->hinhanh ? $sanpham->hinhanh : ''}}" />
+@endsection
 
 @section('content')
         @php
@@ -156,10 +162,13 @@
 								<li><a href="#">Tai nghe</a></li>
 								<li><a href="#">Accessories</a></li>
 							</ul>
-
+                            <div class="fb-share-button"
+                                    data-href="{{url()->current()}}"
+                                    data-layout="button_count">
+                            </div>
 							<ul class="product-links">
 								<li>Share:</li>
-								<li><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li><a data-layout="button_count" data-href="{{url()->current()}}"><i class="fb-share-button"></i></a></li>
 								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
 								<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i></a></li>

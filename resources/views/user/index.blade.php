@@ -52,7 +52,7 @@
 					</div>
 					<div class="col-lg-10 col-md-8">
 						<div class="tab-content dashboard_content">
-							<div class="tab-pane fade active" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
+							<div class="tab-pane fade" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
 								<div class="card">
 									<div class="card-header">
 										<h3>Trang chủ khách hàng</h3>
@@ -124,39 +124,34 @@
 							</div>
 							<div class="tab-pane fade" id="address" role="tabpanel" aria-labelledby="address-tab">
 								<div class="row">
-									<div class="col-lg-6">
+									<div class="col-sm-12">
 										<div class="card">
 											<div class="card-header">
-												<h3>Nhà riêng</h3>
+												<h3>Địa chỉ giao hàng</h3>
 											</div>
 											<div class="card-body">
-												<address>
-													{{ Auth::user()->name }}<br />
-													122 Trần Hưng Đạo<br />
-													Khóm Đông Thạnh A<br />
-													Phường Mỹ Thạnh<br />
-													Thành phố Long Xuyên<br />
-													Tỉnh An Giang<br />
+												<address id="address">
+                                                    <div id="info-address">
+                                                        {{ Auth::user()->name }}<br />
+                                                        {{ Auth::user()->diachi}} <br>
+                                                        {{ Auth::user()->sodienthoai}}
+                                                    </div>
+                                                    <div id="edit-address" style="display: none">
+                                                        <form id="edit-address-form" method="POST">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="diachi">Địa chỉ</label>
+                                                                <input class="form-control" value="{{Auth::user()->diachi}}" type="textarea" name="diachi">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="sodienthoai">Số điện thoại</label>
+                                                                <input class="form-control" type="number" value="{{Auth::user()->sodienthoai}}" name="sodienthoai">
+                                                            </div>
+                                                            <button class="primary-btn">Cập nhật</button>
+                                                        </form>
+                                                    </div>
 												</address>
-												<a href="#" class="btn btn-fill-out">Chỉnh sửa</a>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="card">
-											<div class="card-header">
-												<h3>Cơ quan</h3>
-											</div>
-											<div class="card-body">
-												<address>
-													{{ Auth::user()->name }}<br />
-													Đại học An Giang<br />
-													18 Ung Văn Khiêm<br />
-													Phường Đông Xuyên<br />
-													Thành phố Long Xuyên<br />
-													Tỉnh An Giang<br />
-												</address>
-												<a href="#" class="btn btn-fill-out">Chỉnh sửa</a>
+												<a id="edit-address1" class="btn btn-fill-out">Chỉnh sửa</a>
 											</div>
 										</div>
 									</div>
@@ -168,7 +163,7 @@
 										<h3>Thông tin tài khoản</h3>
 									</div>
 									<div class="card-body">
-                                        <form>
+                                        <form id="edit-user-form" method="POST">
 										{{-- <form id="edit-user-form" data-action="{{ route('user.CapNhatHoSo') }}" method="post"> --}}
 											@csrf
 											<div class="form-group">
@@ -205,40 +200,67 @@
 									</div>
 								</div>
                                 <script type="text/javascript">
-                                $(document).ready(function(){
-                                    $.ajaxSetup({
-                                        headers: {
-                                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                        }
-                                    });
+                                var editBtn = document.getElementById('edit-address1');
+                                var formEdit = document.getElementById('edit-address');
+                                var address = document.getElementById('info-address');
+                                editBtn.onclick = function(){
+                                    if(formEdit.style.display == 'none'){
+                                        formEdit.style.display = 'block';
+                                        address.style.display = 'none';
+                                    }else{
+                                        formEdit.style.display = 'none'
+                                        address.style.display = 'block';
+                                    }
 
-                                var form = '#edit-user-form';
-                                var name = $("#name").val();
-                                var email = $("#email").val();
-                                var password = $("#password").val();
-                                var data = {
-                                    name: name,
-                                    email: email,
-                                    password: password
                                 }
+                                $(document).ready(function(){
+                                var form = '#edit-user-form';
+                                var form = '#edit-address-form';
 
-                                $("#btn-submit").click(function(event){
+                                $("#edit-user-form").on('submit',function(event){
                                     event.preventDefault();
-                                    console.log(data);
                                     $.ajax({
+                                        url: '{{route('user.capnhathoso')}}',
                                         type: 'POST',
-                                        url: '{{ route('user.capNhatHoSo') }}',
-                                        data: {
-                                            name: name,
-                                            email: email,
-                                            password: password
-                                        },
+                                        data: new FormData(this),
+                                        dataType: 'JSON',
+                                        contentType: false,
+                                        cache: false,
+                                        processData: false,
                                         success:function(data)
                                         {
-                                            swal("Thành công", "Đã sửa thông tin thành công!", "success")
-                                            location.reload();
+                                            // console.log(new FormData(this));
+                                            $(form).trigger("reset");
+                                            // alert(data.success)
+                                            swal(data.title, data.info, data.status);
+                                            // location.reload();
+                                            console.log(data);
                                         },
-                                        error: function(response) {
+                                        error: function(data) {
+                                        }
+                                    });
+                                });
+
+                                $("#edit-address-form").on('submit',function(event){
+                                    event.preventDefault();
+                                    $.ajax({
+                                        url: '{{route('user.capnhatdiachi')}}',
+                                        type: 'POST',
+                                        data: new FormData(this),
+                                        dataType: 'JSON',
+                                        contentType: false,
+                                        cache: false,
+                                        processData: false,
+                                        success:function(data)
+                                        {
+                                            // console.log(new FormData(this));
+                                            $(form).trigger("reset");
+                                            // alert(data.success)
+                                            swal(data.title, data.info, data.status);
+                                            // location.reload();
+                                            console.log(data);
+                                        },
+                                        error: function(data) {
                                         }
                                     });
                                 });

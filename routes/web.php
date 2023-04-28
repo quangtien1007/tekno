@@ -18,8 +18,6 @@ use App\Http\Controllers\DanhGiaController;
 use App\Http\Controllers\InboxController;
 use Illuminate\Support\Facades\Auth;
 
-
-
 // Đăng ký, đăng nhập, Quên mật khẩu
 Auth::routes();
 // Route::head() Route::prefix('admin')->middleware('admin-check')->group(function () {
@@ -87,9 +85,9 @@ Route::prefix('khach-hang')->group(function () {
     // Xem và cập nhật trạng thái đơn hàng
     Route::get('/don-hang/{id}', [UserController::class, 'getDonHang'])->name('user.index');
     Route::post('/don-hang/{id}', [UserController::class, 'postDonHang'])->name('user.donhang');
-    Route::post('/capnhatuser', [UserController::class, 'postCapNhatHoSo'])->name('user.capNhatHoSo');
+    Route::post('/cap-nhat-ho-so', [UserController::class, 'postCapNhatHoSo'])->name('user.capnhathoso');
     // Cập nhật thông tin tài khoản
-    Route::post('/cap-nhat-ho-so', [NguoiDungController::class, 'postSua'])->name('user.capnhasthoso');
+    Route::post('/cap-nhat-dia-chi', [UserController::class, 'postDiaChi'])->name('user.capnhatdiachi');
 });
 
 //Chat realtime/ livewire
@@ -198,11 +196,5 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
         Route::get('/xoa/{id}', 'getXoa')->name('delete');
     });
 
-    Route::get('thongke', [DonHangController::class, 'getThongKe'])->name('admin.thongke.index');
-
-    // Route::prefix('thongke')->controller(HomeController::class)->name('admin.thongke.')->group(function () {
-    //     Route::get('/', function () {
-    //         return 'hello world';
-    //     })->name('index');
-    // });
+    // Route::get('thongke', [DonHangController::class, 'getThongKe'])->name('admin.thongke.index');
 });
