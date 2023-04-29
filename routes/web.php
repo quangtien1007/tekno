@@ -102,7 +102,7 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
     // Trang chủ tài khoản quản lý
     Route::get('/', [AdminController::class, 'getHome'])->name('admin');
 
-    Route::prefix('quyen')->controller(RoleController::class)->middleware('role:admin')->name('admin.quyen.')->group(function () {
+    Route::prefix('quyen')->controller(RoleController::class)->middleware('role:quantrivien')->name('admin.quyen.')->group(function () {
         Route::get('/', 'getDanhSach')->name('index');
         Route::get('/them', 'getThem')->name('create');
         Route::post('/them', 'postThem')->name('add');
@@ -112,7 +112,7 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
     });
 
     // Quản lý Loại sản phẩm
-    Route::prefix('loaisanpham')->controller(LoaiSanPhamController::class)->middleware('role:admin')->name('admin.loaisanpham.')->group(function () {
+    Route::prefix('loaisanpham')->controller(LoaiSanPhamController::class)->middleware('role:quantrivien')->name('admin.loaisanpham.')->group(function () {
         Route::get('/', 'getDanhSach')->name('index');
         Route::get('/them', 'getThem')->name('create');
         Route::post('/them', 'postThem')->name('add');

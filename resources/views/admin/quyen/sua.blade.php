@@ -32,9 +32,8 @@
                     <div class="    mb-3">
                         <label name="group" class="ms-0">Nhóm quyền</label>
                         <select name="group" class="form-control" value={{ $role->group }}>
-                            <option value="system">System</option>
-                            <option value="user">User</option>
-
+                            <option {{$role->group=='Hệ thống' ? 'selected' : ''}} value="Hệ thống">Hệ thống</option>
+                            <option {{$role->group=='Khách hàng' ? 'selected' : ''}}  value="Khách hàng">Khách hàng</option>
                         </select>
 
                         @error('group')

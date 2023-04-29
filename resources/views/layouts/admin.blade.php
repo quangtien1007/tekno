@@ -68,7 +68,7 @@
 									<li><a class="dropdown-item" href="{{ route('admin.baiviet.index') }}"><i class="fa-solid fa-newspaper"></i> Bài viết</a></li>
                                     <li><a class="dropdown-item" href="{{ route('inbox.index') }}"><i class="fa-brands fa-rocketchat"></i> Chat</a></li>
                                     {{-- <li><a class="dropdown-item" href="{{ route('admin.thongke.index') }}"><i class="fa-brands fa-rocketchat"></i> Thống kê</a></li> --}}
-                                    @role('admin')
+                                    @role('quantrivien')
                                     <li><a class="dropdown-item" href="{{ route('admin.quyen.index') }}"><i class="fa-solid fa-shield-check"></i> Quyền</a></li>
                                     <li><a class="dropdown-item" href="{{ route('admin.loaisanpham.index') }}"><i class="fa-solid fa-list"></i> Loại sản phẩm</a></li>
 									<li><a class="dropdown-item" href="{{ route('admin.hangsanxuat.index') }}"><i class="fa-solid fa-copyright"></i> Hãng sản xuất</a></li>

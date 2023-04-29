@@ -19,11 +19,9 @@ class QuyenSeeder extends Seeder
     public function run()
     {
         $roles = [
-            ['name' => 'admin', 'display_name' => 'Admin', 'group' => 'Hệ thống', 'guard_name' => 'web'],
+            ['name' => 'quantrivien', 'display_name' => 'Quản trị viên', 'group' => 'Hệ thống', 'guard_name' => 'web'],
             ['name' => 'nhanvien', 'display_name' => 'Nhân viên', 'group' => 'Hệ thống', 'guard_name' => 'web'],
-            ['name' => 'user', 'display_name' => 'Khách hàng', 'group' => 'Khách hàng', 'guard_name' => 'web'],
-            ['name' => 'employee', 'display_name' => 'employee', 'group' => 'Hệ thống', 'guard_name' => 'web'],
-            ['name' => 'manager', 'display_name' => 'manager', 'group' => 'Hệ thống', 'guard_name' => 'web'],
+            ['name' => 'khachhang', 'display_name' => 'Khách hàng', 'group' => 'Khách hàng', 'guard_name' => 'web'],
         ];
 
         foreach ($roles as $role) {
@@ -35,7 +33,7 @@ class QuyenSeeder extends Seeder
         if (!$Admin) {
             $Admin = User::factory()->create(['email' => 'admin@gmail.com']);
         }
-        $Admin->assignRole('admin');
+        $Admin->assignRole('quantrivien');
 
 
         $permissions = [
