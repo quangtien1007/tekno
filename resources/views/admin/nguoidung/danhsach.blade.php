@@ -11,9 +11,11 @@
                     <thead>
                         <tr>
                             <th width="5%">#</th>
-                            <th width="20%">Họ và tên</th>
-                            <th width="20%">Email</th>
-                            <th width="15%">Quyền hạn</th>
+                            <th width="10%">Họ và tên</th>
+                            <th width="7%">Email</th>
+                            <th width="7%">Quyền hạn</th>
+                            <th width="15%">Địa chỉ</th>
+                            <th width="7%">Số điện thoại</th>
                             <th class="text-center" width="5%">Sửa</th>
                             <th class="text-center" width="5%">Xóa</th>
                         </tr>
@@ -34,6 +36,8 @@
                                     Khách hàng
                                     @endif
                                 </td>
+                                <td>{{ $value->diachi }}</td>
+                                <td>{{ $value->sodienthoai }}</td>
                                 <td class="text-center"><a  href="{{ route('admin.nguoidung.edit', ['id' => $value->id]) }}"><i class="fa-regular fal fa-edit text-success"></i></a></td>
                                 <td class="text-center"><a onclick="return confirm('Bạn có muốn xóa tài khoản {{ $value->email }} không?')" href="{{ route('admin.nguoidung.delete', ['id' => $value->id]) }}"><i class="fa-regular fal fa-trash-alt text-danger"></i></a></td>
                             </tr>

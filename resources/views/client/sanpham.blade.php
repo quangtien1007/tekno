@@ -198,6 +198,7 @@
 
                         <div class="clearfix visible-sm visible-xs"></div>
                          <!-- input hidden de so sanh san pham -->
+                         <input type="hidden" value="{{$item->loaisanpham_id}}" id="cate{{$item->id}}">
                          <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
                          <input type="hidden" value="{{$item->loaisanpham}}" id="cate{{$item->id}}">
                          <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">

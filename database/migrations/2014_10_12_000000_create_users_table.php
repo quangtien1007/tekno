@@ -30,7 +30,13 @@ return new class extends Migration
             $table->engine = 'InnoDB';
         });
 
-        User::create(['name' => 'Admin', 'email' => 'admin@gmail.com', 'password' => '$2y$10$JJWMcG1insRwpmQUbgKV3ez40n3AL/6OpD1dBWrzITWRo2bkU0D1e', 'is_admin' => '1', 'is_online' => '0']);
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@gmail.com',
+            'password' => '$2y$10$JJWMcG1insRwpmQUbgKV3ez40n3AL/6OpD1dBWrzITWRo2bkU0D1e',
+            'is_admin' => '1',
+            'is_online' => '0',
+        ]);
     }
 
     /**

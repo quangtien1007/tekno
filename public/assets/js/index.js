@@ -212,7 +212,7 @@ const addToCompare = (product_id) => {
     if (matches.length) {
         $("#myModal").modal();
     } else if (matchesCate.length) {
-        swal("Khum được đôu", "Hai sản phẩm so sánh phải cùng loại!", "error");
+        swal("Lỗi", "Hai sản phẩm so sánh phải cùng loại!", "error");
     } else {
         if (oldData.length <= 1) {
             oldData.push(newItem);
@@ -508,31 +508,27 @@ updateCountdown();
 //     sliderFormat.noUiSlider.set(this.value);
 // });
 
-$(document).ready(function(){
+$(document).ready(function () {
+    var form = "#add-user-form";
 
-    var form = '#add-user-form';
-
-    $(form).on('submit', function(event){
+    $(form).on("submit", function (event) {
         event.preventDefault();
 
-        var url = $(this).attr('data-action');
+        var url = $(this).attr("data-action");
 
         $.ajax({
             url: url,
-            method: 'POST',
+            method: "POST",
             data: new FormData(this),
-            dataType: 'JSON',
+            dataType: "JSON",
             contentType: false,
             cache: false,
             processData: false,
-            success:function(response)
-            {
+            success: function (response) {
                 $(form).trigger("reset");
-                alert(response.success)
+                alert(response.success);
             },
-            error: function(response) {
-            }
+            error: function (response) {},
         });
     });
-
 });

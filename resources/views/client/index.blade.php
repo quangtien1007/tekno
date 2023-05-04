@@ -135,7 +135,6 @@
                                             <input type="hidden" value="{{$item->tensanpham}}" id="name{{$item->id}}">
                                             <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
                                             <input type="hidden" value="{{$item->dongia}}" id="price{{$item->id}}">
-                                            <input type="hidden" value="{{$item->thongsokythuat}}" id="tskt{{$item->id}}">
                                             <input type="hidden" value="{{ env('APP_URL') . '/images/sanpham/'.$item->hinhanh }}" id="image{{$item->id}}">
                                              <!-- /input hidden de so sanh san pham -->
 										</div>

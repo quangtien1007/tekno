@@ -17,6 +17,7 @@ use App\Http\Controllers\BaiVietController;
 use App\Http\Controllers\DanhGiaController;
 use App\Http\Controllers\InboxController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\ResetPasswordController;
 
 // Đăng ký, đăng nhập, Quên mật khẩu
 Auth::routes();
@@ -101,6 +102,7 @@ Route::prefix('admin')->middleware('admin-check')->group(function () {
 
     // Trang chủ tài khoản quản lý
     Route::get('/', [AdminController::class, 'getHome'])->name('admin');
+    Route::post('/doimatkhau', [ResetPasswordController::class, 'changePassword'])->name('admin.doimatkhau');
 
     Route::prefix('quyen')->controller(RoleController::class)->middleware('role:quantrivien')->name('admin.quyen.')->group(function () {
         Route::get('/', 'getDanhSach')->name('index');

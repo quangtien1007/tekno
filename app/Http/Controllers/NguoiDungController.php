@@ -73,7 +73,7 @@ class NguoiDungController extends Controller
             'password' => ['confirmed'],
         ]);
         for ($i = 0; $i < count($request->role_ids); $i++) {
-            if ($request->role_ids[$i] == 5) {
+            if ($request->role_ids[$i] == 3) {
                 $is_admin = 0;
             } else {
                 $is_admin = 1;
@@ -93,8 +93,8 @@ class NguoiDungController extends Controller
         return redirect()->route('admin.nguoidung.index')->with('success', 'Đã cập nhật tài khoản thành công');
     }
 
-    public function getChangePassword(){
-        
+    public function getChangePassword()
+    {
     }
 
     public function getXoa($id)

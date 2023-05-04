@@ -52,11 +52,6 @@
 									<a class="nav-link" href="{{ route('login') }}"><i class="fal fa-fw fa-sign-in-alt"></i> Đăng nhập</a>
 								</li>
 							@endif
-							@if (Route::has('register'))
-								<li class="nav-item">
-									<a class="nav-link" href="{{ route('register') }}"><i class="fal fa-fw fa-user-plus"></i> Đăng ký</a>
-								</li>
-							@endif
 						@else
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -82,7 +77,9 @@
 									<i class="fa-solid fa-user-tie"></i> {{ Auth::user()->name }}
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li><a class="dropdown-item" href="#"><i class="fal fa-fw fa-key"></i> Đổi mật khẩu</a></li>
+                                    @if (Route::has('password.reset'))
+									<li><a class="dropdown-item" href="{{ route('password.reset',['token'=>'0']) }}"><i class="fal fa-fw fa-key"></i> Đổi mật khẩu</a></li>
+                                    @endif
 									<li><a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fal fa-fw fa-power-off"></i> Đăng xuất</a></li>
 									<form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
 										@csrf

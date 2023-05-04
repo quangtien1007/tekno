@@ -44,7 +44,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{-- {{dd(Cart::content())}} --}}
                                 @foreach(Cart::content() as $value)
                                     <tr>
                                         <td class="product-thumbnail"><a href="#"><img width="100" src="{{ env('APP_URL') . '/images/sanpham/' . $value->options->image }}" /></a></td>
@@ -52,13 +51,6 @@
                                         <td class="product-price" data-title="Price">{{ number_format($value->price) }}<sup>đ</sup></td>
                                         <td class="product-storage" data-title="Storage">
                                             <a href="#">{{ $value->storage }}
-                                                @if($value->storage=='1TB')
-                                                + ( {{number_format($value->price * 0.4)}} đ )
-                                                @elseif ($value->storage=='512GB')
-                                                + ( {{number_format($value->price * 0.2)}} đ )
-                                                @elseif ($value->storage=='256GB')
-                                                + ( {{number_format($value->price * 0.1)}} đ )
-                                                @endif
                                             </a>
                                         </td>
                                         <td class="product-color" data-title="Color"><a href="#">{{ $value->color }}</a></td>
